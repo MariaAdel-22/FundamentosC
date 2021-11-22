@@ -38,6 +38,12 @@ namespace Formulario
             int numeroM = 999;
             short numeroMenor = 888;
             numeroMenor = (short)numeroM;
+
+            String texto = "22";
+            int numero = int.Parse(texto);
+
+            int dato = 25;
+            String valor = dato.ToString();
         }
 
         private void txt1_TextChanged(object sender, EventArgs e)
