@@ -41,6 +41,10 @@ namespace Formulario
             this.txtAzul = new System.Windows.Forms.TextBox();
             this.btnPosicion = new System.Windows.Forms.Button();
             this.btnColor = new System.Windows.Forms.Button();
+            this.lblNum = new System.Windows.Forms.Label();
+            this.txtNum = new System.Windows.Forms.TextBox();
+            this.btnNumero = new System.Windows.Forms.Button();
+            this.lblResultado = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl1
@@ -143,11 +147,50 @@ namespace Formulario
             this.btnColor.UseVisualStyleBackColor = true;
             this.btnColor.Click += new System.EventHandler(this.btnColor_Click);
             // 
+            // lblNum
+            // 
+            this.lblNum.AutoSize = true;
+            this.lblNum.Location = new System.Drawing.Point(37, 370);
+            this.lblNum.Name = "lblNum";
+            this.lblNum.Size = new System.Drawing.Size(54, 15);
+            this.lblNum.TabIndex = 12;
+            this.lblNum.Text = "Número:";
+            // 
+            // txtNum
+            // 
+            this.txtNum.Location = new System.Drawing.Point(108, 361);
+            this.txtNum.Name = "txtNum";
+            this.txtNum.Size = new System.Drawing.Size(100, 23);
+            this.txtNum.TabIndex = 13;
+            // 
+            // btnNumero
+            // 
+            this.btnNumero.Location = new System.Drawing.Point(235, 361);
+            this.btnNumero.Name = "btnNumero";
+            this.btnNumero.Size = new System.Drawing.Size(75, 23);
+            this.btnNumero.TabIndex = 14;
+            this.btnNumero.Text = "Evaluar número";
+            this.btnNumero.UseVisualStyleBackColor = true;
+            this.btnNumero.Click += new System.EventHandler(this.btnNumero_Click);
+            // 
+            // lblResultado
+            // 
+            this.lblResultado.AutoSize = true;
+            this.lblResultado.Location = new System.Drawing.Point(85, 405);
+            this.lblResultado.Name = "lblResultado";
+            this.lblResultado.Size = new System.Drawing.Size(62, 15);
+            this.lblResultado.TabIndex = 15;
+            this.lblResultado.Text = "Resultado:";
+            // 
             // form03ColorPos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(487, 380);
+            this.ClientSize = new System.Drawing.Size(500, 429);
+            this.Controls.Add(this.lblResultado);
+            this.Controls.Add(this.btnNumero);
+            this.Controls.Add(this.txtNum);
+            this.Controls.Add(this.lblNum);
             this.Controls.Add(this.btnColor);
             this.Controls.Add(this.btnPosicion);
             this.Controls.Add(this.txtAzul);
@@ -181,5 +224,9 @@ namespace Formulario
         private System.Windows.Forms.TextBox txtAzul;
         private System.Windows.Forms.Button btnPosicion;
         private System.Windows.Forms.Button btnColor;
+        private System.Windows.Forms.Label lblNum;
+        private System.Windows.Forms.TextBox txtNum;
+        private System.Windows.Forms.Button btnNumero;
+        private System.Windows.Forms.Label lblResultado;
     }
 }
