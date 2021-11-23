@@ -48,5 +48,28 @@ namespace Formulario
                                                                                                                                      finalizar el bucle, y ya tras pararlo recogemos los segundos y milisegundos
                                                                                                                                        para ver cuanto ha tardado el proceso*/
         }
+
+        private void btnStringBuilder_Click(object sender, EventArgs e)
+        {
+            StringBuilder texto = new StringBuilder();
+            Stopwatch krono = new Stopwatch();
+
+            texto.Append(this.txtTexto.Text);
+            krono.Start();
+
+            int longitud = texto.Length;
+
+            for (var i=0;i<longitud;i++) {
+
+                char letra = texto[longitud - 1];
+                texto = texto.Remove(longitud-1,1);
+                texto = texto.Insert(i, letra);
+
+            }
+            this.txtTexto.Text = texto.ToString();
+            krono.Stop();
+            this.lblTiempo.Text = "Segundos: " + krono.Elapsed.TotalSeconds + "\nMilisegundos: " + krono.Elapsed.TotalMilliseconds;
+
+        }
     }
 }

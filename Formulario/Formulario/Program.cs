@@ -17,7 +17,7 @@ namespace Formulario
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new form09InvertirTextoStringBuilder());
+            Application.Run(new form10EjercicioISBN());
         }
     }
 }

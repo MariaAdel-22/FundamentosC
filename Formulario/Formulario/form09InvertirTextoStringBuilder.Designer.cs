@@ -71,6 +71,7 @@ namespace Formulario
             this.btnStringBuilder.TabIndex = 3;
             this.btnStringBuilder.Text = "Invertir StringBuilder";
             this.btnStringBuilder.UseVisualStyleBackColor = true;
+            this.btnStringBuilder.Click += new System.EventHandler(this.btnStringBuilder_Click);
             // 
             // lblTiempo
             // 
