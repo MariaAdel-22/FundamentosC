@@ -24,16 +24,16 @@ namespace Formulario
             string cadena = this.txtISBN.Text;
             int longitud = cadena.Length;
 
-            for (int i=0;i<=longitud-1;i++) {
+            for (int i=0;i<longitud;i++) {
 
-                //int valor = cadena[i];
-                char valor = cadena[i];
-                multiplicacion =+ int.Parse(valor.ToString()) * i;
+                char caracter = cadena[i]; //En una variable de tipo char nos guardamos cada número de la cadena al recorrer el for
+                int numero = int.Parse(caracter.ToString()); //Recogemos cada valor de manera literal (pasando a string)
+                int multi = numero * (i + 1); //Luego lo que hacemos es multiplicar dicho número por i+1 (empieza por 1)
+                multiplicacion += multi; //Vamos recogiendo cada resultado de la multiplicación y la sumamos
+
             }
 
-            int validacion = multiplicacion / 11;
-
-            if (validacion == 0)
+            if (multiplicacion % 11 == 0)
             {
 
                 this.lblResultado.Text = "ISBN es CORRECTO";
