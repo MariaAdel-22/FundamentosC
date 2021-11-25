@@ -48,6 +48,10 @@ namespace Formulario
                 else {//Si no entonces cambia a otro color
 
                     ctrl.BackColor = Color.Aqua;
+
+                    //TextBox tiene un método llamado Paste() que pega lo que tengamos en el portapapeles. Quiero pegar el contenido en la caja. Por ello debemos hacer un casting a tipo TextBox para acceder
+
+                    ((TextBox)ctrl).Paste();
                 }
             }
 
