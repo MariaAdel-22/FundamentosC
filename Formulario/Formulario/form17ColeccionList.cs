@@ -23,9 +23,13 @@ namespace Formulario
             this.contador = 0;
             this.botones = new List<Button>();
 
-            botones.Add(this.button1);
-            botones.Add(this.button2);
-            botones.Add(this.button3);
+            foreach (Control ctrl in this.Controls) { //Lo que hacemos es recorrer todos los controles del formulario (en este caso botones)
+
+                if (ctrl is Button) { //Le decimos si el objeto control es de tipo button
+
+                    this.botones.Add((Button)ctrl);//Para poder almacenarlo RECUERDA que es de tipo BUTTON, hay que CASTEARLO
+                }
+            }
 
             foreach (Button btn in botones) {
 
@@ -38,7 +42,14 @@ namespace Formulario
         {
 
             this.contador += 1;
-            this.lblContador.Text = "Contador: " + this.contador;
+            string nombre = ((Button)sender).Name;
+
+            this.lblContador.Text = nombre+": " + this.contador;
+
+        }
+
+        private void form17ColeccionList_Load(object sender, EventArgs e)
+        {
 
         }
     }
