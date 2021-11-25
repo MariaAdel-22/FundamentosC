@@ -34,6 +34,7 @@ namespace Formulario
         {
 
             int cont = 0;
+            this.listado.Reverse();
             foreach (TextBox tb in this.listado) {
 
                 int numero = int.Parse(this.txtNumero.Text);

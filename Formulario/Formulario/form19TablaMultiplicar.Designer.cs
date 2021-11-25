@@ -33,11 +33,11 @@ namespace Formulario
             this.txtNumero = new System.Windows.Forms.TextBox();
             this.btnMostrar = new System.Windows.Forms.Button();
             this.panelTabla = new System.Windows.Forms.GroupBox();
+            this.txtMul1 = new System.Windows.Forms.TextBox();
             this.txtMul2 = new System.Windows.Forms.TextBox();
             this.txtMul3 = new System.Windows.Forms.TextBox();
             this.txtMul4 = new System.Windows.Forms.TextBox();
             this.txtMul5 = new System.Windows.Forms.TextBox();
-            this.txtMul1 = new System.Windows.Forms.TextBox();
             this.txtMul6 = new System.Windows.Forms.TextBox();
             this.panelTabla.SuspendLayout();
             this.SuspendLayout();
@@ -70,12 +70,12 @@ namespace Formulario
             // 
             // panelTabla
             // 
-            this.panelTabla.Controls.Add(this.txtMul2);
-            this.panelTabla.Controls.Add(this.txtMul3);
-            this.panelTabla.Controls.Add(this.txtMul4);
-            this.panelTabla.Controls.Add(this.txtMul5);
-            this.panelTabla.Controls.Add(this.txtMul1);
             this.panelTabla.Controls.Add(this.txtMul6);
+            this.panelTabla.Controls.Add(this.txtMul5);
+            this.panelTabla.Controls.Add(this.txtMul4);
+            this.panelTabla.Controls.Add(this.txtMul3);
+            this.panelTabla.Controls.Add(this.txtMul2);
+            this.panelTabla.Controls.Add(this.txtMul1);
             this.panelTabla.Location = new System.Drawing.Point(386, 29);
             this.panelTabla.Name = "panelTabla";
             this.panelTabla.Size = new System.Drawing.Size(231, 405);
@@ -83,47 +83,47 @@ namespace Formulario
             this.panelTabla.TabStop = false;
             this.panelTabla.Text = "Tabla multiplicar";
             // 
+            // txtMul1
+            // 
+            this.txtMul1.Location = new System.Drawing.Point(58, 57);
+            this.txtMul1.Name = "txtMul1";
+            this.txtMul1.Size = new System.Drawing.Size(100, 34);
+            this.txtMul1.TabIndex = 0;
+            // 
             // txtMul2
             // 
-            this.txtMul2.Location = new System.Drawing.Point(45, 117);
+            this.txtMul2.Location = new System.Drawing.Point(58, 122);
             this.txtMul2.Name = "txtMul2";
-            this.txtMul2.Size = new System.Drawing.Size(121, 34);
-            this.txtMul2.TabIndex = 5;
+            this.txtMul2.Size = new System.Drawing.Size(100, 34);
+            this.txtMul2.TabIndex = 1;
             // 
             // txtMul3
             // 
-            this.txtMul3.Location = new System.Drawing.Point(45, 170);
+            this.txtMul3.Location = new System.Drawing.Point(58, 181);
             this.txtMul3.Name = "txtMul3";
-            this.txtMul3.Size = new System.Drawing.Size(121, 34);
-            this.txtMul3.TabIndex = 4;
+            this.txtMul3.Size = new System.Drawing.Size(100, 34);
+            this.txtMul3.TabIndex = 2;
             // 
             // txtMul4
             // 
-            this.txtMul4.Location = new System.Drawing.Point(45, 222);
+            this.txtMul4.Location = new System.Drawing.Point(58, 239);
             this.txtMul4.Name = "txtMul4";
-            this.txtMul4.Size = new System.Drawing.Size(121, 34);
+            this.txtMul4.Size = new System.Drawing.Size(100, 34);
             this.txtMul4.TabIndex = 3;
             // 
             // txtMul5
             // 
-            this.txtMul5.Location = new System.Drawing.Point(45, 272);
+            this.txtMul5.Location = new System.Drawing.Point(58, 295);
             this.txtMul5.Name = "txtMul5";
-            this.txtMul5.Size = new System.Drawing.Size(121, 34);
-            this.txtMul5.TabIndex = 2;
-            // 
-            // txtMul1
-            // 
-            this.txtMul1.Location = new System.Drawing.Point(45, 69);
-            this.txtMul1.Name = "txtMul1";
-            this.txtMul1.Size = new System.Drawing.Size(121, 34);
-            this.txtMul1.TabIndex = 0;
+            this.txtMul5.Size = new System.Drawing.Size(100, 34);
+            this.txtMul5.TabIndex = 4;
             // 
             // txtMul6
             // 
-            this.txtMul6.Location = new System.Drawing.Point(45, 324);
+            this.txtMul6.Location = new System.Drawing.Point(58, 347);
             this.txtMul6.Name = "txtMul6";
-            this.txtMul6.Size = new System.Drawing.Size(121, 34);
-            this.txtMul6.TabIndex = 1;
+            this.txtMul6.Size = new System.Drawing.Size(100, 34);
+            this.txtMul6.TabIndex = 5;
             // 
             // form19TablaMultiplicar
             // 
@@ -151,11 +151,11 @@ namespace Formulario
         private System.Windows.Forms.TextBox txtNumero;
         private System.Windows.Forms.Button btnMostrar;
         private System.Windows.Forms.GroupBox panelTabla;
-        private System.Windows.Forms.TextBox txtMul2;
-        private System.Windows.Forms.TextBox txtMul3;
-        private System.Windows.Forms.TextBox txtMul4;
-        private System.Windows.Forms.TextBox txtMul5;
         private System.Windows.Forms.TextBox txtMul6;
+        private System.Windows.Forms.TextBox txtMul5;
+        private System.Windows.Forms.TextBox txtMul4;
+        private System.Windows.Forms.TextBox txtMul3;
+        private System.Windows.Forms.TextBox txtMul2;
         private System.Windows.Forms.TextBox txtMul1;
     }
 }
