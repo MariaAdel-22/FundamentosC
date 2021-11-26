@@ -17,7 +17,7 @@ namespace Formulario
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new form20TemperaturasAnuales());
+            Application.Run(new form21POO());
         }
     }
 }

@@ -21,6 +21,12 @@ namespace Formulario
         private void btnPersona_Click(object sender, EventArgs e)
         {
             Persona person = new Persona();
+
+            person.Nombre = "Alumno NET";
+            person.Edad = 23;
+
+            this.lstPropiedades.Items.Add("Nombre: "+person.Nombre);
+            this.lstPropiedades.Items.Add("Edad: "+person.Edad);
         }
     }
 }
