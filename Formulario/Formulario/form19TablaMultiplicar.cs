@@ -28,13 +28,14 @@ namespace Formulario
                     this.listado.Add((TextBox)ctrl);
                 }
             }
+
+            this.listado.Reverse();
         }
 
         private void btnMostrar_Click(object sender, EventArgs e)
         {
 
             int cont = 0;
-            this.listado.Reverse();
             foreach (TextBox tb in this.listado) {
 
                 int numero = int.Parse(this.txtNumero.Text);
