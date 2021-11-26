@@ -17,7 +17,7 @@ namespace Formulario
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new form21POO());
+            Application.Run(new form22EjemploMeses());
         }
     }
 }
