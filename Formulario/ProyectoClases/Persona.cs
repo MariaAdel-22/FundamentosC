@@ -6,10 +6,14 @@ using System.Threading.Tasks;
 
 namespace ProyectoClases
 {
+
+    //Aquí es donde se añade una enumeración
+
+    public enum TipoGenero {  Femenino, Masculino }
+    public enum Paises { España, Italia, Alemania, Colombia, Francia }
+
     public class Persona //Hay que poner public porque por defecto la clase viene private
     {
-
-        private string _Nombre;
 
         /*Las propiedades siempre se declaran con get y set, lo demás es un campo. Las propiedades trabajan con campos privados que manejan la propiedad, la propiedad es pública pero yo
          con el campo privado decido que hacer (es mio)*/
@@ -43,5 +47,9 @@ namespace ProyectoClases
 
         public String Nombre { get; set; }
 
+        //Las propiedades son de algún tipo...
+
+        public TipoGenero genero { get; set; } //Propidad género debe ser de tipo TipoGenero
+        public Paises Nacionalidad { get; set; }//Propiedad Nacionalidad cuyo tipo es Paises
     }
 }

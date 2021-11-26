@@ -23,10 +23,15 @@ namespace Formulario
             Persona person = new Persona();
 
             person.Nombre = "Alumno NET";
-            person.Edad = 23;
+            person.Edad = 28;
+
+            person.Nacionalidad = Paises.Alemania;
+            person.genero = TipoGenero.Femenino;
 
             this.lstPropiedades.Items.Add("Nombre: "+person.Nombre);
             this.lstPropiedades.Items.Add("Edad: "+person.Edad);
+            this.lstPropiedades.Items.Add("Genero: " + person.genero);
+            this.lstPropiedades.Items.Add("Nacionalidad: " + person.Nacionalidad);
         }
     }
 }
