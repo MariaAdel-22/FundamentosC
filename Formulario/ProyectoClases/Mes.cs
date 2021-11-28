@@ -31,7 +31,7 @@ namespace ProyectoClases
 
         public int CalcularTemperaturaMedia(int maxima,int minima) {
 
-            return maxima / minima;
+            return (maxima + minima) / 2;
 
         }
 

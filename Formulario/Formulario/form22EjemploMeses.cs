@@ -60,6 +60,9 @@ namespace Formulario
                 if (me._Nombre == this.lsMeses.SelectedItem.ToString()) {
 
                     this.txtMes.Text = this.lsMeses.SelectedItem.ToString();
+                    this.txtMaxima.Text = me._temperaturaMaxima.ToString();
+                    this.txtMinima.Text = me._temperaturaMinima.ToString();
+                    this.txtMedia.Text = me.CalcularTemperaturaMedia(me._temperaturaMaxima,me._temperaturaMinima).ToString();
                 }
             }
         }
