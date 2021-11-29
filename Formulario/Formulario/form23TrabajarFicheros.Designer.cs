@@ -33,6 +33,11 @@ namespace Formulario
             this.label1 = new System.Windows.Forms.Label();
             this.btnLeer = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lstNombres = new System.Windows.Forms.ListBox();
+            this.btnInsertar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtContenido
@@ -70,12 +75,62 @@ namespace Formulario
             this.btnGuardar.TabIndex = 3;
             this.btnGuardar.Text = "Guardar Fichero";
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(648, 24);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(85, 28);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Nombre";
+            // 
+            // txtNombre
+            // 
+            this.txtNombre.Location = new System.Drawing.Point(648, 66);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(148, 34);
+            this.txtNombre.TabIndex = 5;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(692, 152);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(93, 28);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Nombres";
+            // 
+            // lstNombres
+            // 
+            this.lstNombres.FormattingEnabled = true;
+            this.lstNombres.ItemHeight = 28;
+            this.lstNombres.Location = new System.Drawing.Point(692, 213);
+            this.lstNombres.Name = "lstNombres";
+            this.lstNombres.Size = new System.Drawing.Size(148, 172);
+            this.lstNombres.TabIndex = 7;
+            // 
+            // btnInsertar
+            // 
+            this.btnInsertar.Location = new System.Drawing.Point(802, 66);
+            this.btnInsertar.Name = "btnInsertar";
+            this.btnInsertar.Size = new System.Drawing.Size(72, 34);
+            this.btnInsertar.TabIndex = 8;
+            this.btnInsertar.Text = "+";
+            this.btnInsertar.UseVisualStyleBackColor = true;
+            this.btnInsertar.Click += new System.EventHandler(this.btnInsertar_Click);
             // 
             // form23TrabajarFicheros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(710, 399);
+            this.ClientSize = new System.Drawing.Size(930, 399);
+            this.Controls.Add(this.btnInsertar);
+            this.Controls.Add(this.lstNombres);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtNombre);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.btnLeer);
             this.Controls.Add(this.label1);
@@ -95,5 +150,10 @@ namespace Formulario
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnLeer;
         private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtNombre;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ListBox lstNombres;
+        private System.Windows.Forms.Button btnInsertar;
     }
 }
