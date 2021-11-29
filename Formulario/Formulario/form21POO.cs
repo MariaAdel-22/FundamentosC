@@ -56,7 +56,8 @@ namespace Formulario
             emp.Nombre = "Empleado";
             emp.Apellidos = "Net Core";
             this.lstPropiedades.Items.Add("Empleado: "+ emp.GetNombreCompleto());
-            this.lstPropiedades.Items.Add("Salario Minimo: "+emp.SalarioMinimo);
+            this.lstPropiedades.Items.Add("Salario Minimo: "+emp.GetSalarioMinimo());
+            this.lstPropiedades.Items.Add("Vacaciones: "+emp.GetDiasVacaciones());
         }
 
         private void btnDirector_Click(object sender, EventArgs e)
@@ -67,7 +68,8 @@ namespace Formulario
             dire.Nombre = "Dir";
             dire.Apellidos = "ector";
             this.lstPropiedades.Items.Add("Objeto Director Nombre Apellido: "+dire.GetNombreCompleto());
-            this.lstPropiedades.Items.Add("Salario mínimo: "+dire.SalarioMinimo);
+            this.lstPropiedades.Items.Add("Salario mínimo: "+dire.GetSalarioMinimo());
+            this.lstPropiedades.Items.Add("Vacaciones: "+dire.GetDiasVacaciones());
         }
     }
 }
