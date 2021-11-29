@@ -20,6 +20,7 @@ namespace Formulario
 
         private void btnPersona_Click(object sender, EventArgs e)
         {
+            this.lstPropiedades.Items.Clear();
             Persona person = new Persona();
 
             person.Nombre = "Alumno NET";
@@ -45,6 +46,28 @@ namespace Formulario
             //Métodos
 
             this.lstPropiedades.Items.Add("GetNombreCompleto():" + person.GetNombreCompleto());
+        }
+
+        private void btnEmpleado_Click(object sender, EventArgs e)
+        {
+            this.lstPropiedades.Items.Clear();
+            Empleado emp = new Empleado();
+
+            emp.Nombre = "Empleado";
+            emp.Apellidos = "Net Core";
+            this.lstPropiedades.Items.Add("Empleado: "+ emp.GetNombreCompleto());
+            this.lstPropiedades.Items.Add("Salario Minimo: "+emp.SalarioMinimo);
+        }
+
+        private void btnDirector_Click(object sender, EventArgs e)
+        {
+            this.lstPropiedades.Items.Clear();
+            Director dire = new Director();
+
+            dire.Nombre = "Dir";
+            dire.Apellidos = "ector";
+            this.lstPropiedades.Items.Add("Objeto Director Nombre Apellido: "+dire.GetNombreCompleto());
+            this.lstPropiedades.Items.Add("Salario mínimo: "+dire.SalarioMinimo);
         }
     }
 }

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ProyectoClases
 {
+
     #region PROPIEDADES DE LA CLASE
 
     //Aquí es donde se añade una enumeración
@@ -15,6 +17,19 @@ namespace ProyectoClases
 
     public class Persona //Hay que poner public porque por defecto la clase viene private
     {
+
+        public Persona() {
+
+            Debug.WriteLine("Entramos al constructor PERSONA");
+        }
+
+        public Persona(String nombre, String apellidos) {
+
+            Debug.WriteLine("Constructor PERSONA parámetros");
+
+            this.Nombre = nombre;
+            this.Apellidos = apellidos;
+        }
 
         public Direccion Domicilio { get; set; }
 
