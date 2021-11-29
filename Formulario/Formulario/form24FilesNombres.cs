@@ -46,6 +46,7 @@ namespace Formulario
                 String path = ofd.FileName;
 
                 this.helper = new HelperFileNombresOK(path);
+                this.DibujarNombres();
             }
         }
 
