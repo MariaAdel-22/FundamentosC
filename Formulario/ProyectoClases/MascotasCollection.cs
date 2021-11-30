@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProyectoClases
 {
-   public class Mascota
+    public class MascotasCollection
     {
-        public String Nombre { get; set; }
-        public String Raza { get; set; }
-        
-        public int Edad { get; set; }
     }
 }
