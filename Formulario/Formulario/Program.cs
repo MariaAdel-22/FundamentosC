@@ -17,7 +17,7 @@ namespace Formulario
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new form24FilesNombres());
+            Application.Run(new form25FicherosMascotas());
         }
     }
 }
