@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ProyectoClases
 {
-    public class MascotasCollection
+    public class MascotasCollection:List<Mascota> //Para poder serializar un objeto de mascotascollection debo hacer que herede de clase mascota
     {
+
     }
 }

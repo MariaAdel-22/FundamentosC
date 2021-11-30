@@ -50,6 +50,7 @@ namespace Formulario
             this.btnGuardar.TabIndex = 17;
             this.btnGuardar.Text = "Guardar Registros";
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // btnLeer
             // 
@@ -59,6 +60,7 @@ namespace Formulario
             this.btnLeer.TabIndex = 16;
             this.btnLeer.Text = "Leer Registros";
             this.btnLeer.UseVisualStyleBackColor = true;
+            this.btnLeer.Click += new System.EventHandler(this.btnLeer_Click);
             // 
             // btnRegistro
             // 
@@ -68,6 +70,7 @@ namespace Formulario
             this.btnRegistro.TabIndex = 15;
             this.btnRegistro.Text = "Nuevo Registro";
             this.btnRegistro.UseVisualStyleBackColor = true;
+            this.btnRegistro.Click += new System.EventHandler(this.btnRegistro_Click);
             // 
             // lsMascotas
             // 
