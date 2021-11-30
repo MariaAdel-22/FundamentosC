@@ -43,10 +43,10 @@ namespace ProyectoClases.Helpers
             {
 
                 String temp = mascota.Nombre + "," + mascota.Raza;
-                data += temp + "\n";
+                data += temp + "@";
             }
 
-            data.Trim('\n');
+            data=data.Trim('@');
 
             return data;
         }
@@ -71,7 +71,7 @@ namespace ProyectoClases.Helpers
 
             this.Mascotas.Clear(); //recuerda limpiar la lista para crear el nuevo listado
 
-            String[] datosmascotas = data.Split('\n');
+            String[] datosmascotas = data.Split('@');
 
             foreach (string d in datosmascotas) {
 

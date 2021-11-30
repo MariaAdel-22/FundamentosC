@@ -89,6 +89,7 @@ namespace Formulario
             this.lsMascotas.Name = "lsMascotas";
             this.lsMascotas.Size = new System.Drawing.Size(317, 368);
             this.lsMascotas.TabIndex = 5;
+            this.lsMascotas.SelectedIndexChanged += new System.EventHandler(this.lsMascotas_SelectedIndexChanged);
             // 
             // btnRegistro
             // 
@@ -108,6 +109,7 @@ namespace Formulario
             this.btnLeer.TabIndex = 7;
             this.btnLeer.Text = "Leer Registros";
             this.btnLeer.UseVisualStyleBackColor = true;
+            this.btnLeer.Click += new System.EventHandler(this.btnLeer_Click);
             // 
             // btnGuardar
             // 
@@ -117,6 +119,7 @@ namespace Formulario
             this.btnGuardar.TabIndex = 8;
             this.btnGuardar.Text = "Guardar Registros";
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // form25FicherosMascotas
             // 
