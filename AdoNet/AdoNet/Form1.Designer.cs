@@ -49,6 +49,7 @@ namespace AdoNet
             this.btnConectar.TabIndex = 0;
             this.btnConectar.Text = "Conectar";
             this.btnConectar.UseVisualStyleBackColor = true;
+            this.btnConectar.Click += new System.EventHandler(this.btnConectar_Click);
             // 
             // btnDesconectar
             // 
@@ -58,6 +59,7 @@ namespace AdoNet
             this.btnDesconectar.TabIndex = 1;
             this.btnDesconectar.Text = "Desconectar";
             this.btnDesconectar.UseVisualStyleBackColor = true;
+            this.btnDesconectar.Click += new System.EventHandler(this.btnDesconectar_Click);
             // 
             // btnLeer
             // 
@@ -67,10 +69,12 @@ namespace AdoNet
             this.btnLeer.TabIndex = 2;
             this.btnLeer.Text = "Leer datos";
             this.btnLeer.UseVisualStyleBackColor = true;
+            this.btnLeer.Click += new System.EventHandler(this.btnLeer_Click);
             // 
             // lblMensaje
             // 
             this.lblMensaje.AutoSize = true;
+            this.lblMensaje.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.lblMensaje.Location = new System.Drawing.Point(22, 386);
             this.lblMensaje.Name = "lblMensaje";
             this.lblMensaje.Size = new System.Drawing.Size(106, 28);
