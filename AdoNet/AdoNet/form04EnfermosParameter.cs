@@ -54,5 +54,35 @@ namespace AdoNet
             this.reader.Close();
             this.connect.Close();
         }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            String inscripcion = this.txtInscripcion.Text;
+
+            String sql = "DELETE FROM ENFERMO WHERE INSCRIPCION=@INSCRIPCION";
+
+            SqlParameter paramInscripcion = new SqlParameter(); //como @INSCRIPCION es decirle que le pasamos el valor por parámetro, debemos crear un objeto de tipo SqlParameter
+
+            paramInscripcion.ParameterName = "@INSCRIPCION"; //El nombre de dicho parámetro debe coincidir con el escrito arriba
+            paramInscripcion.Value = inscripcion;//El valor del parámetro va a ser el recogido en la variable inscripcion
+
+            //UNA FORMA MÁS CORTA DE HACERLO: SqlParameter paramInscripcion= new SqlParameter("@INSCRIPCION",inscripcion)
+
+            this.com.Parameters.Add(paramInscripcion);//Tenemos que añadir este nuevo parámetro a la colección de parámetros del objeto command
+
+            this.com.CommandType = CommandType.Text;
+            this.com.CommandText = sql;
+
+            this.connect.Open();
+
+            int eliminados = this.com.ExecuteNonQuery();
+
+            this.connect.Close();
+
+            //Hay que limpiar los parámetros porque cada vez que le pulsemos al botón de eliminar creará el parámetro @INSCRIPCION y no sabe cual de todos los creados hay que coger
+
+            this.MostrarEnfermos();
+            this.com.Parameters.Clear();
+        }
     }
 }
