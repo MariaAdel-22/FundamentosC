@@ -164,6 +164,7 @@ namespace EjerciciosExtra
             this.lstCoches.Name = "lstCoches";
             this.lstCoches.Size = new System.Drawing.Size(245, 452);
             this.lstCoches.TabIndex = 1;
+            this.lstCoches.SelectedIndexChanged += new System.EventHandler(this.lstCoches_SelectedIndexChanged);
             // 
             // btnCrear
             // 
@@ -251,6 +252,7 @@ namespace EjerciciosExtra
             this.btnEliminar.TabIndex = 5;
             this.btnEliminar.Text = "Eliminar Coche";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnModificar
             // 
@@ -260,6 +262,7 @@ namespace EjerciciosExtra
             this.btnModificar.TabIndex = 6;
             this.btnModificar.Text = "Modificar coche";
             this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // Form1
             // 
