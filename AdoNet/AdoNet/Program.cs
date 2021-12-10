@@ -17,7 +17,7 @@ namespace AdoNet
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new form09UpdateInsertDoctor());
+            Application.Run(new form11PlantillaDoctorHospital());
         }
     }
 }

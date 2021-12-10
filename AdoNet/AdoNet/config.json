@@ -1,0 +1,4 @@
+{
+  "CadenaHospital": "Data Source=T06W05;Initial Catalog=hospital;Persist Security Info=True;User ID=SA;Password=MCSD2021",
+  "hospitalCasa": "Data Source=LAPTOP-IVMF1NEK\\MSSQLSERVE;Initial Catalog=HOSPITAL;Persist Security Info=True;User ID=SA;Password=MCSD2021"
+}

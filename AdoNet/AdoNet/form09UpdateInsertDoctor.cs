@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 
 #region PROCEDIMIENTOS ALMACENADOS
 
@@ -47,7 +48,12 @@ namespace AdoNet
         {
             InitializeComponent();
 
-			String cadenaconexion = @"Data Source=T06W05;Initial Catalog=hospital;Persist Security Info=True;User ID=SA;Password=MCSD2021";
+			IConfigurationBuilder builder = new ConfigurationBuilder()
+			.AddJsonFile("config,jon", true, true);
+
+			IConfigurationRoot config = builder.Build();
+
+			String cadenaconexion = config["CadenaHospital"];
 
 			this.connect = new SqlConnection(cadenaconexion);
 			this.com = new SqlCommand();
