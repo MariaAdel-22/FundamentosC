@@ -37,6 +37,9 @@ namespace AdoNet
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtIncrementar = new System.Windows.Forms.TextBox();
+            this.btnIncrementar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -104,11 +107,40 @@ namespace AdoNet
             this.columnHeader3.Text = "Salario";
             this.columnHeader3.Width = 130;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(452, 37);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(115, 28);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Incremento:";
+            // 
+            // txtIncrementar
+            // 
+            this.txtIncrementar.Location = new System.Drawing.Point(452, 69);
+            this.txtIncrementar.Name = "txtIncrementar";
+            this.txtIncrementar.Size = new System.Drawing.Size(132, 34);
+            this.txtIncrementar.TabIndex = 6;
+            // 
+            // btnIncrementar
+            // 
+            this.btnIncrementar.Location = new System.Drawing.Point(452, 110);
+            this.btnIncrementar.Name = "btnIncrementar";
+            this.btnIncrementar.Size = new System.Drawing.Size(132, 35);
+            this.btnIncrementar.TabIndex = 7;
+            this.btnIncrementar.Text = "Incrementar";
+            this.btnIncrementar.UseVisualStyleBackColor = true;
+            this.btnIncrementar.Click += new System.EventHandler(this.btnIncrementar_Click);
+            // 
             // form12EmpleadosOficios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(565, 432);
+            this.ClientSize = new System.Drawing.Size(596, 432);
+            this.Controls.Add(this.btnIncrementar);
+            this.Controls.Add(this.txtIncrementar);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.lsvEmpleados);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnMostrar);
@@ -133,5 +165,8 @@ namespace AdoNet
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtIncrementar;
+        private System.Windows.Forms.Button btnIncrementar;
     }
 }

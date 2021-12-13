@@ -82,5 +82,25 @@ namespace AdoNet.Context
 
             return listaEmpleados;
         }
+
+        public int UpdateEmpleadosOficio(String oficio,int incremento) {
+
+            string sql = "UPDATE EMP SET SALARIO=SALARIO + @INCREMENTO WHERE OFICIO=@OFICIO";
+
+            this.com.Parameters.AddWithValue("@INCREMENTO", incremento);
+            this.com.Parameters.AddWithValue("OFICIO", oficio);
+
+            this.com.CommandType = System.Data.CommandType.Text;
+            this.com.CommandText = sql;
+
+            this.connect.Open();
+            int afectados = this.com.ExecuteNonQuery();
+
+            this.connect.Close();
+            this.com.Parameters.Clear();
+
+            return afectados;
+        
+        }
     }
 }

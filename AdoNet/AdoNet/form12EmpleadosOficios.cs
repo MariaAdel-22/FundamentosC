@@ -52,5 +52,15 @@ namespace AdoNet
                 lsvEmpleados.Items.Add(item);
             }
         }
+
+        private void btnIncrementar_Click(object sender, EventArgs e)
+        {
+            string oficio = this.cmbOficios.SelectedItem.ToString();
+            int salario = int.Parse(this.txtIncrementar.Text);
+
+            int afectados = this.consult.UpdateEmpleadosOficio(oficio,salario);
+
+            MessageBox.Show("Han sido afectado/s "+afectados+" empleado/s");
+        }
     }
 }
