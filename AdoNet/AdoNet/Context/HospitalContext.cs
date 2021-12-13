@@ -20,7 +20,7 @@ namespace AdoNet.Context
             IConfigurationBuilder builder = new ConfigurationBuilder().AddJsonFile("config.json");
             IConfigurationRoot config = builder.Build();
 
-            string cadenaconexion = config["CadenaHospital"];
+            string cadenaconexion = config["hospitalCasa"];
 
             this.connect = new SqlConnection(cadenaconexion);
             this.com = new SqlCommand();
@@ -73,14 +73,71 @@ namespace AdoNet.Context
             this.connect.Open();
             this.reader = this.com.ExecuteReader();
 
-            while (this.reader.Read()) { 
-            
+            while (this.reader.Read()) {
+
+                Plantilla plan = new Plantilla();
+
+                plan.Hospital_cod = int.Parse(this.reader["HOSPITAL_COD"].ToString());
+                plan.Empleado_no = int.Parse(this.reader["EMPLEADO_NO"].ToString());
+                plan.Apellido = this.reader["APELLIDO"].ToString();
+                plan.Funcion = this.reader["FUNCION"].ToString();
+                plan.Salario = int.Parse(this.reader["SALARIO"].ToString());
+                plan.Sala_cod = int.Parse(this.reader["SALA_COD"].ToString());
+                plan.T = char.Parse(this.reader["T"].ToString());
+
+                plantillas.Add(plan);
 
             }
 
             this.reader.Close();
             this.connect.Close();
-        
+            this.com.Parameters.Clear();
+
+            return plantillas;
+        }
+
+
+        public List<Plantilla> CargarPlantillaChck(List<int>Hospital_cod) {
+
+            List<Plantilla> plantillas = new List<Plantilla>();
+
+            string sql = "SELECT * FROM PLANTILLA WHERE HOSPITAL_COD IN (";
+   
+            foreach (int cod in Hospital_cod) {
+
+                sql+=cod + ",";
+            }
+
+            sql=sql.Trim(',');
+            sql +=")";
+
+            this.com.CommandType = System.Data.CommandType.Text;
+            this.com.CommandText = sql;
+
+            this.connect.Open();
+            this.reader = this.com.ExecuteReader();
+
+            while (this.reader.Read())
+            {
+
+                Plantilla plan = new Plantilla();
+
+                plan.Hospital_cod = int.Parse(this.reader["HOSPITAL_COD"].ToString());
+                plan.Empleado_no = int.Parse(this.reader["EMPLEADO_NO"].ToString());
+                plan.Apellido = this.reader["APELLIDO"].ToString();
+                plan.Funcion = this.reader["FUNCION"].ToString();
+                plan.Salario = int.Parse(this.reader["SALARIO"].ToString());
+                plan.Sala_cod = int.Parse(this.reader["SALA_COD"].ToString());
+                plan.T = char.Parse(this.reader["T"].ToString());
+
+                plantillas.Add(plan);
+
+            }
+
+            this.reader.Close();
+            this.connect.Close();
+
+            return plantillas;
         }
     }
 }

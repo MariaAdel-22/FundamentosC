@@ -57,8 +57,28 @@ namespace AdoNet
 
             if (rad.Checked) {
 
+                this.listView1.Items.Clear();
+
                 int hospital_cod = int.Parse(rad.Name);
-              
+
+                List<Plantilla> plantillas = new List<Plantilla>();
+
+                plantillas = this.consult.CargarPlantilla(hospital_cod);
+
+                foreach (Plantilla plan in plantillas) {
+
+                    ListViewItem item = new ListViewItem();
+
+                    item.Text = plan.Hospital_cod.ToString();
+                    item.SubItems.Add(plan.Empleado_no.ToString());
+                    item.SubItems.Add(plan.Apellido);
+                    item.SubItems.Add(plan.Funcion);
+                    item.SubItems.Add(plan.Salario.ToString());
+                    item.SubItems.Add(plan.Sala_cod.ToString());
+                    item.SubItems.Add(plan.T.ToString());
+
+                    this.listView1.Items.Add(item);
+                }
             }
             
         }

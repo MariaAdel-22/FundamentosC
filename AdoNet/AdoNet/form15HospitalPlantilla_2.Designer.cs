@@ -1,7 +1,7 @@
 ﻿
 namespace AdoNet
 {
-    partial class form14HospitalPlantilla
+    partial class form15HospitalPlantilla_2
     {
         /// <summary>
         /// Required designer variable.
@@ -29,9 +29,8 @@ namespace AdoNet
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.listView1 = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
+            this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
@@ -39,16 +38,17 @@ namespace AdoNet
             this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
-            // panel1
+            // label1
             // 
-            this.panel1.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(188, 484);
-            this.panel1.TabIndex = 0;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(189, 7);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(49, 15);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Plantilla";
             // 
             // listView1
             // 
@@ -61,21 +61,12 @@ namespace AdoNet
             this.columnHeader6,
             this.columnHeader7});
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(194, 36);
+            this.listView1.Location = new System.Drawing.Point(189, 25);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(617, 436);
-            this.listView1.TabIndex = 1;
+            this.listView1.Size = new System.Drawing.Size(622, 407);
+            this.listView1.TabIndex = 4;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(194, 5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(81, 28);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Plantilla";
             // 
             // columnHeader1
             // 
@@ -111,18 +102,25 @@ namespace AdoNet
             // 
             this.columnHeader7.Text = "T";
             // 
-            // form14HospitalPlantilla
+            // panel1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
+            this.panel1.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(187, 439);
+            this.panel1.TabIndex = 3;
+            // 
+            // form15HospitalPlantilla_2
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(841, 484);
+            this.ClientSize = new System.Drawing.Size(821, 439);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.panel1);
-            this.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.Name = "form14HospitalPlantilla";
-            this.Text = "form14HospitalPlantilla";
+            this.Name = "form15HospitalPlantilla_2";
+            this.Text = "form15HospitalPlantilla_2";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -130,9 +128,8 @@ namespace AdoNet
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
@@ -140,5 +137,6 @@ namespace AdoNet
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.Panel panel1;
     }
 }
