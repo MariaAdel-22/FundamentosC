@@ -102,5 +102,22 @@ namespace AdoNet.Context
             return afectados;
         
         }
+
+        public int DeleteEmpleados(int idEmpleado) {
+
+            string sql = "DELETE FROM EMP WHERE EMP_NO=@EMPNO";
+
+            this.com.Parameters.AddWithValue("@EMPNO", idEmpleado);
+            this.com.CommandType = System.Data.CommandType.Text;
+            this.com.CommandText = sql;
+
+            this.connect.Open();
+            int eliminado = this.com.ExecuteNonQuery();
+
+            this.connect.Close();
+            this.com.Parameters.Clear();
+
+            return eliminado;
+        }
     }
 }

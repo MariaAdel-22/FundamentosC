@@ -40,6 +40,7 @@ namespace AdoNet
             this.label3 = new System.Windows.Forms.Label();
             this.txtIncrementar = new System.Windows.Forms.TextBox();
             this.btnIncrementar = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -61,7 +62,7 @@ namespace AdoNet
             // 
             // btnMostrar
             // 
-            this.btnMostrar.Location = new System.Drawing.Point(253, 37);
+            this.btnMostrar.Location = new System.Drawing.Point(250, 12);
             this.btnMostrar.Name = "btnMostrar";
             this.btnMostrar.Size = new System.Drawing.Size(159, 75);
             this.btnMostrar.TabIndex = 2;
@@ -133,11 +134,22 @@ namespace AdoNet
             this.btnIncrementar.UseVisualStyleBackColor = true;
             this.btnIncrementar.Click += new System.EventHandler(this.btnIncrementar_Click);
             // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Location = new System.Drawing.Point(250, 94);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(159, 51);
+            this.btnEliminar.TabIndex = 8;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
             // form12EmpleadosOficios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(596, 432);
+            this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnIncrementar);
             this.Controls.Add(this.txtIncrementar);
             this.Controls.Add(this.label3);
@@ -168,5 +180,6 @@ namespace AdoNet
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtIncrementar;
         private System.Windows.Forms.Button btnIncrementar;
+        private System.Windows.Forms.Button btnEliminar;
     }
 }

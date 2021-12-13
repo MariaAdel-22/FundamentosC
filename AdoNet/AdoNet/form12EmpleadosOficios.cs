@@ -45,6 +45,8 @@ namespace AdoNet
             foreach (Empleado em in empleados) {
 
                 ListViewItem item = new ListViewItem();
+
+                item.Tag = em.IdEmpleado; //El tag sirve para guardar un dato que no queremos que se muestre en pantalla pero queremos guardarlo
                 item.Text = em.Apellido;
                 item.SubItems.Add(em.Oficio);
                 item.SubItems.Add(em.Salario.ToString());
@@ -61,6 +63,20 @@ namespace AdoNet
             int afectados = this.consult.UpdateEmpleadosOficio(oficio,salario);
 
             MessageBox.Show("Han sido afectado/s "+afectados+" empleado/s");
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+
+            if (this.lsvEmpleados.SelectedItems.Count != 0) {
+
+                ListViewItem seleccionado = this.lsvEmpleados.SelectedItems[0];
+                int idempleado = int.Parse(seleccionado.Tag.ToString());
+
+                int resul = this.consult.DeleteEmpleados(idempleado);
+
+                MessageBox.Show("Ha sido eliminado/s "+resul+" empleado/s");
+            }
         }
     }
 }
