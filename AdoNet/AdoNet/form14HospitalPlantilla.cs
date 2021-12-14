@@ -54,7 +54,7 @@ namespace AdoNet
             RadioButton rad = new RadioButton();
 
             rad = (RadioButton)sender;
-
+  
             if (rad.Checked) {
 
                 this.listView1.Items.Clear();
