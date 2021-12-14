@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PrimerNetCoreMvc.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +16,14 @@ namespace PrimerNetCoreMvc.Controllers
 
         public IActionResult ControladorVista() {
 
-            ViewData["Nombre"] = "Alumno";
-            ViewData["Edad"] = 32;
+            Persona person = new Persona();
 
-            return View();
+            person.Nombre = "Persona Model";
+            person.Edad = 44;
+            person.Email = "personamodel@gmail.com";
+
+            return View(person);
         }
+
     }
 }
