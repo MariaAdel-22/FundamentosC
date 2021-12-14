@@ -9,6 +9,7 @@ namespace PrimerNetCoreMvc.Controllers
 {
     public class InformacionController : Controller
     {
+     
         public IActionResult Index()
         {
             return View();
@@ -23,6 +24,13 @@ namespace PrimerNetCoreMvc.Controllers
             person.Email = "personamodel@gmail.com";
 
             return View(person);
+        }
+
+        public IActionResult VistaControllerGet(string app,int version) {
+
+            ViewData["DATOS"] = app + ", Version: " + version;
+
+            return View();
         }
 
     }

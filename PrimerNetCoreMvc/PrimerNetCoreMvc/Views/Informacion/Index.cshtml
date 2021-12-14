@@ -4,4 +4,10 @@
     <li class="list-group-item">
         <a asp-controller="Informacion" asp-action="ControladorVista">Informacion controlador vista</a>
     </li>
+
+    <li class="list-group-item">
+        @Html.ActionLink("Informacion GET Vista Controller", "VistaControllerGet", "Informacion", new { app = "Net Core", version = 5 })
+    </li>
+    
+
 </ul>
