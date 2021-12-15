@@ -30,16 +30,16 @@ namespace EjerciciosExtra
         private void InitializeComponent()
         {
             this.panelHospital = new System.Windows.Forms.Panel();
-            this.chkHospital = new System.Windows.Forms.CheckBox();
-            this.chkSalas = new System.Windows.Forms.CheckBox();
             this.chkEnfermos = new System.Windows.Forms.CheckBox();
+            this.chkSalas = new System.Windows.Forms.CheckBox();
+            this.chkHospital = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnInsertar = new System.Windows.Forms.Button();
-            this.btnModificar = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnBuscar = new System.Windows.Forms.Button();
-            this.lstDatos = new System.Windows.Forms.ListView();
             this.panelCRUD = new System.Windows.Forms.Panel();
+            this.lstDatos = new System.Windows.Forms.ListView();
+            this.btnBuscar = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnModificar = new System.Windows.Forms.Button();
+            this.btnInsertar = new System.Windows.Forms.Button();
             this.panelHospital.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -56,16 +56,16 @@ namespace EjerciciosExtra
             this.panelHospital.Size = new System.Drawing.Size(249, 510);
             this.panelHospital.TabIndex = 0;
             // 
-            // chkHospital
+            // chkEnfermos
             // 
-            this.chkHospital.AutoSize = true;
-            this.chkHospital.Location = new System.Drawing.Point(31, 35);
-            this.chkHospital.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.chkHospital.Name = "chkHospital";
-            this.chkHospital.Size = new System.Drawing.Size(171, 29);
-            this.chkHospital.TabIndex = 0;
-            this.chkHospital.Text = "Cargar Hospitales";
-            this.chkHospital.UseVisualStyleBackColor = true;
+            this.chkEnfermos.AutoSize = true;
+            this.chkEnfermos.Location = new System.Drawing.Point(31, 119);
+            this.chkEnfermos.Name = "chkEnfermos";
+            this.chkEnfermos.Size = new System.Drawing.Size(163, 29);
+            this.chkEnfermos.TabIndex = 2;
+            this.chkEnfermos.Tag = "Enfermo";
+            this.chkEnfermos.Text = "Cargar Enfermos";
+            this.chkEnfermos.UseVisualStyleBackColor = true;
             // 
             // chkSalas
             // 
@@ -74,18 +74,21 @@ namespace EjerciciosExtra
             this.chkSalas.Name = "chkSalas";
             this.chkSalas.Size = new System.Drawing.Size(128, 29);
             this.chkSalas.TabIndex = 1;
+            this.chkSalas.Tag = "Sala";
             this.chkSalas.Text = "Cargar Salas";
             this.chkSalas.UseVisualStyleBackColor = true;
             // 
-            // chkEnfermos
+            // chkHospital
             // 
-            this.chkEnfermos.AutoSize = true;
-            this.chkEnfermos.Location = new System.Drawing.Point(31, 119);
-            this.chkEnfermos.Name = "chkEnfermos";
-            this.chkEnfermos.Size = new System.Drawing.Size(163, 29);
-            this.chkEnfermos.TabIndex = 2;
-            this.chkEnfermos.Text = "Cargar Enfermos";
-            this.chkEnfermos.UseVisualStyleBackColor = true;
+            this.chkHospital.AutoSize = true;
+            this.chkHospital.Location = new System.Drawing.Point(31, 35);
+            this.chkHospital.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.chkHospital.Name = "chkHospital";
+            this.chkHospital.Size = new System.Drawing.Size(171, 29);
+            this.chkHospital.TabIndex = 0;
+            this.chkHospital.Tag = "Hospital";
+            this.chkHospital.Text = "Cargar Hospitales";
+            this.chkHospital.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
@@ -101,41 +104,13 @@ namespace EjerciciosExtra
             this.panel1.Size = new System.Drawing.Size(576, 510);
             this.panel1.TabIndex = 1;
             // 
-            // btnInsertar
+            // panelCRUD
             // 
-            this.btnInsertar.Location = new System.Drawing.Point(39, 25);
-            this.btnInsertar.Name = "btnInsertar";
-            this.btnInsertar.Size = new System.Drawing.Size(128, 46);
-            this.btnInsertar.TabIndex = 0;
-            this.btnInsertar.Text = "Insertar";
-            this.btnInsertar.UseVisualStyleBackColor = true;
-            // 
-            // btnModificar
-            // 
-            this.btnModificar.Location = new System.Drawing.Point(39, 78);
-            this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(128, 48);
-            this.btnModificar.TabIndex = 1;
-            this.btnModificar.Text = "Modificar";
-            this.btnModificar.UseVisualStyleBackColor = true;
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.Location = new System.Drawing.Point(39, 133);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(128, 48);
-            this.btnEliminar.TabIndex = 2;
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.UseVisualStyleBackColor = true;
-            // 
-            // btnBuscar
-            // 
-            this.btnBuscar.Location = new System.Drawing.Point(39, 187);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(128, 45);
-            this.btnBuscar.TabIndex = 3;
-            this.btnBuscar.Text = "Buscar";
-            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.panelCRUD.BackColor = System.Drawing.Color.PowderBlue;
+            this.panelCRUD.Location = new System.Drawing.Point(173, 13);
+            this.panelCRUD.Name = "panelCRUD";
+            this.panelCRUD.Size = new System.Drawing.Size(387, 245);
+            this.panelCRUD.TabIndex = 5;
             // 
             // lstDatos
             // 
@@ -147,13 +122,41 @@ namespace EjerciciosExtra
             this.lstDatos.UseCompatibleStateImageBehavior = false;
             this.lstDatos.View = System.Windows.Forms.View.Details;
             // 
-            // panelCRUD
+            // btnBuscar
             // 
-            this.panelCRUD.BackColor = System.Drawing.Color.PowderBlue;
-            this.panelCRUD.Location = new System.Drawing.Point(173, 13);
-            this.panelCRUD.Name = "panelCRUD";
-            this.panelCRUD.Size = new System.Drawing.Size(387, 245);
-            this.panelCRUD.TabIndex = 5;
+            this.btnBuscar.Location = new System.Drawing.Point(39, 187);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(128, 45);
+            this.btnBuscar.TabIndex = 3;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Location = new System.Drawing.Point(39, 133);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(128, 48);
+            this.btnEliminar.TabIndex = 2;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            // 
+            // btnModificar
+            // 
+            this.btnModificar.Location = new System.Drawing.Point(39, 78);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(128, 48);
+            this.btnModificar.TabIndex = 1;
+            this.btnModificar.Text = "Modificar";
+            this.btnModificar.UseVisualStyleBackColor = true;
+            // 
+            // btnInsertar
+            // 
+            this.btnInsertar.Location = new System.Drawing.Point(39, 25);
+            this.btnInsertar.Name = "btnInsertar";
+            this.btnInsertar.Size = new System.Drawing.Size(128, 46);
+            this.btnInsertar.TabIndex = 0;
+            this.btnInsertar.Text = "Insertar";
+            this.btnInsertar.UseVisualStyleBackColor = true;
             // 
             // Hospital
             // 
