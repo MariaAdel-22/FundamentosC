@@ -33,5 +33,19 @@ namespace PrimerNetCoreMvc.Controllers
             return View();
         }
 
+        //DEBE TENER SIEMPER UN MÉTODO GET LA VISTA AUNQUE USE EL POST (POR ESO SOBRECARGAMOS EL MÉTODO ABAJO PERO DICIÉNDOLE QUE TENDRÁ EL ATRIBUTO POST)
+        public IActionResult VistaPost()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult VistaPost(string cajanombre, string cajaedad) {
+
+            ViewData["Nombre"] = cajanombre;
+            ViewBag.Edad = cajaedad;
+
+            return View();
+        }
     }
 }

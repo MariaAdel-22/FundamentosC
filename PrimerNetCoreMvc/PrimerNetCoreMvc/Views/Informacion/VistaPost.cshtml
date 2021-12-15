@@ -1,0 +1,17 @@
+﻿<h1>Información con POST</h1>
+
+<form method="post">
+    <label>Nombre:</label>
+    <input type="text" name="cajanombre" class="form-control" />
+    <br/>
+
+    <label>Edad:</label>
+    <input type="number" name="cajaedad" class="form-control" />
+    <br/>
+
+    <button type="submit" class="btn-info">Enviar información</button>
+</form>
+
+@*Para mostrar los datos recibidos por post*@
+
+<h1 style="color:blue">Nombre: @ViewBag.Nombre, Edad: @ViewData["Edad"]</h1>

@@ -6,8 +6,15 @@
     </li>
 
     <li class="list-group-item">
+        <a asp-controller="Informacion" asp-action="VistaControllerGet" asp-route-app="Net Core Mvc" asp-route-version="5"> Informacion GET Vista Controller</a>
+    </li>
+
+    <li class="list-group-item">
         @Html.ActionLink("Informacion GET Vista Controller", "VistaControllerGet", "Informacion", new { app = "Net Core", version = 5 })
     </li>
     
+    <li class="list-group-item">
+        <a asp-controller="Informacion" asp-action="VistaPost">Enviar Información POST</a>
+    </li>
 
 </ul>
