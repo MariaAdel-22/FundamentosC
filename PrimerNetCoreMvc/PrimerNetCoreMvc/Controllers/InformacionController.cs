@@ -56,7 +56,7 @@ namespace PrimerNetCoreMvc.Controllers
                 //Sé que dato no ha recibido nada
             }
 
-            //SI numero fuera opcional, solo puedo preguntar por el valor 0, pero está la cosa de que 0 puede ser un valor que quiero recibi. Por ello usamos el tipo System.Nullable<primitivo>
+            //SI numero fuera opcional, solo puedo preguntar por el valor 0, pero está la cosa de que 0 puede ser un valor que quiero recibi. Por ello usamos el tipo System.Nullable<primitivo>(int?)
 
             if (numero != null)
             {
