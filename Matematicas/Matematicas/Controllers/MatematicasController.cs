@@ -63,10 +63,28 @@ namespace Matematicas.Controllers
 
         //Metodo GET para la vista TablaMultiplicar
 
-        public IActionResult TablaMultiplicar(Multiplicacion mul) {
+        public IActionResult TablaMultiplicar() {
 
+            return View();
+        }
 
-            return View(mul);
+        //Metodo POST para la vista TablaMultiplicar
+
+        [HttpPost]
+        public IActionResult TablaMultiplicar(int numero)
+        {
+            List<Multiplicacion> tabla = new List<Multiplicacion>();
+
+            for (int i=1;i<=10;i++) {
+
+                Multiplicacion mul = new Multiplicacion();
+
+                mul.Operacion = numero + " * " + i;
+                mul.Resultado = numero * i;
+
+                tabla.Add(mul);
+            }
+            return View(tabla);
         }
 
     }

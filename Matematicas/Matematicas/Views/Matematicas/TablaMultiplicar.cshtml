@@ -1,8 +1,8 @@
-﻿@model Multiplicacion
+﻿@model List<Multiplicacion>
 
 <h1>La tabla de multiplicar</h1>
 
-<form>
+<form method="post">
 
     <label>Introduzca un numero:</label>
     <input type="text" name="numero" class="form-control"/>
@@ -13,15 +13,6 @@
 
 @if(Model != null){
 
-    List<String> op = new List<String>();
-    List<int> res = new List<int>();
-
-    op=@Model.Operacion(Model.Numero);
-    res = Model.Resultado(Model.Numero);
-
-
-
-
 <table class="table-striped">
         <thead class="table table-dark text-white">
             <tr>
@@ -31,11 +22,11 @@
         </thead>
         <tbody>
            
-            @for (int i=0;i<=10;i++) {
+            @foreach (Multiplicacion mul in Model) {
             
                 <tr>
-                    <th>@op[i]</th>
-                    <th>@res[i]</th>
+                    <td>@mul.Operacion</td>
+                    <td>@mul.Resultado</td>
                 </tr>
             }
         </tbody>
