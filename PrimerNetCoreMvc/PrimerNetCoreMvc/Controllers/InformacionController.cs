@@ -40,12 +40,9 @@ namespace PrimerNetCoreMvc.Controllers
         }
 
         [HttpPost]
-        public IActionResult VistaPost(string cajanombre, string cajaedad) {
+        public IActionResult VistaPost(Persona persona) {
 
-            ViewData["Nombre"] = cajanombre;
-            ViewBag.Edad = cajaedad;
-
-            return View();
+            return View(persona);
         }
     }
 }

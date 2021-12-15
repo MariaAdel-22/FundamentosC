@@ -1,12 +1,18 @@
-﻿<h1>Información con POST</h1>
+﻿@model Persona
+
+<h1>Información con POST</h1>
 
 <form method="post">
     <label>Nombre:</label>
-    <input type="text" name="cajanombre" class="form-control" />
+    <input type="text" name="nombre" class="form-control" />
     <br/>
 
     <label>Edad:</label>
-    <input type="number" name="cajaedad" class="form-control" />
+    <input type="number" name="edad" class="form-control" />
+    <br/>
+
+    <label>Email:</label>
+    <input type="text" name="email" class="form-control"/>
     <br/>
 
     <button type="submit" class="btn-info">Enviar información</button>
@@ -14,4 +20,7 @@
 
 @*Para mostrar los datos recibidos por post*@
 
-<h1 style="color:blue">Nombre: @ViewBag.Nombre, Edad: @ViewData["Edad"]</h1>
+@if (Model != null) //Siempre tenemos que verificar si el modelo es null cuando estamos enviando datos por post porque sino salta el error de Null
+{
+    <h1 style="color:blue">Nombre: @Model.Nombre, Edad: @Model.Edad, Email: @Model.Email</h1>
+}
