@@ -44,5 +44,34 @@ namespace PrimerNetCoreMvc.Controllers
 
             return View(persona);
         }
+
+        //GET para la vista VistaNumeroDoble
+
+        public IActionResult VistaNumeroDoble(System.Nullable<int> numero,string dato) {
+
+            //Si dato fuera opcional, podemos preguntar por lo más comun, si es null para saber si lo ha recibido o no
+
+            if (dato == null) { 
+            
+                //Sé que dato no ha recibido nada
+            }
+
+            //SI numero fuera opcional, solo puedo preguntar por el valor 0, pero está la cosa de que 0 puede ser un valor que quiero recibi. Por ello usamos el tipo System.Nullable<primitivo>
+
+            if (numero != null)
+            {
+
+                int doble = numero.Value * 2;
+
+                ViewBag.Doble = "El doble del número es: " + doble;
+            }
+            else {
+
+                //El numero es null
+                ViewBag.Doble = "No hemos recibido ningún NUMERO";
+            }
+
+            return View();
+        }
     }
 }
