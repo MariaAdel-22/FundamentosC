@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Matematicas.Models;
 
 namespace Matematicas.Controllers
 {
@@ -59,5 +60,14 @@ namespace Matematicas.Controllers
 
             return View(numeros);
         }
+
+        //Metodo GET para la vista TablaMultiplicar
+
+        public IActionResult TablaMultiplicar(Multiplicacion mul) {
+
+
+            return View(mul);
+        }
+
     }
 }

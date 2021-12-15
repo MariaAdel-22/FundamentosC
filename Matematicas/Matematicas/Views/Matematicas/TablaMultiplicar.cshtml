@@ -1,0 +1,44 @@
+﻿@model Multiplicacion
+
+<h1>La tabla de multiplicar</h1>
+
+<form>
+
+    <label>Introduzca un numero:</label>
+    <input type="text" name="numero" class="form-control"/>
+    <br/>
+
+    <button type="submit" class="btn-success">Realizar operacion</button>
+</form>
+
+@if(Model != null){
+
+    List<String> op = new List<String>();
+    List<int> res = new List<int>();
+
+    op=@Model.Operacion(Model.Numero);
+    res = Model.Resultado(Model.Numero);
+
+
+
+
+<table class="table-striped">
+        <thead class="table table-dark text-white">
+            <tr>
+                <th>Operacion</th>
+                <th>Resultado</th>
+            </tr>
+        </thead>
+        <tbody>
+           
+            @for (int i=0;i<=10;i++) {
+            
+                <tr>
+                    <th>@op[i]</th>
+                    <th>@res[i]</th>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+}
