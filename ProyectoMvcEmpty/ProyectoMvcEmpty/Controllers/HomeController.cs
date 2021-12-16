@@ -12,5 +12,10 @@ namespace ProyectoMvcEmpty.Controllers
         {
             return View();
         }
+
+        public IActionResult Contenido() {
+
+            return View();
+        }
     }
 }
