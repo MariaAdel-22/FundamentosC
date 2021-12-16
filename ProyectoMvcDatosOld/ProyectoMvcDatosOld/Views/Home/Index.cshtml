@@ -1,0 +1,20 @@
+﻿@section btnIndex{ 
+
+    <script>
+        $(document).ready(function () {
+
+            var cont=@ViewBag.Cambio;
+
+            $("#btnI").click(function () {
+
+                cont++;
+
+                $("#hp").html(cont);
+            })
+        })
+    </script>
+
+}
+
+<button type="button" class="btn btn-secondary" id="btnI">Soy el boton de Index</button>
+<h1 id="hp"></h1>

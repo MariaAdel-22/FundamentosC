@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProyectoMvcEmpty.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,16 @@ namespace ProyectoMvcEmpty.Controllers
         public IActionResult Contenido() {
 
             return View();
+        }
+
+        public IActionResult VistaPersona() {
+
+            Persona pers = new Persona();
+            pers.nombre = "Antonio";
+            pers.Edad = 65;
+            pers.Email = "persona@gmail.com";
+
+            return View(pers);
         }
     }
 }
