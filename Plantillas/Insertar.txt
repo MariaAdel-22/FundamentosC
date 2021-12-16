@@ -1,0 +1,20 @@
+ public void InsertarEmpleado(Empleado emp) {
+
+            this.com.Parameters.AddWithValue("@EMP_NO", emp.Emp_no);
+            this.com.Parameters.AddWithValue("@APELLIDO", emp.Apellido);
+            this.com.Parameters.AddWithValue("@OFICIO", emp.Oficio);
+            this.com.Parameters.AddWithValue("@DIR", emp.Dir);
+            this.com.Parameters.AddWithValue("@FECHA_ALT", emp.Fecha_alt);
+            this.com.Parameters.AddWithValue("@SALARIO", emp.Salario);
+            this.com.Parameters.AddWithValue("@COMISION", emp.Comision);
+            this.com.Parameters.AddWithValue("@DEPT_NO", emp.Dept_no);
+
+            this.com.CommandType = System.Data.CommandType.StoredProcedure;
+            this.com.CommandText = "INSERTAR_EMPLEADO";
+
+            this.connect.Open();
+
+            this.com.ExecuteNonQuery();
+
+            this.connect.Close();
+        }

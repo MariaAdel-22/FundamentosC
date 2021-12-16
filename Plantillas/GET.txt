@@ -1,0 +1,65 @@
+//Sin parametros
+
+public List<Departamento> GetDepartamentos() {
+
+            List<Departamento> Departamentos = new List<Departamento>();
+
+            this.com.CommandType = System.Data.CommandType.StoredProcedure;
+            this.com.CommandText = "GET_DEPARTAMENTOS";
+            this.connect.Open();
+
+            this.reader = this.com.ExecuteReader();
+
+            while (this.reader.Read()) {
+
+                Departamento dep = new Departamento();
+
+                dep.Dept_no = int.Parse(this.reader["DEPT_NO"].ToString());
+                dep.Dnombre = this.reader["DNOMBRE"].ToString();
+                dep.Loc = this.reader["LOC"].ToString();
+
+                Departamentos.Add(dep);
+            }
+
+            this.reader.Close();
+            this.connect.Close();
+
+            return Departamentos;
+        }
+
+
+//Con parametros
+
+ public List<Empleado> GetEmpleado(int cod_dept) {
+
+            List<Empleado> Empleados = new List<Empleado>();
+
+            this.com.Parameters.AddWithValue("@COD_DEPT",cod_dept);
+            this.com.CommandType = System.Data.CommandType.StoredProcedure;
+            this.com.CommandText = "GET_EMPLEADOS";
+
+            this.connect.Open();
+            this.reader = this.com.ExecuteReader();
+
+            while (this.reader.Read()) {
+
+                Empleado emp = new Empleado();
+
+                emp.Emp_no = int.Parse(this.reader["EMP_NO"].ToString());
+                emp.Dept_no = int.Parse(this.reader["DEPT_NO"].ToString());
+                emp.Apellido = this.reader["APELLIDO"].ToString();
+                emp.Comision = int.Parse(this.reader["COMISION"].ToString());
+                emp.Dir = int.Parse(this.reader["DIR"].ToString());
+                emp.Fecha_alt = DateTime.Parse(this.reader["FECHA_ALT"].ToString());
+                emp.Oficio = this.reader["OFICIO"].ToString();
+                emp.Salario = int.Parse(this.reader["SALARIO"].ToString());
+
+                Empleados.Add(emp);
+            }
+
+            this.reader.Close();
+            this.connect.Close();
+            this.com.Parameters.Clear();
+
+            return Empleados;
+        }
