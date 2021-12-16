@@ -68,15 +68,70 @@ namespace EjerciciosExtra
 
                     datos.Clear();
 
-                    datos = this.consult.CargarColumnas(this.seleccionado).Distinct().ToList();
+                    List<string> datosR = new List<string>();
 
-                    foreach (string da in datos) {
+                    List<int> contador = new List<int>();
+
+                    datos = this.consult.CargarColumnas(this.seleccionado);
+                    
+
+                    for (int i=0; i< datos.Count;i++) {
+
+                        if (datos[i].Contains("HOSPITAL_COD"))
+                        { 
+                            contador.Add(datos.IndexOf(datos[i]));
+
+                            for (int j=0; j< contador.Count;j++) {
+
+                                if (contador.Count <=1) {
+
+                                   datosR.Add(datos[i]);
+                                    
+                                }
+                                else { 
+
+                                    int val1 = contador[j];
+                                    int val2 = contador[val1 + j];
+
+                                    if (val1.Equals(val2)) {
+
+                                        datosR.Add(datos[i]);
+                                    }
+                                }
+                                
+                            }
+
+
+                        } else if (datos[i].Contains("SALA_COD")) {
+
+                            contador.Add(datos.IndexOf(datos[i]));
+
+                            if (contador[0].Equals(contador[1]))
+                            {
+
+                                datosR.Add(datos[i]);
+                            }
+                            else
+                            {
+                                contador.Clear();
+                            }
+
+                        }
+                        else {
+
+                            datosR.Add(datos[i]);
+                        }
+                        
+                    }
+
+                    foreach (string dat in datosR) {
 
                         ColumnHeader col = new ColumnHeader();
-                        col.Text = da;
-                        col.Tag = da;
+                        col.Text = dat;
+                        col.Tag = dat;
 
                         this.lstDatos.Columns.Add(col);
+
                     }
 
                 }
