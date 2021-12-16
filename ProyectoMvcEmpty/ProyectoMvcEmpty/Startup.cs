@@ -16,6 +16,8 @@ namespace ProyectoMvcEmpty
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            //Aquí indicamos todos los servicios que vamos a utilizar
+            services.AddControllersWithViews(); //le acabamos decir que vamos a crear una aplicación de controladores con vistas
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -30,10 +32,11 @@ namespace ProyectoMvcEmpty
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                //Queremos un endpoit que nos muestre el controlador home y la vista inces por defecto
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}"
+                    );
             });
         }
     }
