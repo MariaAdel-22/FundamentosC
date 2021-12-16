@@ -1,1 +1,14 @@
-﻿<h1 style="color:blue">Bienvenido a casa</h1>
+﻿@section scripts{ 
+    <script>
+
+        $(document).ready(function () {
+
+            $("#botonhijo").click(function () {
+                alert("boton hijo");
+            });
+        });
+    </script>
+}
+<h1 style="color:blue">Bienvenido a casa</h1>
+
+<button type="button" id="botonhijo" class="btn btn-success">Pulsa y comprueba</button>

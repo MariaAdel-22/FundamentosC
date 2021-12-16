@@ -30,6 +30,10 @@ namespace ProyectoMvcEmpty
 
             app.UseRouting();
 
+            //4-Servidor de ficheros estáticos
+
+            app.UseStaticFiles(); //Le estamos diciendo que la aplicación usará archivos estáticos
+
             app.UseEndpoints(endpoints =>
             {
                 //Queremos un endpoit que nos muestre el controlador home y la vista inces por defecto
