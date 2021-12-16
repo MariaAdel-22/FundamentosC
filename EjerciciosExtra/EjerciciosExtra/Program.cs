@@ -17,7 +17,7 @@ namespace EjerciciosExtra
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Hospital());
+            Application.Run(new PlantillaDepartamento());
         }
     }
 }

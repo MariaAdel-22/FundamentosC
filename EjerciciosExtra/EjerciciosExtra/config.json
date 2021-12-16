@@ -1,3 +1,4 @@
 {
-  "Hospital": "Data Source=LAPTOP-IVMF1NEK\\MSSQLSERVE;Initial Catalog=HOSPITAL;Persist Security Info=True;User ID=SA;Password=MCSD2021"
+  "Hospital": "Data Source=LAPTOP-IVMF1NEK\\MSSQLSERVE;Initial Catalog=HOSPITAL;Persist Security Info=True;User ID=SA;Password=MCSD2021",
+  "hospitalBBDD": "Data Source=LAPTOP-IVMF1NEK\\MSSQLSERVE;Initial Catalog=\"HOSPITAL CASA\";Persist Security Info=True;User ID=SA;Password=MCSD2021"
 }
