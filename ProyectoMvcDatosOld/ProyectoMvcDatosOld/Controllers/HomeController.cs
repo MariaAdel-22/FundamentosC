@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ProyectoMvcDatosOld.Models;
 
 namespace ProyectoMvcDatosOld.Controllers
 {
@@ -17,6 +18,16 @@ namespace ProyectoMvcDatosOld.Controllers
         public IActionResult VistaPagina1() {
 
             return View();
+        }
+
+        public IActionResult VistaCoche() {
+
+            Coche coche = new Coche();
+
+            coche.Marca = "Ford";
+            coche.Modelo = "Fiesta";
+
+            return View(coche);
         }
     }
 }
