@@ -1,0 +1,23 @@
+﻿@model Departamento
+
+<h1>Modificar Departamento</h1>
+
+<a asp-controller="Departamentos" asp-action="Index">Volver al listado</a>
+
+<form method="post">
+
+    <input type="number" class="form-control" name="IdDepartamento" value="@Model.IdDepartamento"/>
+    <br />
+
+    <label>Nombre</label>
+    <input type="text" class="form-control" name="Nombre" value="@Model.Nombre" />
+    <br />
+
+    <label>Localidad</label>
+    <input type="text" class="form-control" name="Localidad" value="@Model.Localidad" />
+    <br />
+
+    <button type="submit" class="btn btn-secondary">Modificar Departamento</button>
+</form>
+
+<h4 style="color:lightblue">@ViewData["MENSAJE"]</h4>

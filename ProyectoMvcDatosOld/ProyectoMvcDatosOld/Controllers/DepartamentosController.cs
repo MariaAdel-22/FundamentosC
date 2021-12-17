@@ -24,5 +24,44 @@ namespace ProyectoMvcDatosOld.Controllers
 
             return View(lista);
         }
+
+        //Lo que hacemos es pasarle por GET a éste método el id del departamento desde la vista Index
+        public IActionResult Details(int id) {
+
+            Departamento dep = this.context.FindDepartamento(id);
+            return View(dep);
+        }
+
+        //Metodo GET de la vista Create
+        public IActionResult Create() {
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(int id, string nombre, string localidad)
+        {
+            int results= this.context.InsertarDepartamento(id, nombre, localidad);
+            ViewBag.Mensaje = "Se ha insertado " + results + "departamento";
+
+            return View();
+        }
+
+        //Metodo GET de la vista Update, en este método recibimos el ID del departamento que queremos editar, y a la vista le doy el departamento que se quiere editar para mostrar sus valores en el form
+        public IActionResult Update(int id) {
+
+            Departamento dep = this.context.FindDepartamento(id);
+
+            return View(dep);
+        }
+
+        [HttpPost]
+        public IActionResult Update(Departamento departamento) {
+
+            int result=this.context.UpdateDepartamento(departamento.IdDepartamento,departamento.Nombre,departamento.Localidad);
+            ViewData["MENSAJE"] = "Se ha modificado " + result + " departamento";
+
+            return View(departamento);
+        }
     }
 }

@@ -1,0 +1,20 @@
+﻿<h1>Insertar Departamento</h1>
+
+<a asp-controller="Departamentos" asp-action="Index">Volver al listado</a>
+<form method="post">
+    <label>Número</label>
+    <input type="number" class="form-control" name="id"/>
+    <br/>
+
+    <label>Nombre</label>
+    <input type="text" class="form-control" name="nombre"/>
+    <br/>
+
+    <label>Localidad</label>
+    <input type="text" class="form-control" name="localidad"/>
+    <br/>
+
+    <button type="submit" class="btn btn-secondary">Insertar departamento</button>
+</form>
+
+<h4 class="color:lighblue">@ViewBag.Mensaje</h4>

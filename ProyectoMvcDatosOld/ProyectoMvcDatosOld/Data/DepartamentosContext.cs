@@ -80,5 +80,45 @@ namespace ProyectoMvcDatosOld.Data
             return dep;
 
         }
+
+        public int InsertarDepartamento(int id, string nombre, string local) {
+
+            string sql = "INSERT INTO DEPT VALUES(@ID,@NOMBRE,@LOCALIDAD)";
+
+            this.com.Parameters.AddWithValue("@ID", id);
+            this.com.Parameters.AddWithValue("@NOMBRE", nombre);
+            this.com.Parameters.AddWithValue("@LOCALIDAD", local);
+
+            this.com.CommandType = System.Data.CommandType.Text;
+            this.com.CommandText = sql;
+
+            this.connect.Open();
+            int ins=this.com.ExecuteNonQuery();
+
+            this.connect.Close();
+            this.com.Parameters.Clear();
+
+            return ins;
+        }
+
+        public int UpdateDepartamento(int id, string nombre, string localidad) {
+
+            string sql = "UPDATE DEPT SET DNOMBRE=@NOMBRE,LOC=@LOCALIDAD WHERE DEPT_NO=@DEPT_NO";
+
+            this.com.Parameters.AddWithValue("@NOMBRE", nombre);
+            this.com.Parameters.AddWithValue("@LOCALIDAD", localidad);
+            this.com.Parameters.AddWithValue("@DEPT_NO", id);
+
+            this.com.CommandType = System.Data.CommandType.Text;
+            this.com.CommandText = sql;
+
+            this.connect.Open();
+            int res = this.com.ExecuteNonQuery();
+
+            this.connect.Close();
+            this.com.Parameters.Clear();
+
+            return res;
+        }
     }
 }
