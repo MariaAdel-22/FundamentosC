@@ -1,0 +1,24 @@
+﻿@model List<Empleado>
+
+<h1>Todos empleados LINQ to SQL</h1>
+
+<table class="table table-active">
+    <thead class="table table-danger">
+        <tr>
+            <th>Apellido</th>
+            <th>Oficio</th>
+            <th>Salario</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (Empleado emp in Model) { 
+        
+            <tr>
+                <td>@emp.Apellido</td>
+                <td>@emp.Oficio</td>
+                <td>@emp.Salario</td>
+            </tr>
+        }
+    </tbody>
+</table>
