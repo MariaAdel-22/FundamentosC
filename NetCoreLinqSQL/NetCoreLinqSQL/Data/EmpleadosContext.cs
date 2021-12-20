@@ -52,5 +52,58 @@ namespace NetCoreLinqSQL.Data
 
             return empleados;
         }
+
+        //Realizar un método para un solo empleado
+
+        public Empleado FindEmpleado(int idempleado) {
+
+            var consulta = from datos in this.tablaemp.AsEnumerable() where datos.Field<int>("EMP_NO") == idempleado select datos;
+
+            //TENEMOS UN MÉTODO PARA RECUPERAR EL PRIMER REGISTRO YA QUE DEVUELVE UNA FILA
+
+            var row = consulta.First();
+
+            Empleado emp = new Empleado();
+
+            emp.Apellido = row.Field<string>("APELLIDO");
+            emp.IdDepartamento = row.Field<int>("DEPT_NO");
+            emp.IdEmpleado = row.Field<int>("EMP_NO");
+
+            emp.Oficio = row.Field<string>("OFICIO");
+            emp.Salario = row.Field<int>("SALARIO");
+
+            return emp;
+        }
+
+        public List<Empleado> GetEmpleadosOficioSalario(string oficio,int salario) {
+
+
+            var consulta = from datos in this.tablaemp.AsEnumerable() where datos.Field<int>("SALARIO") >= salario && datos.Field<string>("OFICIO") == oficio select datos;
+
+            if (consulta.Count() == 0)
+            { //Preguntamos si devuelve filas o no, si no encuentra nada siempre devolveremos un NULL si es objeto
+
+                return null;
+            }
+            else {
+
+                List<Empleado> empleados = new List<Empleado>();
+
+                foreach (var row in consulta) {
+
+                    Empleado emp = new Empleado();
+
+                    emp.Apellido = row.Field<string>("APELLIDO");
+                    emp.IdDepartamento = row.Field<int>("DEPT_NO");
+                    emp.IdEmpleado = row.Field<int>("EMP_NO");
+                    emp.Oficio = row.Field<string>("OFICIO");
+                    emp.Salario = row.Field<int>("SALARIO");
+
+                    empleados.Add(emp);
+                }
+
+                return empleados;
+            }
+        }
     }
 }

@@ -8,6 +8,7 @@
             <th>Apellido</th>
             <th>Oficio</th>
             <th>Salario</th>
+            <th>Detalles</th>
         </tr>
     </thead>
     <tbody>
@@ -18,6 +19,7 @@
                 <td>@emp.Apellido</td>
                 <td>@emp.Oficio</td>
                 <td>@emp.Salario</td>
+                <td><a asp-controller="Empleados" asp-action="Details" asp-route-idempleado="@emp.IdEmpleado">Detalles</a></td>
             </tr>
         }
     </tbody>
