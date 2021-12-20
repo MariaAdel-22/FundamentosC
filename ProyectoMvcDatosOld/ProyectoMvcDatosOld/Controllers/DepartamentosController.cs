@@ -44,7 +44,7 @@ namespace ProyectoMvcDatosOld.Controllers
             int results= this.context.InsertarDepartamento(id, nombre, localidad);
             ViewBag.Mensaje = "Se ha insertado " + results + "departamento";
 
-            return View();
+            return RedirectToAction("Index");
         }
 
         //Metodo GET de la vista Update, en este método recibimos el ID del departamento que queremos editar, y a la vista le doy el departamento que se quiere editar para mostrar sus valores en el form
@@ -62,6 +62,13 @@ namespace ProyectoMvcDatosOld.Controllers
             ViewData["MENSAJE"] = "Se ha modificado " + result + " departamento";
 
             return View(departamento);
+        }
+
+        public IActionResult Delete(int id) {
+
+            this.context.DeleteDepartamento(id);
+
+            return RedirectToAction("Index");
         }
     }
 }

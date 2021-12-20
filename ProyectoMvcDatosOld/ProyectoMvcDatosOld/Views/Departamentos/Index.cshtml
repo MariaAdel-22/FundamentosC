@@ -20,7 +20,8 @@
                 <td>@dep.Nombre</td>
                 <td>@dep.Localidad</td>
                 <td><a class="nav-link" asp-controller="Departamentos" asp-action="Details" asp-route-id="@dep.IdDepartamento">Detalles</a>
-                <a class="nav-item" asp-controller="Departamentos" asp-action="Update" asp-route-id="@dep.IdDepartamento">Modificar</a></td>
+                <a class="nav-item" asp-controller="Departamentos" asp-action="Update" asp-route-id="@dep.IdDepartamento">Modificar</a>
+                <a asp-controller="Departamentos" asp-action="Delete" asp-route-id="@dep.IdDepartamento">Eliminar</a></td>
             </tr>
         }
     </tbody>

@@ -120,5 +120,22 @@ namespace ProyectoMvcDatosOld.Data
 
             return res;
         }
+
+        public int DeleteDepartamento(int id) {
+
+            string sql = "DELETE FROM DEPT WHERE DEPT_NO=@ID";
+
+            this.com.Parameters.AddWithValue("@ID", id);
+
+            this.com.CommandType = System.Data.CommandType.Text;
+            this.com.CommandText = sql;
+
+            this.connect.Open();
+            int res=this.com.ExecuteNonQuery();
+
+            this.connect.Close();
+
+            return res;
+        }
     }
 }
