@@ -1,0 +1,55 @@
+﻿@model List<Empleado>
+
+@{ 
+
+    List<Departamento> departamentos = ViewBag.Departamentos as List<Departamento>; //Esta es una manera de hacer un casting del objeto ViewData
+   
+}
+
+<h1>Empleados departamento</h1>
+
+<form method="post">
+
+    <label>Seleccione departamento</label>
+    <select name="idD" class="form-control">
+
+        @foreach (Departamento dep in departamentos) { 
+        
+            <option value="@dep.IdDepartamento">@dep.Nombre</option>
+        }
+    </select>
+    <br/>
+
+    <button type="submit" class="btn-info">Mostrar Empleados</button>
+</form>
+
+@if (Model != null) {
+
+<table class="table table-striped">
+
+        <thead class="table table-dark text-white">
+
+            <tr>
+                <th>Apellido</th>
+                <th>Oficio</th>
+                <th>Salario</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            @foreach (Empleado emp in Model) {
+            
+                <tr>
+
+                    <td>@emp.Apellido</td>
+                    <td>@emp.Oficio</td>
+                    <td>@emp.Salario</td>
+
+                </tr>
+            }
+
+        </tbody>
+    </table>
+}

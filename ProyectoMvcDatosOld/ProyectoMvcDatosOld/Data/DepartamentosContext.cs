@@ -134,8 +134,41 @@ namespace ProyectoMvcDatosOld.Data
             int res=this.com.ExecuteNonQuery();
 
             this.connect.Close();
+            this.com.Parameters.Clear();
 
             return res;
+        }
+
+        public List<Empleado> GetEmpleadosDepartamento(int idD) {
+
+            List<Empleado> Empleados = new List<Empleado>();
+
+            string sql = "SELECT * FROM EMP WHERE DEPT_NO=@DEPT_NO";
+            this.com.Parameters.AddWithValue("@DEPT_NO", idD);
+
+            this.com.CommandType = System.Data.CommandType.Text;
+            this.com.CommandText = sql;
+
+            this.connect.Open();
+            this.reader = this.com.ExecuteReader();
+
+            while (this.reader.Read()) {
+
+                Empleado emp = new Empleado();
+
+                emp.Apellido = this.reader["APELLIDO"].ToString();
+                emp.IdEmpleado = int.Parse(this.reader["EMP_NO"].ToString());
+                emp.Oficio = this.reader["OFICIO"].ToString();
+                emp.Salario = int.Parse(this.reader["SALARIO"].ToString());
+
+                Empleados.Add(emp);
+            }
+
+            this.reader.Close();
+            this.connect.Close();
+            this.com.Parameters.Clear();
+
+            return Empleados;
         }
     }
 }

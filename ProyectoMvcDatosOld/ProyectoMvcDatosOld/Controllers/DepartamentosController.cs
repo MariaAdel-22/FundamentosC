@@ -70,5 +70,28 @@ namespace ProyectoMvcDatosOld.Controllers
 
             return RedirectToAction("Index");
         }
+
+        //Metodo GET de la vista. Como los departamentos es una herramienta para hacerlo más visual, le pasamos la colección por ViewBag a la vista.
+
+        public IActionResult EmpleadosDepartamento() {
+
+            List<Departamento> departamentos = this.context.GetDepartamentos();
+            ViewBag.Departamentos = departamentos;
+
+            return View();
+        }
+
+        //Método POST de la vista. Lo que queremos mostrar es los empleados en la vista y por ello le enviamos los empleados por Model.
+
+        [HttpPost]
+        public IActionResult EmpleadosDepartamento(int idD) {
+
+            List<Empleado> empleados = this.context.GetEmpleadosDepartamento(idD);
+            List<Departamento> departamentos = this.context.GetDepartamentos();//Quiero que siga apareciendo la lista desplegable con los departamentos aún recibiendo los datos por eso lo envío de nuevo
+
+            ViewBag.Departamentos = departamentos;
+
+            return View(empleados);
+        }
     }
 }
