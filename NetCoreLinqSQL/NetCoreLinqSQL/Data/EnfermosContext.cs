@@ -26,15 +26,17 @@ namespace NetCoreLinqSQL.Data
             this.com = new SqlCommand();
 
             this.com.Connection = this.connect;
+            this.RefreshTabla();
+        }
 
-            //Para las consultas de seleccion
+        //Es importante tener este método para refrescar los datos de la tabla ya que no llama de nuevo a la consulta
+        private void RefreshTabla() {
 
             string sql = "SELECT * FROM ENFERMO";
 
-            this.adenf = new SqlDataAdapter(sql, connect);
+            this.adenf = new SqlDataAdapter(sql, this.connect);
             this.tabla = new DataTable();
             this.adenf.Fill(tabla);
-
         }
 
         public List<Enfermo> GetEnfermos() {
@@ -52,7 +54,7 @@ namespace NetCoreLinqSQL.Data
                 enf.Fecha_nac = row.Field<DateTime>("FECHA_NAC");
                 enf.Inscripcion = row.Field<string>("INSCRIPCION");
                 enf.NSS = row.Field<string>("NSS");
-                enf.S = row.Field<Char>("S");
+                enf.S = Char.Parse(row.Field<string>("S"));
 
                 Enfermos.Add(enf);
             }
@@ -73,9 +75,9 @@ namespace NetCoreLinqSQL.Data
             this.connect.Open();
             int res=this.com.ExecuteNonQuery();
 
-            this.reader.Close();
             this.connect.Close();
             this.com.Parameters.Clear();
+            this.RefreshTabla();
 
             return res;
         }

@@ -33,8 +33,10 @@ namespace NetCoreLinqSQL.Controllers
         [HttpPost]
         public IActionResult DeleteEnfermo(int inscripcion) {
 
-            List<Enfermo> Enfermos = this.context.GetEnfermos();
             this.context.EliminarEnfermo(inscripcion);
+
+            //Al poner este código lo que pasa es que, al pulsar el botón de eliminar, la primera vez no va pero a la segunda si
+           List<Enfermo> Enfermos = this.context.GetEnfermos();
 
             return View(Enfermos);
         
