@@ -6,6 +6,16 @@ using System.Data.SqlClient;
 using System.Data;
 using NetCoreLinqSQL.Models;
 
+#region PROCEDIMIENTOS
+
+/*
+ CREATE PROCEDURE INCREMENTAR_SALARIOS_OFICIO (@OFICIO NVARCHAR(50), @INCREMENTO INT)
+AS
+	UPDATE EMP SET SALARIO=SALARIO + @INCREMENTO WHERE OFICIO=@OFICIO
+GO
+ */
+#endregion
+
 namespace NetCoreLinqSQL.Data
 {
     public class EmpleadosContext
@@ -13,16 +23,86 @@ namespace NetCoreLinqSQL.Data
         private SqlDataAdapter ademp;
         private DataTable tablaemp;
 
+        private SqlConnection connect;
+        private SqlCommand com;
+        private SqlDataReader reader;
+
         public EmpleadosContext() {
 
             string cadenaconexion = @"Data Source=T06W05;Initial Catalog=hospital;Persist Security Info=True;User ID=SA;Password=MCSD2021";
-            
+
+            this.connect = new SqlConnection(cadenaconexion);
+            this.com = new SqlCommand();
+            this.com.Connection = this.connect;
+
+            this.RefreshTabla();
+        }
+
+        private void RefreshTabla() {
+
             string sql = "SELECT * FROM EMP";
-            this.ademp = new SqlDataAdapter(sql,cadenaconexion);
+            this.ademp = new SqlDataAdapter(sql, this.connect);
 
             this.tablaemp = new DataTable();
             this.ademp.Fill(tablaemp);
 
+        }
+
+        public List<string> GetOficios() {
+
+            List<string> Oficios = new List<string>();
+
+            var consulta = (from datos in this.tablaemp.AsEnumerable() select datos.Field<string>("OFICIO")).Distinct();
+
+            foreach (var oficio in consulta) {
+
+                Oficios.Add(oficio);
+            
+            }
+
+            return Oficios;
+            
+        }
+
+        public List<Empleado> EmpleadosOficio(string oficio) {
+
+            List<Empleado> Empleados = new List<Empleado>();
+
+            var consulta = from datos in this.tablaemp.AsEnumerable() where datos.Field<string>("OFICIO") == oficio select datos;
+
+            foreach (var row in consulta) {
+
+                Empleado emp = new Empleado();
+
+                emp.IdDepartamento = row.Field<int>("DEPT_NO");
+                emp.IdEmpleado = row.Field<int>("EMP_NO");
+                emp.Apellido = row.Field<string>("APELLIDO");
+                emp.Oficio = row.Field<string>("OFICIO");
+                emp.Salario = row.Field<int>("SALARIO");
+
+                Empleados.Add(emp);
+            }
+
+            this.RefreshTabla();
+            return Empleados;
+        }
+
+        public int IncrementarSalarioEmpleadosOficio(string oficio,int incremento) {
+
+            this.com.Parameters.AddWithValue("@OFICIO", oficio);
+            this.com.Parameters.AddWithValue("@INCREMENTO", incremento);
+
+            this.com.CommandType = System.Data.CommandType.StoredProcedure;
+            this.com.CommandText = "INCREMENTAR_SALARIOS_OFICIO";
+
+            this.connect.Open();
+            int res = this.com.ExecuteNonQuery();
+
+            this.connect.Close();
+            this.com.Parameters.Clear();
+            this.RefreshTabla();
+
+            return res;
         }
 
         public List<Empleado> GetEmpleados() {
@@ -49,6 +129,8 @@ namespace NetCoreLinqSQL.Data
 
                 empleados.Add(emp);
             }
+
+            this.RefreshTabla();
 
             return empleados;
         }
