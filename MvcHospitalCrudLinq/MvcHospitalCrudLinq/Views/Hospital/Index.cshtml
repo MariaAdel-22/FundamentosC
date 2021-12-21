@@ -1,0 +1,36 @@
+﻿@model List<Hospital>
+
+<h1>Hospitales</h1>
+
+@if(Model != null){
+
+    <table class="table table-striped">
+
+        <thead class="table table-danger">
+            <tr>
+                <th>Código de Hospital</th>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Telefono</th>
+                <th>Nº Camas</th>
+                <th>Accion</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(Hospital hosp in Model){
+            
+                <tr>
+                    <td>@hosp.Hospital_Cod</td>
+                    <td>@hosp.Nombre</td>
+                    <td>@hosp.Direccion</td>
+                    <td>@hosp.Telefono</td>
+                    <td>@hosp.Num_Cama</td>
+                    <td>
+                        <a asp-controller="Hospital" asp-action="ModificarHospital" class="btn btn-secondary" asp-route-codigo="@hosp.Hospital_Cod">Modificar</a>
+                        <a asp-controller="Hospital" asp-action="EliminarHospital" class="btn btn-danger" asp-route-codigo="@hosp.Hospital_Cod">Eliminar</a>
+                    </td>
+                </tr>
+             }
+        </tbody>
+    </table>
+}
