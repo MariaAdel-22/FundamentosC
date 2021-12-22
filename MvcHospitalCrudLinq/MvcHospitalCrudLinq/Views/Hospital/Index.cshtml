@@ -14,6 +14,7 @@
                 <th>Telefono</th>
                 <th>Nº Camas</th>
                 <th>Accion</th>
+                <th>Plantilla</th>
             </tr>
         </thead>
         <tbody>
@@ -29,6 +30,7 @@
                         <a asp-controller="Hospital" asp-action="ModificarHospital" class="btn btn-secondary" asp-route-codigo="@hosp.Hospital_Cod">Modificar</a>
                         <a asp-controller="Hospital" asp-action="EliminarHospital" class="btn btn-danger" asp-route-codigo="@hosp.Hospital_Cod">Eliminar</a>
                     </td>
+                    <td><a asp-controller="Plantillas" asp-action="PlantillaHospital" asp-route-idhospital="@hosp.Hospital_Cod">Plantillas</a></td>
                 </tr>
              }
         </tbody>

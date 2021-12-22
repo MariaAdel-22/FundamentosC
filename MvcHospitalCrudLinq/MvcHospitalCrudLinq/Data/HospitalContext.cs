@@ -151,7 +151,9 @@ namespace MvcHospitalCrudLinq.Data
             return hosp;
         }
 
-        public int EliminarHospital(string hospital_cod) {
+        public int EliminarHospital(string hospital_cod) 
+        
+        {
 
             this.com.Parameters.AddWithValue("@HOSPITAL_COD", hospital_cod);
 
@@ -168,5 +170,6 @@ namespace MvcHospitalCrudLinq.Data
 
             return res;
         }
+
     }
 }
