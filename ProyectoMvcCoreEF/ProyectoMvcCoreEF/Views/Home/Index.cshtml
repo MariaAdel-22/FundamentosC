@@ -1,0 +1,14 @@
+﻿@model ICoche 
+
+<h2>Inyección de dependencias</h2>
+
+<h2 style="color:blue">@Model.Marca @Model.Modelo</h2>
+<img src="~/images/@Model.Imagen" style="width:150px; height:150px;" />
+
+<h3 style="color:red">Velocidad actual: @Model.Velocidad</h3>
+<h3>Velocidad máxima: @Model.VelocidadMaxina</h3>
+
+<form method="post">
+    <button name="accion" value="acelerar" class="btn btn-success">Acelerar</button>
+    <button name="accion" value="frenar" class="btn btn-danger">Frenar</button>
+</form>
