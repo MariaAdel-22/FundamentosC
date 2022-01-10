@@ -1,6 +1,5 @@
 ﻿@model List<Enfermo> 
 
-
 <h1>Eliminar Enfermo</h1>
 
 <form method="post">
@@ -11,9 +10,6 @@
 
     <button type="submit" class="btn btn-secondary">Eliminar Enfermo</button>
 </form>
-
-@if (Model != null) {
-
 
 
 <table class="table table-active">
@@ -27,14 +23,22 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (Enfermo enf in Model) { 
 
-                <tr>
-                    <td>@enf.Inscripcion</td>
-                    <td>@enf.Apellido</td>
-                </tr>
+            @if (Model != null)
+            {
+                @foreach (Enfermo enf in Model)
+                {
+
+                    <tr>
+                        <td>@enf.Inscripcion</td>
+                        <td>@enf.Apellido</td>
+                        <td>@enf.Direccion</td>
+                        <td>@enf.Fecha_nac</td>
+                        <td>@enf.NSS</td>
+                    </tr>
+                }
             }
-        </tbody>
+
+            </tbody>
     </table>
 
-}
