@@ -22,5 +22,8 @@ namespace MvcNetCoreEF2022.Models
 
         [Column("HOSPITAL_COD")]
         public int IdHospital { get; set; }
+
+        [Column("SALARIO")]
+        public int Salario { get; set; }
     }
 }
