@@ -1,10 +1,5 @@
 ﻿@model List<Doctor>
 
-@{
-
-    List<Doctor> doctores = (List<Doctor>)ViewData["DOCTORES"];
- }
-
 <h1>Doctores por salario</h1>
 
 
@@ -15,10 +10,8 @@
     <button type="submit" class="btn btn-secondary">Cargar Empleados</button>
 </form>
 
-@if(Model == null && doctores == null){
-    <h1 style="color:red">No existen doctores con esa cantidad de salario...</h1>
-}
-
+@if (Model != null)
+{
 <table class="table table-active">
     <thead>
         <tr>
@@ -30,35 +23,26 @@
     </thead>
     <tbody>
 
-        @if(doctores != null){
-            foreach (Doctor d in doctores)
-            {
-
-                <tr>
-                    <td>@d.Apellido</td>
-                    <td>@d.Especialidad</td>
-                    <td>@d.Salario</td>
-                    <td>@d.IdHospital</td>
-                </tr>
-            }
-        }
-
-
-        @if (Model != null)
+        @foreach (Doctor d in Model)
         {
-            @foreach (Doctor d in Model)
-            {
 
-                <tr>
-                    <td>@d.Apellido</td>
-                    <td>@d.Especialidad</td>
-                    <td>@d.Salario</td>
-                    <td>@d.IdHospital</td>
-                </tr>
-            }
-
+            <tr>
+                <td>@d.Apellido</td>
+                <td>@d.Especialidad</td>
+                <td>@d.Salario</td>
+                <td>@d.IdHospital</td>
+            </tr>
         }
+
+
+
 
     </tbody>
 </table>
 
+}
+else { 
+
+    <h1 style="color:red">@ViewData["MENSAJE"]</h1>
+}
+    

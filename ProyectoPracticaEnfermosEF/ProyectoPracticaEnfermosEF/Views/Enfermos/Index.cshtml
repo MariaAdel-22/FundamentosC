@@ -1,0 +1,30 @@
+﻿@model List<Enfermo>
+
+@if (Model !=null) {
+
+<table class="table table-active">
+        <thead>
+            <tr>
+                <th>INSCRIPCION</th>
+                <th>APELLIDO</th>
+                <th>DIRECCION</th>
+                <th>FECHA NACIMIENTO</th>
+                <th>SEXO</th>
+                <th>Nº SEGURIDAD SOCIAL</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Enfermo enf in Model) { 
+            
+                <tr>
+                    <td>@enf.Inscripcion</td>
+                    <td>@enf.Apellido</td>
+                    <td>@enf.Direccion</td>
+                    <td>@enf.Fecha</td>
+                    <td>@enf.S</td>
+                    <td>@enf.NSS</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
