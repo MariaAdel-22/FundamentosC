@@ -10,9 +10,9 @@ namespace ProyectoMvcCoreEF.Controllers
 {
     public class DepartamentosController : Controller
     {
-        private DepartamentosContextSQLServer context;
+        private IDepartamentosContext context;
 
-        public DepartamentosController(DepartamentosContextSQLServer context) {
+        public DepartamentosController(IDepartamentosContext context) {
 
             this.context = context;
         

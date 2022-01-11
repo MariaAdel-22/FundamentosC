@@ -15,15 +15,20 @@ namespace ProyectoMvcCoreEF
 {
     public class Startup
     {
+        public Startup(IConfiguration configuration) {
+
+            Configuration = configuration;
+        }
+
+        public IConfiguration Configuration { get; set; }
+
            public void ConfigureServices(IServiceCollection services)
             {
-                string cadenaSqlServer= @"Data Source=LAPTOP-IVMF1NEK\MSSQLSERVE;Initial Catalog=HOSPITAL CASA;Persist Security Info=True;User ID=SA;Password=MCSD2021";
+            String cadenaMySql = this.Configuration.GetConnectionString("cadenahospitalmysql");
 
-                DepartamentosContextSQLServer contextSQL = new DepartamentosContextSQLServer(cadenaSqlServer);
+            DepartamentosContextMySQL contextMySQL = new DepartamentosContextMySQL(cadenaMySql);
+            services.AddTransient<IDepartamentosContext>(x => contextMySQL);
 
-            /*Una vez que tenemos la cadena lo que hacemos es decirle que la cadena de conexión será la inyección de dependencia de las clases*/
-
-            services.AddTransient<DepartamentosContextSQLServer>(z => contextSQL);
             services.AddSingleton<ICoche, Coche>();
             services.AddControllersWithViews();
             }
