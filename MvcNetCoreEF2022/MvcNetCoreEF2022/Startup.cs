@@ -25,12 +25,14 @@ namespace MvcNetCoreEF2022
         public void ConfigureServices(IServiceCollection services)
         {
             string cadenahospital = this.Configuration.GetConnectionString("cadenahospitalSQL");
+
+            /*Repositorio para Doctores*/
+            services.AddTransient<RepositoryDoctores>();
+            services.AddDbContext<DoctoresContext>(options => options.UseSqlServer(cadenahospital));
+
+            /*Repositorio para Hospital*/
             services.AddTransient<RepositoryHospitales>();
-
-            //PARA PODER INCLUIR EL CONTEXT COMO DI DEBEMOS UTILIZAR EL METODO AddDbContext
             services.AddDbContext<HospitalesContext>(options => options.UseSqlServer(cadenahospital));
-            //Debemos indicar en las opciones (DbContextOptions)del context la cadena de conexion (esto ya cambia con cada bbdd)
-
 
             services.AddControllersWithViews();
         }
