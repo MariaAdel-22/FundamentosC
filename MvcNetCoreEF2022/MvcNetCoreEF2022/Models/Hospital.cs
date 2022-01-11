@@ -26,7 +26,7 @@ namespace MvcNetCoreEF2022.Models
         [Column("TELEFONO")]
         public string Telefono { get; set; }
 
-        [Column("CAMAS")]
+        [Column("NUM_CAMA")]
         public int Camas { get; set; }
     }
 }

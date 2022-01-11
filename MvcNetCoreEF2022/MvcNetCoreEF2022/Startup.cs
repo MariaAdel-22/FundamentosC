@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MvcNetCoreEF2022.Data;
+using MvcNetCoreEF2022.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,10 +22,16 @@ namespace MvcNetCoreEF2022
         }
 
         public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            string cadenahospital = this.Configuration.GetConnectionString("cadenahospitalSQL");
+            services.AddTransient<RepositoryHospitales>();
+
+            //PARA PODER INCLUIR EL CONTEXT COMO DI DEBEMOS UTILIZAR EL METODO AddDbContext
+            services.AddDbContext<HospitalesContext>(options => options.UseSqlServer(cadenahospital));
+            //Debemos indicar en las opciones (DbContextOptions)del context la cadena de conexion (esto ya cambia con cada bbdd)
+
+
             services.AddControllersWithViews();
         }
 

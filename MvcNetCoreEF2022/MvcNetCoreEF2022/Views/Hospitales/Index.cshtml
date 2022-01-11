@@ -1,0 +1,28 @@
+﻿@model List<Hospital>
+
+
+<h1>Entity Framework Hospitales</h1>
+
+<table class="table table-active">
+    <thead>
+        <tr>
+            <th>NOMBRE</th>
+            <th>DIRECCION</th>
+            <th>TELEFONO</th>
+            <th>CAMAS</th>
+            <th>ACCION</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Hospital h in Model) {
+        
+            <tr>
+                <td>@h.Nombre</td>
+                <td>@h.Direccion</td>
+                <td>@h.Telefono</td>
+                <td>@h.Camas</td>
+                <td><a asp-controller="Hospitales" asp-action="Details" asp-route-idHospital="@h.IdHospital">Detalles</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

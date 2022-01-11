@@ -16,7 +16,7 @@ namespace MvcNetCoreEF2022.Data
 
             //NECESITAMOS CADA ENTIDAD/MODELO DENTRO DE ESTA CLASE REPRESENTADA EN COLECCIONES DbSet<> Y DEBEN SER PROPIEDADES DE FORMA OBLIGATORIA
         }
-        public DbSet<Hospital> Hhospitales { get; set; }
+        public DbSet<Hospital> Hospitales { get; set; }
     }
  
 }
