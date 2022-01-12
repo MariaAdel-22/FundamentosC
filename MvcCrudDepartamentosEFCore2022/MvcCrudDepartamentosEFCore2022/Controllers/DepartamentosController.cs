@@ -46,5 +46,18 @@ namespace MvcCrudDepartamentosEFCore2022.Controllers
             this.repo.DeleteDepartamento(id);
             return RedirectToAction("Index");
         }
+
+        public IActionResult Edit(int id) {
+
+            Departamento dep = this.repo.FindDepartamento(id);
+            return View(dep);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Departamento dep) {
+
+            this.repo.UpdateDepartamento(dep.IdDepartamento, dep.Nombre, dep.Localidad);
+            return RedirectToAction("Index");
+        }
     }
 }

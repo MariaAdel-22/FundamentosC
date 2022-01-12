@@ -57,5 +57,15 @@ namespace MvcCrudDepartamentosEFCore2022.Repositories
             this.context.Departamentos.Remove(dep);
             this.context.SaveChanges();
         }
+
+        public void UpdateDepartamento(int id, string nombre, string localidad) {
+
+            Departamento dep = this.FindDepartamento(id);
+
+            dep.Nombre = nombre;
+            dep.Localidad = localidad;
+
+            this.context.SaveChanges();
+        }
     }
 }
