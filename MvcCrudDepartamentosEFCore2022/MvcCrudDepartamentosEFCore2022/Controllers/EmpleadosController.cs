@@ -44,6 +44,11 @@ namespace MvcCrudDepartamentosEFCore2022.Controllers
             return View(empleados);
         }
 
+        public IActionResult EmpleadosDepartamento(int id) {
+
+            List<Empleado> empleados = this.repo.GetEmpleadosDepartamentos(id);
+            return View(empleados);
+        }
         public IActionResult Index()
         {
             return View();

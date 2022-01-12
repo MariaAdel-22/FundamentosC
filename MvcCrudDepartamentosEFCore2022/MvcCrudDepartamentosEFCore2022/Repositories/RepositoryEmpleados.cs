@@ -51,5 +51,12 @@ namespace MvcCrudDepartamentosEFCore2022.Repositories
             }
             this.context.SaveChanges();
         }
+
+        public List<Empleado> GetEmpleadosDepartamentos(int id) {
+
+            var consulta = from datos in this.context.Empleados where datos.IdDepartamento == id select datos;
+
+            return consulta.ToList();
+        }
     }
 }
