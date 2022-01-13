@@ -22,5 +22,23 @@ namespace MvcEmpleadosReto.Repositories
             return consulta.ToList();
         
         }
+
+        public Empleado findEmpleado(int id) {
+
+            var consulta = from datos in this.context.empleados where datos.IdEmpleado == id select datos;
+
+            return consulta.First();
+            
+        }
+        public void ModificarEmpleado(int id,string apellido, string oficio, int salario) {
+
+            Empleado emp = this.findEmpleado(id);
+
+            emp.Apellido = apellido;
+            emp.Oficio = oficio;
+            emp.Salario = salario;
+
+            this.context.SaveChanges();
+        }
     }
 }

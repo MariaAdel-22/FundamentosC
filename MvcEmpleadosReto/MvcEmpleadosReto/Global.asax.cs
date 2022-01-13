@@ -1,4 +1,7 @@
 ﻿using MvcEmpleadosReto.App_Start;
+using Ninject;
+using Ninject.Modules;
+using Ninject.Web.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +22,11 @@ namespace MvcEmpleadosReto
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            IoCConfiguration.ConfigureDependencies();
+            //IoCConfiguration.ConfigureDependencies();
+
+            NinjectModule registrations = new IoCConfigurationNinject();
+            var kernel = new StandardKernel(registrations);
+            DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
         }
     }
 }

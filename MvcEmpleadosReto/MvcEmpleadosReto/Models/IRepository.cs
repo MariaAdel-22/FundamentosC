@@ -9,5 +9,7 @@ namespace MvcEmpleadosReto.Models
     public interface IRepository
     {
         List<Empleado> GetEmpleados();
+        Empleado findEmpleado(int id);
+        void ModificarEmpleado(int id, string apellido, string oficio, int salario);
     }
 }

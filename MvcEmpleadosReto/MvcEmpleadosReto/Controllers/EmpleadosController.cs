@@ -1,5 +1,6 @@
 ﻿using MvcEmpleadosReto.Models;
 using MvcEmpleadosReto.Repositories;
+using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,11 @@ namespace MvcEmpleadosReto.Controllers
 {
     public class EmpleadosController : Controller
     {
-        public RepositoryEmpleados repo;
+        public IRepository repo;
 
-        public EmpleadosController(RepositoryEmpleados repo) {
+        public EmpleadosController(IRepository r) {
 
-            this.repo = repo;
+            this.repo = r;
         }
 
         // GET: Empleados
@@ -22,6 +23,20 @@ namespace MvcEmpleadosReto.Controllers
         {
             List<Empleado> empleados = this.repo.GetEmpleados();
             return View(empleados);
+        }
+
+        public ActionResult Edit(int id) {
+
+            Empleado emp = this.repo.findEmpleado(id);
+            return View(emp);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Empleado emp) {
+
+            this.repo.ModificarEmpleado(emp.IdEmpleado,emp.Apellido,emp.Oficio,emp.Salario);
+
+            return RedirectToAction("Index");
         }
     }
 }
