@@ -62,5 +62,20 @@ namespace MvcCoreCrudHospitales.Controllers
             this.repo.ModificarHospital(hosp.IdHospital,hosp.Nombre,hosp.Direccion,hosp.Telefono,hosp.Camas);
             return RedirectToAction("Index");
         }
+
+        public IActionResult ResumenDoctores(int idhospital) {
+
+            DoctoresResumen resDocs = this.repo.getResumen(idhospital);
+
+            if (resDocs == null)
+            {
+
+                ViewBag.Mensaje = "No hay doctores en este hospital";
+                return View();
+            }
+            else {
+                return View(resDocs);
+            }
+        }
     }
 }

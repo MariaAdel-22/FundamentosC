@@ -58,5 +58,37 @@ namespace MvcCrudDepartamentosEFCore2022.Repositories
 
             return consulta.ToList();
         }
+
+        //Consulta para buscar empelado
+
+        public Empleado FindEmpleado(int id) {
+
+            return this.context.Empleados.FirstOrDefault(z => z.IdDepartamento == id);
+        }
+
+        //Consultas para el máximo, media y suma salarial
+        public ResumenEmpleados GetResumenEmpleados(int iddepartamento) {
+
+            //Vamos a usar lambda para el filtro
+            List<Empleado> empleados = this.context.Empleados.Where(x => x.IdDepartamento == iddepartamento).ToList();
+
+            if (empleados.Count() == 0)
+            {
+
+                return null;
+            }
+            else {
+
+                ResumenEmpleados resumen = new ResumenEmpleados();
+
+                resumen.MaximoSalario = empleados.Max(z => z.Salario);
+                resumen.MediaSalarial = empleados.Average(z => z.Salario);
+                resumen.SumaSalarial = empleados.Sum(z => z.Salario);
+                resumen.Empleados = empleados;
+
+                return resumen;
+            }
+        }
+
     }
 }

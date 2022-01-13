@@ -13,5 +13,6 @@ namespace MvcCoreCrudHospitales.Data
         }
 
         public DbSet<Hospital> Hospitales { get; set; }
+        public DbSet<Doctor> Doctores { get; set; }
     }
 }

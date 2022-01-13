@@ -1,0 +1,66 @@
+﻿@model DoctoresResumen
+
+@{
+    ViewData["Title"] = "ResumenDoctores";
+}
+
+<h1>ResumenDoctores</h1>
+@if (Model != null)
+{
+<div style="background-color:lightblue">
+    <h4>Máximo salario: @Model.MaximoSalario</h4>
+    <h4>Suma Salarios: @Model.SumaSalarial</h4>
+    <h4>Media Salarios: @Model.MediaSalario</h4>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               CODIGO HOSPITAL
+            </th>
+            <th>
+               CODIGO DOCTOR
+            </th>
+            <th>
+               APELLIDOS
+            </th>
+            <th>
+               ESPECIALIDAD
+            </th>
+            <th>
+                SALARIO
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.docs)
+{
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdHospital)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdDoctor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellidos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Especialidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salario)
+            </td>
+        </tr>
+}
+
+
+
+    </tbody>
+</table>
+}
+else { 
+<h1 style="color:red;">@ViewBag.Mensaje</h1>
+}

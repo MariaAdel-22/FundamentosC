@@ -68,5 +68,27 @@ namespace MvcCoreCrudHospitales.Repositories
 
             this.context.SaveChanges();
         }
+
+        public DoctoresResumen getResumen(int idHospital) {
+
+            List<Doctor> doctores = this.context.Doctores.Where(x => x.IdHospital == idHospital).ToList();
+
+            if (doctores.Count() == 0)
+            {
+
+                return null;
+            }
+            else {
+
+                DoctoresResumen res = new DoctoresResumen();
+
+                res.MaximoSalario = doctores.Max(s => s.Salario);
+                res.MediaSalario = doctores.Average(a => a.Salario);
+                res.SumaSalarial = doctores.Sum(su => su.Salario);
+                res.docs = doctores;
+
+                return res;
+            }
+        }
     }
 }
