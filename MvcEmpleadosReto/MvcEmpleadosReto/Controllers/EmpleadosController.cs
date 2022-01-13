@@ -12,9 +12,9 @@ namespace MvcEmpleadosReto.Controllers
     {
         public RepositoryEmpleados repo;
 
-        public EmpleadosController() {
+        public EmpleadosController(RepositoryEmpleados repo) {
 
-            this.repo = new RepositoryEmpleados();
+            this.repo = repo;
         }
 
         // GET: Empleados

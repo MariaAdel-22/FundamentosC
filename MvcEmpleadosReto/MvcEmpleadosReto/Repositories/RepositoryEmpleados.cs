@@ -7,18 +7,18 @@ using System.Web;
 
 namespace MvcEmpleadosReto.Repositories
 {
-    public class RepositoryEmpleados
+    public class RepositoryEmpleados:IRepository
     {
         private EmpleadosContext context;
 
-        public RepositoryEmpleados() {
+        public RepositoryEmpleados(EmpleadosContext context) {
 
-            this.context = new EmpleadosContext();
+            this.context = context;
         }
 
         public List<Empleado> GetEmpleados() {
 
-            var consulta = from datos in this.context.Empleados select datos;
+            var consulta = from datos in this.context.empleados select datos;
             return consulta.ToList();
         
         }
