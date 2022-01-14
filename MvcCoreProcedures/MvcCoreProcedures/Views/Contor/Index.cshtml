@@ -1,0 +1,53 @@
+﻿@model List<Doctor>
+
+@{ 
+    List<string> Especialidades = ViewBag.Especialidad as List<String>;
+}
+<h1>Incrementar Salario Doctores</h1>
+<form method="post">
+    <label>Especialidades:</label>
+    <select name="especialidad" class="form-control">
+
+        @foreach (string esp in Especialidades) { 
+        
+            <option value="@esp">@esp</option>
+        }
+
+    </select>
+    <br/>
+
+    <label>Incremento:</label>
+    <input type="number" name="incremento" class="form-control"/>
+    <br/>
+
+    <button type="submit" class="btn btn-success">Incrementar Salario</button>
+</form>
+
+@if (Model !=null) {
+
+
+
+<table class="table table-active">
+        <thead>
+            <tr>
+                <th>Codigo Hospital</th>
+                <th>Codigo Doctor</th>
+                <th>Apellido</th>
+                <th>Especialidad</th>
+                <th>Salario</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Doctor doc in Model) { 
+            
+                <tr>
+                    <td>@doc.CodigoHospital</td>
+                    <td>@doc.CodigoDoctor</td>
+                    <td>@doc.Apellido</td>
+                    <td>@doc.Especialidad</td>
+                    <td>@doc.Salario</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

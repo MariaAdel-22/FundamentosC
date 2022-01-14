@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 
-#region PROCEDIMIENTOS
+#region PROCEDIMIENTOS ENFERMOS
 
 /*
  CREATE PROCEDURE GET_ENFERMOS 
@@ -30,6 +30,37 @@ GO
  */
 #endregion
 
+#region PROCEDIMIENTOS DOCTOR
+
+/*
+ CREATE PROCEDURE GET_DOCTORES
+AS
+	SELECT * FROM DOCTOR;
+GO
+ */
+
+/*
+ CREATE PROCEDURE GET_ESPECIALIDADES
+AS
+	SELECT DISTINCT(ESPECIALIDAD) FROM DOCTOR;
+GO
+ */
+
+/*
+ CREATE PROCEDURE INCREMENTAR_SALARIO(@INCREMENTO INT,@ESPECIALIDAD NVARCHAR(200))
+AS
+	UPDATE DOCTOR SET SALARIO=SALARIO+@INCREMENTO WHERE ESPECIALIDAD=@ESPECIALIDAD
+GO
+ */
+
+/*
+ CREATE PROCEDURE FIND_DOCTORES_ESPECIALIDAD(@ESPECIALIDAD NVARCHAR(200))
+AS
+	SELECT * FROM DOCTOR WHERE ESPECIALIDAD=@ESPECIALIDAD
+GO
+ */
+#endregion
+
 namespace MvcCoreProcedures.Data
 {
     public class EnfermosContext:DbContext
@@ -38,5 +69,6 @@ namespace MvcCoreProcedures.Data
         }
 
         public DbSet<Enfermo> Enfermos { get; set; }
+        public DbSet<Doctor> Doctores { get; set; }
     }
 }
