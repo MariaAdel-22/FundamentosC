@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using MvcCoreProcedures.Data;
 using MvcCoreProcedures.Models;
 using System;
@@ -36,7 +37,7 @@ namespace MvcCoreProcedures.Repositories
 
                     Enfermo enf = new Enfermo();
 
-                    enf.Inscripcion = reader["INSCRIPCION"].ToString();
+                    enf.Inscripcion = int.Parse(reader["INSCRIPCION"].ToString());
                     enf.Apellido = reader["APELLIDO"].ToString();
                     enf.Direccion = reader["DIRECCION"].ToString();
                     enf.Fecha = DateTime.Parse(reader["FECHA_NAC"].ToString());
@@ -49,6 +50,25 @@ namespace MvcCoreProcedures.Repositories
                 com.Connection.Close();
                 return enfermos;
             }
+        }
+
+        public Enfermo FindEnfermo(int inscripcion) {
+
+            string sql = "FIND_ENFERMO @INSCRIPCION";
+
+            SqlParameter pamsinc=new SqlParameter("@INSCRIPCION", inscripcion);
+            var consulta = this.context.Enfermos.FromSqlRaw(sql, pamsinc);
+
+            Enfermo enf = consulta.AsEnumerable().FirstOrDefault();
+
+            return enf;
+        }
+
+        public void DeleteEnfermo(int inscripcion) {
+
+            string sql = "DELETE_ENFERMO @INSCRIPCION";
+            SqlParameter pamIns = new SqlParameter("@INSCRIPCION", inscripcion);
+            this.context.Database.ExecuteSqlRaw(sql, pamIns);
         }
     }
 }

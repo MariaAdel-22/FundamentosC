@@ -23,9 +23,9 @@ GO
  */
 
 /*
- CREATE PROCEDURE FIND_ENFERMO(@INSCRIPCION NVARCHAR(30)) 
+ CREATE PROCEDURE DELETE_ENFERMO(@INSCRIPCION NVARCHAR(30)) 
 AS
-	SELECT * FROM ENFERMO WHERE INSCRIPCION=@INSCRIPCION
+	DELETE FROM ENFERMO WHERE INSCRIPCION=@INSCRIPCION
 GO
  */
 #endregion
@@ -37,6 +37,6 @@ namespace MvcCoreProcedures.Data
         public EnfermosContext(DbContextOptions<EnfermosContext>options):base(options) { 
         }
 
-        DbSet<Enfermo> enfermos;
+        public DbSet<Enfermo> Enfermos { get; set; }
     }
 }

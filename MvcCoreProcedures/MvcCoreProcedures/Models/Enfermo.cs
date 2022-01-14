@@ -12,7 +12,7 @@ namespace MvcCoreProcedures.Models
     {
         [Key]
         [Column("INSCRIPCION")]
-        public string Inscripcion { get; set; }
+        public int Inscripcion { get; set; }
 
         [Column("APELLIDO")]
         public string Apellido { get; set; }
