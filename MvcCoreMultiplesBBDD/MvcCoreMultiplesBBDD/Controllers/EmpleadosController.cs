@@ -29,5 +29,11 @@ namespace MvcCoreMultiplesBBDD.Controllers
             Empleado emp = this.repo.FindEmpleado(id);
             return View(emp);
         }
+
+        public IActionResult Delete(int id) {
+
+            this.repo.DeleteEmpleado(id);
+            return RedirectToAction("Index");
+        }
     }
 }

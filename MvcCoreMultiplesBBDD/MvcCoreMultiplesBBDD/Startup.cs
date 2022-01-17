@@ -29,8 +29,8 @@ namespace MvcCoreMultiplesBBDD
             string cadenaoracle = this.Configuration.GetConnectionString("ConexionOracle");
 
             services.AddTransient<RepositoryEmpleados>();
-            services.AddDbContext<HospitalContext>(options => options.UseOracle(cadenaoracle));
-
+            //services.AddDbContext<HospitalContext>(options => options.UseOracle(cadenaoracle));
+            services.AddDbContext<HospitalContext>(options => options.UseOracle(cadenaoracle, options => options.UseOracleSQLCompatibility("11")));
             services.AddControllersWithViews();
         }
 

@@ -45,7 +45,7 @@
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                 <a asp-controller="Empleados" asp-action="Details" asp-route-id="@item.IdEmpleado">Details</a>
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                <a asp-controller="Empleados" asp-action="Delete" asp-route-id="@item.IdEmpleado">Delete</a>
             </td>
         </tr>
 }

@@ -26,5 +26,13 @@ namespace MvcCoreMultiplesBBDD.Repositories
 
             return this.context.Empleados.FirstOrDefault(z => z.IdEmpleado == id);
         }
+
+        public void DeleteEmpleado(int id) {
+
+            Empleado emp = this.FindEmpleado(id);
+
+            this.context.Empleados.Remove(emp);
+            this.context.SaveChanges();
+        }
     }
 }
