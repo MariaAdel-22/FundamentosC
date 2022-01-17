@@ -29,6 +29,7 @@ namespace MvcCoreProcedures
             String cadenaconexion = this.Configuration.GetConnectionString("cadenaHospital");
             services.AddTransient<RepositoryEnfermos>();
             services.AddTransient<RepositoryDoctores>();
+            services.AddTransient<RepositoryVistas>();
             services.AddDbContext<EnfermosContext>(x => x.UseSqlServer(cadenaconexion));
 
             services.AddControllersWithViews();
