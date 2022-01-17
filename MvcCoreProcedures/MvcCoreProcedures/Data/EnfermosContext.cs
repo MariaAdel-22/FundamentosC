@@ -61,6 +61,25 @@ GO
  */
 #endregion
 
+#region PROCEDIMIENTOS VISTA_TRABAJADORES
+/*
+ CREATE VIEW VISTA_TRABAJADORES
+AS
+	SELECT ISNULL(EMP_NO,0) AS ID_TRABAJADOR,APELLIDO,SALARIO,OFICIO FROM EMP
+	UNION
+	SELECT DOCTOR_NO,APELLIDO,SALARIO,ESPECIALIDAD FROM DOCTOR
+	UNION
+	SELECT EMPLEADO_NO,APELLIDO,SALARIO,FUNCION FROM PLANTILLA
+GO
+
+CREATE PROCEDURE TRABAJADORES_OFICIO (@OFICIO NVARCHAR(50),@MEDIA INT OUT, @SUMA INT OUT)
+AS
+	SELECT * FROM VISTA_TRABAJADORES WHERE OFICIO=@OFICIO
+	SELECT @MEDIA=AVG(SALARIO), @SUMA=SUM(SALARIO) FROM VISTA_TRABAJADORES WHERE OFICIO=@OFICIO
+GO
+ */
+#endregion
+
 namespace MvcCoreProcedures.Data
 {
     public class EnfermosContext:DbContext
@@ -71,5 +90,6 @@ namespace MvcCoreProcedures.Data
         public DbSet<Enfermo> Enfermos { get; set; }
         public DbSet<Doctor> Doctores { get; set; }
         public DbSet<VistaEmpleado> VistaEmpleados { get; set; }
+        public DbSet<Trabajador> Trabajadores { get; set; }
     }
 }

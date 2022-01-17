@@ -30,6 +30,7 @@ namespace MvcCoreProcedures
             services.AddTransient<RepositoryEnfermos>();
             services.AddTransient<RepositoryDoctores>();
             services.AddTransient<RepositoryVistas>();
+            services.AddTransient<RepositoryTrabajadores>();
             services.AddDbContext<EnfermosContext>(x => x.UseSqlServer(cadenaconexion));
 
             services.AddControllersWithViews();
