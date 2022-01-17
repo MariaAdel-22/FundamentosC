@@ -34,5 +34,13 @@ namespace MvcCoreMultiplesBBDD.Repositories
             this.context.Empleados.Remove(emp);
             this.context.SaveChanges();
         }
+
+        public void UpdateSalarioEmpleado(int idempleado,int incremento) {
+
+            Empleado emp = this.FindEmpleado(idempleado);
+
+            emp.Salario += incremento;
+            this.context.SaveChanges();
+        }
     }
 }

@@ -26,11 +26,12 @@ namespace MvcCoreMultiplesBBDD
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string cadenaoracle = this.Configuration.GetConnectionString("ConexionOracle");
+            string cadenaoracle = this.Configuration.GetConnectionString("CadenaHospital");
 
             services.AddTransient<RepositoryEmpleados>();
-            //services.AddDbContext<HospitalContext>(options => options.UseOracle(cadenaoracle));
-            services.AddDbContext<HospitalContext>(options => options.UseOracle(cadenaoracle, options => options.UseOracleSQLCompatibility("11")));
+            services.AddDbContext<HospitalContext>(options => options.UseSqlServer(cadenaoracle));
+
+            //services.AddDbContext<HospitalContext>(options => options.UseOracle(cadenaoracle, options => options.UseOracleSQLCompatibility("11")));
             services.AddControllersWithViews();
         }
 

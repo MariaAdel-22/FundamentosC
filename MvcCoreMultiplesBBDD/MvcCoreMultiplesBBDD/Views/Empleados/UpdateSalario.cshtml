@@ -1,0 +1,18 @@
+﻿@model Empleado
+
+<h1>Edit Empleado SP</h1>
+
+<form method="post">
+    <input type="hidden" name="idempleado" value="@Model.IdEmpleado"/>
+    
+    <label>Incremento Salarial: </label>
+    <input type="text" name="incremento" class="form-control" required/>
+    <button type="submit" class="btn btn-info">Modificar Salario</button>
+</form>
+<hr/>
+
+<h1 style="color:blue">Apellido: @Model.Apellido, Oficio: @Model.Oficio</h1>
+
+<h1 style="color:red">
+    Salario: @Model.Salario
+</h1>

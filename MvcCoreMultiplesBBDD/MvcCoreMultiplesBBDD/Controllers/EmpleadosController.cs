@@ -35,5 +35,22 @@ namespace MvcCoreMultiplesBBDD.Controllers
             this.repo.DeleteEmpleado(id);
             return RedirectToAction("Index");
         }
+
+        public IActionResult UpdateSalario(int id) {
+
+            Empleado emp = this.repo.FindEmpleado(id);
+
+            return View(emp);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateSalario(int idempleado,int incremento) {
+
+            this.repo.UpdateSalarioEmpleado(idempleado,incremento);
+
+            Empleado em = this.repo.FindEmpleado(idempleado);
+           
+            return View(em);
+        }
     }
 }
