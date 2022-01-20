@@ -18,9 +18,18 @@ namespace MvcCoreMultiplesBBDD.Repositories
             this.context = context;
         }
 
-        public List<Empleado> GetEmpleados() {
+        /*public List<Empleado> GetEmpleados() {
 
             var consulta = from datos in this.context.Empleados select datos;
+            return consulta.ToList();
+        }*/
+
+        public List<Empleado> GetEmpleados() {
+
+            string sql = "SP_ALL_EMPLEADOS";
+
+            var consulta = this.context.Empleados.FromSqlRaw(sql);
+
             return consulta.ToList();
         }
 

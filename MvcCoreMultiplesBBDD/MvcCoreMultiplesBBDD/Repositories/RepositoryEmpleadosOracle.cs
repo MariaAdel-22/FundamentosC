@@ -19,9 +19,28 @@ namespace MvcCoreMultiplesBBDD.Repositories
         }
 
 
-        public List<Empleado> GetEmpleados()
+        /*public List<Empleado> GetEmpleados()
         {
             var consulta = from datos in this.context.Empleados select datos;
+            return consulta.ToList();
+        }*/
+
+        public List<Empleado> GetEmpleados() {
+
+            string sql = "BEGIN SP_ALL_EMPLEADOS(:EMPLEADOS); END;";
+
+            OracleParameter pamEmpleados = new OracleParameter();
+
+            pamEmpleados.ParameterName = "EMPLEADOS";
+            pamEmpleados.Value = null;
+
+            pamEmpleados.Direction = System.Data.ParameterDirection.Output;
+            pamEmpleados.OracleDbType = OracleDbType.RefCursor;
+
+            var consulta = this.context.Empleados.FromSqlRaw(sql, pamEmpleados);
+
+            //AL SER UN CURSOR DE SALIDA, DENTRO DE LA CONSULTA ESTÁN LOS DATOS DIRECTAMENTE.
+
             return consulta.ToList();
         }
 

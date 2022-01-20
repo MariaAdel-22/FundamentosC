@@ -33,10 +33,15 @@ namespace MvcCoreMultiplesBBDD
             services.AddDbContext<HospitalContext>(options => options.UseSqlServer(cadenaSQL));*/
 
 
-            string cadenaOracle = this.Configuration.GetConnectionString("ConexionOracle");
+            /*string cadenaOracle = this.Configuration.GetConnectionString("ConexionOracle");
 
             services.AddTransient<IRepositoryEmpleados, RepositoryEmpleadosOracle>();
-            services.AddDbContext<HospitalContext>(options => options.UseOracle(cadenaOracle, options => options.UseOracleSQLCompatibility("11")));
+            services.AddDbContext<HospitalContext>(options => options.UseOracle(cadenaOracle, options => options.UseOracleSQLCompatibility("11")));*/
+
+            string cadenaMySql = this.Configuration.GetConnectionString("CadenaMySQL");
+            
+            services.AddTransient<IRepositoryEmpleados, RepositoryEmpleadosMySQL>();
+            services.AddDbContext<HospitalContext>(options => options.UseMySQL(cadenaMySql));
 
             services.AddControllersWithViews();
         }
