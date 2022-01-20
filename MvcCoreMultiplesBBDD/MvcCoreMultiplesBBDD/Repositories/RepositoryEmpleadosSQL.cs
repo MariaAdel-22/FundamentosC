@@ -1,4 +1,6 @@
-﻿using MvcCoreMultiplesBBDD.Data;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using MvcCoreMultiplesBBDD.Data;
 using MvcCoreMultiplesBBDD.Models;
 using System;
 using System.Collections.Generic;
@@ -7,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace MvcCoreMultiplesBBDD.Repositories
 {
-    public class RepositoryEmpleados
+    public class RepositoryEmpleadosSQL:IRepositoryEmpleados
     {
         private HospitalContext context;
 
-        public RepositoryEmpleados(HospitalContext context) {
+        public RepositoryEmpleadosSQL(HospitalContext context) {
 
             this.context = context;
         }
@@ -27,13 +29,13 @@ namespace MvcCoreMultiplesBBDD.Repositories
             return this.context.Empleados.FirstOrDefault(z => z.IdEmpleado == id);
         }
 
-        public void DeleteEmpleado(int id) {
+       /* public void DeleteEmpleado(int id) {
 
             Empleado emp = this.FindEmpleado(id);
 
             this.context.Empleados.Remove(emp);
             this.context.SaveChanges();
-        }
+        }*/
 
         public void UpdateSalarioEmpleado(int idempleado,int incremento) {
 
@@ -41,6 +43,15 @@ namespace MvcCoreMultiplesBBDD.Repositories
 
             emp.Salario += incremento;
             this.context.SaveChanges();
+        }
+
+        public void DeleteEmpleado(int id) {
+
+            string sql = "SP_DELETE_EMPLEADO @IDEMPLEADO";
+
+            SqlParameter paramI = new SqlParameter("@IDEMPLEADO", id);
+
+            this.context.Database.ExecuteSqlRaw(sql, paramI);
         }
     }
 }
