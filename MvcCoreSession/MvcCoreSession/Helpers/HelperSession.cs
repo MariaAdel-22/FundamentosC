@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,29 +10,20 @@ namespace MvcCoreSession.Helpers
 {
     public class HelperSession
     {
-        //Tenemos dos métodos static
-        public static byte[] ObjectToByte(Object obj)
+        //Lo que hacemos es convertir el objeto a un string con formato json
+        public static string SerializeObject(object objeto)
         {
-            BinaryFormatter formatter = new BinaryFormatter();
-            using (System.IO.MemoryStream ms = new MemoryStream())
-            {
-                formatter.Serialize(ms, obj);
-                return ms.ToArray();
-            }
+            string data = JsonConvert.SerializeObject(objeto);
+
+            return data;
         }
 
-        public static Object ByteToObject(byte[] datos)
-        {
-            BinaryFormatter formatter = new BinaryFormatter();
-            using (System.IO.MemoryStream ms = new MemoryStream())
-            {
-                ms.Write(datos, 0, datos.Length);
-                ms.Seek(0, SeekOrigin.Begin);
-                Object obj = (Object)formatter.Deserialize(ms);
-                return obj;
-            }
+        //Recibe el string con formato json y devolvemos el objeto deserializado
+        public static Object DeserializeObject(string data,Type type) {
+
+            object obj = JsonConvert.DeserializeObject(data,type);
+
+            return obj;
         }
-
-
     }
 }

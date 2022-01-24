@@ -31,20 +31,20 @@ namespace MvcCoreSession.Controllers
                 per.Hora = DateTime.Now.ToLongTimeString();
 
                 //Mediante el helper convertimos el obj persona a Byte[]
-                byte[] data = HelperSession.ObjectToByte(per);
+                string data = HelperSession.SerializeObject(per);
 
                 //Ahora almacenamos el objeto a nivel de byte en session
-                HttpContext.Session.Set("Persona", data);
+                HttpContext.Session.SetString("Persona", data);
 
                 ViewData["MENSAJE"] = "Datos almacenados en Session";
 
             } else if (accion == "mostrar") {
 
                 //Extraemos la informacion de byte[] session
-                byte[] data = HttpContext.Session.Get("Persona");
+                string data = HttpContext.Session.GetString("Persona");
 
                 //Convertimos los byte[] a objeto
-                Persona per = (Persona)HelperSession.ByteToObject(data);
+                Persona per = (Persona)HelperSession.DeserializeObject(data, typeof(Persona));
 
                 ViewData["Persona"] = per.Nombre + ", Edad: " + per.Edad;
                 ViewData["Hora"] = per.Hora;
@@ -64,18 +64,20 @@ namespace MvcCoreSession.Controllers
                     new Persona{ Nombre= "Antonia",Edad=46, Hora=DateTime.Now.ToLongDateString()}
                 };
 
-                byte[] data = HelperSession.ObjectToByte(personas);
+                string jsonData = HelperSession.SerializeObject(personas);
+                HttpContext.Session.SetString("PERSONAS", jsonData);
 
-                HttpContext.Session.Set("PERSONAS", data);
-                ViewData["mensaje"] = "Datos almacenados";
+                List<int> numeros = new List<int> { 4, 5, 6, 7, 8, 8, 3 };
 
-                return View();
+                string jsonNumeros = HelperSession.SerializeObject(numeros);
+                HttpContext.Session.SetString("NUMEROS", jsonNumeros);
+
+                ViewData["MENSAJE"] = "datos almacenados";
 
             } else if (accion == "mostrar") {
 
-                byte[] data = HttpContext.Session.Get("PERSONAS");
-
-                List<Persona> personas = (List<Persona>)HelperSession.ByteToObject(data);
+                string data = HttpContext.Session.GetString("PERSONAS");
+                List<Persona> personas = (List<Persona>)HelperSession.DeserializeObject(data, typeof(List<Persona>));
 
                 return View(personas);
             }
