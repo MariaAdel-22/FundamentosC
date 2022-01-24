@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MvcCoreMultiplesBBDD.Data;
+using MvcCoreMultiplesBBDD.Models;
 using MvcCoreMultiplesBBDD.Repositories;
 using System;
 using System.Collections.Generic;
@@ -26,12 +27,22 @@ namespace MvcCoreMultiplesBBDD
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string cadenaoracle = this.Configuration.GetConnectionString("CadenaHospital");
+            /*string cadenaSQL = this.Configuration.GetConnectionString("CadenaHospitalClase");
 
-            services.AddTransient<RepositoryEmpleados>();
-            services.AddDbContext<HospitalContext>(options => options.UseSqlServer(cadenaoracle));
+            services.AddTransient<IRepositoryEmpleados,RepositoryEmpleadosSQL>();
+            services.AddDbContext<HospitalContext>(options => options.UseSqlServer(cadenaSQL));*/
 
-            //services.AddDbContext<HospitalContext>(options => options.UseOracle(cadenaoracle, options => options.UseOracleSQLCompatibility("11")));
+
+            /*string cadenaOracle = this.Configuration.GetConnectionString("ConexionOracle");
+
+            services.AddTransient<IRepositoryEmpleados, RepositoryEmpleadosOracle>();
+            services.AddDbContext<HospitalContext>(options => options.UseOracle(cadenaOracle, options => options.UseOracleSQLCompatibility("11")));*/
+
+            string cadenaMySql = this.Configuration.GetConnectionString("CadenaMySQL");
+            
+            services.AddTransient<IRepositoryEmpleados, RepositoryEmpleadosMySQL>();
+            services.AddDbContext<HospitalContext>(options => options.UseMySQL(cadenaMySql));
+
             services.AddControllersWithViews();
         }
 
