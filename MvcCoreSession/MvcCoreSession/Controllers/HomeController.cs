@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MvcCoreSession.Extensions;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MvcCoreSession.Helpers;
@@ -34,17 +35,17 @@ namespace MvcCoreSession.Controllers
                 string data = HelperSession.SerializeObject(per);
 
                 //Ahora almacenamos el objeto a nivel de byte en session
-                HttpContext.Session.SetString("Persona", data);
+                HttpContext.Session.SetObject("PERSONA", data);
 
                 ViewData["MENSAJE"] = "Datos almacenados en Session";
 
             } else if (accion == "mostrar") {
 
                 //Extraemos la informacion de byte[] session
-                string data = HttpContext.Session.GetString("Persona");
+                string data = HttpContext.Session.GetObject<string>("PERSONA");
 
                 //Convertimos los byte[] a objeto
-                Persona per = (Persona)HelperSession.DeserializeObject(data, typeof(Persona));
+                Persona per = HelperSession.DeserializeObject<Persona>(data);
 
                 ViewData["Persona"] = per.Nombre + ", Edad: " + per.Edad;
                 ViewData["Hora"] = per.Hora;
@@ -65,7 +66,7 @@ namespace MvcCoreSession.Controllers
                 };
 
                 string jsonData = HelperSession.SerializeObject(personas);
-                HttpContext.Session.SetString("PERSONAS", jsonData);
+                HttpContext.Session.SetObject("PERSONAS",jsonData);
 
                 List<int> numeros = new List<int> { 4, 5, 6, 7, 8, 8, 3 };
 
@@ -76,8 +77,8 @@ namespace MvcCoreSession.Controllers
 
             } else if (accion == "mostrar") {
 
-                string data = HttpContext.Session.GetString("PERSONAS");
-                List<Persona> personas = (List<Persona>)HelperSession.DeserializeObject(data, typeof(List<Persona>));
+                string data = HttpContext.Session.GetObject<string>("PERSONAS");
+                List<Persona> personas = HelperSession.DeserializeObject<List<Persona>>(data);
 
                 return View(personas);
             }

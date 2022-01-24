@@ -8,11 +8,11 @@
 @{ 
     List<Persona> personas = null;
 
-    if (Context.Session.GetString("PERSONAS") != null) {
+    if (Context.Session.GetObject<string>("PERSONAS") != null) {
 
-        string data = Context.Session.GetString("PERSONAS");
+        string data = Context.Session.GetObject<string>("PERSONAS");
         
-        personas = (List<Persona>)HelperSession.DeserializeObject(data, typeof(List<Persona>));
+        personas = HelperSession.DeserializeObject<List<Persona>>(data);
 
     }
 
@@ -20,13 +20,13 @@
 
 <div class="text-center">
 
-    @if (Context.Session.GetString("PERSONAS") != null) {
+    @if (Context.Session.GetObject<string>("PERSONAS") != null) {
 
         <h1 style="color:red">Personas almacenadas en Session: @personas.Count()</h1>
 
      }
 
-      @if (Context.Session.GetString("Hora") !=null) { 
+      @if (Context.Session.GetObject<string>("Hora") !=null) { 
 
           <h1 style="color:red">@Context.Session.GetString("Hora")</h1>
       }

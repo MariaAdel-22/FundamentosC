@@ -19,11 +19,9 @@ namespace MvcCoreSession.Helpers
         }
 
         //Recibe el string con formato json y devolvemos el objeto deserializado
-        public static Object DeserializeObject(string data,Type type) {
+        public static T DeserializeObject<T>(string data) {
 
-            object obj = JsonConvert.DeserializeObject(data,type);
-
-            return obj;
+            return JsonConvert.DeserializeObject<T>(data);
         }
     }
 }
