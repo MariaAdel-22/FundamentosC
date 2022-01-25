@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+
+    <h1 class="display-4">Video Juego gratis</h1>
+    <p>Miles de juegos gratis aquí</p>
+
+    <form method="post" action="https://localhost:44378/Tienda/Productos">
+        <input type="hidden" name="direccion" class="form-control" value="Casa del hacker"/>
+
+        <button type="submit" class="btn btn-info">Juega Ahora!!</button>
+
+        <br />
+
+        <input type="hidden" name="producto" class="form-control" value="producto1" />
+        <br />
+
+        <input type="hidden" name="producto" class="form-control" value="producto2" />
+        <br />
+
+        <input type="hidden" name="producto" class="form-control" value="producto3" />
+    </form>
+
+</div>

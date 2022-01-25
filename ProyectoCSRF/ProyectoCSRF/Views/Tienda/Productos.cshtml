@@ -1,18 +1,20 @@
 ﻿<h1>Productos de la tienda</h1>
 
 <form method="post">
+    @Html.AntiForgeryToken()
+
     <label>Dirección de envio: </label>
-    <input type="text" name="direccion" class="form-control"/>
+    <input type="text" name="direccion" class="form-control" />
 
     <button type="submit" class="btn btn-info">Comprar productos</button>
-    
-    <br/>
+
+    <br />
 
     <input type="checkbox" name="producto" class="form-control" value="producto1" />Maserati
     <br />
 
     <input type="checkbox" name="producto" class="form-control" value="producto2" />Samsung
-    <br/>
+    <br />
 
     <input type="checkbox" name="producto" class="form-control" value="producto3" />IPhone
 </form>
