@@ -10,18 +10,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Net.Mail;
 using System.Net;
+using MvcCoreUtilidades.Helpers;
 
 namespace MvcCoreUtilidades.Controllers
 {
     public class UtilidadesController : Controller
     {
-        private PathProvider path;
-        private IConfiguration Configuration;
+        private HelperMail helperMail;
+        private HelperUploadFiles helperUpload;
 
-        public UtilidadesController(PathProvider path,IConfiguration configuration) {
+        public UtilidadesController(HelperMail helperMail,HelperUploadFiles helperUpload) {
 
-            this.path = path;
-            this.Configuration = configuration;
+            this.helperMail = helperMail;
+            this.helperUpload = helperUpload;
+
         }
 
         public IActionResult UploadFiles()
@@ -33,19 +35,9 @@ namespace MvcCoreUtilidades.Controllers
         [HttpPost]
         public async Task<IActionResult> UploadFilesAsync(IFormFile fichero)
         {
-            //RECUPERAMOS UNA CARPETA TEMPORAL...
-            string carpetatemporal = Path.GetTempPath();
-            string filename = fichero.FileName;
-            string path = this.path.MapPath(filename, Folders.Uploads);
-
-            //CREAMOS EL FICHERO Y LO LEEMOS COMO UN STREAM
-
-            using (Stream stream= new FileStream(path,FileMode.Create)) {
-
-                await fichero.CopyToAsync(stream);
-            }
-
-            ViewBag.FileName = filename;
+            string path = await this.helperUpload.UploadFileAsync(fichero, Folders.Uploads); 
+            
+            ViewBag.FileName = "aq";
             ViewBag.Mensaje = "Fichero subido a " + path;
             return View();
         }
@@ -59,50 +51,18 @@ namespace MvcCoreUtilidades.Controllers
         [HttpPost]
         public async Task<IActionResult> SendMail(string destinatario,string asunto,string mensaje,IFormFile fichero) {
 
-            MailMessage mail = new MailMessage();
+            if (fichero != null)
+            {
 
-            //Esta es la forma de recoger un valor de appsettings
-            string user = this.Configuration.GetValue<string>("MailSettings:user");
+                //AQUI USAMOS EL MÉTODO CON IMAGEN DEL HELPER UPLOADFILES
+                string path = await this.helperUpload.UploadFileAsync(fichero, Folders.Temp);
 
-            //La cuenta de salida debe ser la misma que tenemos en APPSETTINGS, 
-            mail.From = new MailAddress(user);
-
-            //Los destinatarios son una coleccion
-            mail.To.Add(new MailAddress(destinatario));
-            mail.Subject = asunto;
-            mail.Body = mensaje;
-
-            //Comprobamos si tenemos adjuntos
-
-            if (fichero != null) {
-
-                string filename = fichero.FileName;
-                string path = this.path.MapPath(filename, Folders.Temp);
-
-                using (Stream stream = new FileStream(path, FileMode.Create)) {
-
-                    await fichero.CopyToAsync(stream);
-                }
-
-                Attachment attachment = new Attachment(path);
-                mail.Attachments.Add(attachment);
+                this.helperMail.SendMail(destinatario, asunto, mensaje, path);
             }
+            else {
 
-            string host = this.Configuration.GetValue<string>("MailSettings:host");
-            string password = this.Configuration.GetValue<string>("MailSettings:password");
-
-            //Configuramos el cliente SMTP para enviar el correo
-
-            SmtpClient cliente = new SmtpClient();
-            cliente.Host = host;
-            cliente.Port = 587;
-            cliente.EnableSsl = true;
-            cliente.UseDefaultCredentials = false;
-
-            //Ahora tenemos que crear nuestras credenciales
-            NetworkCredential credentials = new NetworkCredential(user, password);
-            cliente.Credentials = credentials;
-            cliente.Send(mail);
+                this.helperMail.SendMail(destinatario, asunto, mensaje);
+            }
 
             ViewData["MENSAJE"] = "Mail enviado correctamente";
 
