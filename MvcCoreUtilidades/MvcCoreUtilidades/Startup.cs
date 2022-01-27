@@ -25,6 +25,8 @@ namespace MvcCoreUtilidades
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddResponseCaching();
+            services.AddMemoryCache();
             services.AddSingleton<IConfiguration>(this.Configuration);
             services.AddSingleton<PathProvider>();
             services.AddSingleton<HelperMail>();
@@ -51,6 +53,7 @@ namespace MvcCoreUtilidades
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseResponseCaching();
 
             app.UseEndpoints(endpoints =>
             {
