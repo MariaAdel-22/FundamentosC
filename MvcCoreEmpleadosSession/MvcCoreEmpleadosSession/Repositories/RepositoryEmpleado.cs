@@ -30,5 +30,14 @@ namespace MvcCoreEmpleadosSession.Repositories
 
             return consulta.FirstOrDefault();
         }
+
+        public List<Empleado> EmpleadosPorColeccionId(List<int>idEmpleados) {
+
+            //Cuando usamos busqueda en coleccion se utiliza el metodo Contains, entonces lo que le estamos diciendo es que busque, dentro de listado de tipo int, si coincide algún valor con id de empleado
+
+            var consulta = from datos in this.context.Empleados.AsEnumerable()  where idEmpleados.Contains(datos.CodigoEmpleado) select datos;
+
+            return consulta.ToList();
+        }
     }
 }

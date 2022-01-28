@@ -1,0 +1,52 @@
+﻿@model IEnumerable<MvcCoreEmpleadosSession.Models.Empleado>
+
+@{
+    ViewData["Title"] = "EmpleadosAlmacenadosCorrecto";
+}
+
+<h1>Empleados Almacenados Session Correcto</h1>
+<a asp-controller="Home" asp-action="SessionEmpleadoCorrecto">Volver Almacenar Empleados</a>
+<hr/>
+
+<h4 style="color:red">@ViewData["MENSAJE"]</h4>
+
+@if (Model != null) { 
+
+<table class="table table-info">
+    <thead>
+        <tr>
+
+            <th>
+               Apellido
+            </th>
+            <th>
+                Oficio
+            </th>
+            <th>
+                Salario
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+  
+                <td>
+                    @Html.DisplayFor(modelItem => item.Apellido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Oficio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Salario)
+                </td>
+              
+            </tr>
+        }
+    </tbody>
+</table>
+
+}
+
