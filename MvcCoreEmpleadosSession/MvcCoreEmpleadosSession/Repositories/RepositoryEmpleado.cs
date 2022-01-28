@@ -37,6 +37,10 @@ namespace MvcCoreEmpleadosSession.Repositories
 
             var consulta = from datos in this.context.Empleados.AsEnumerable()  where idEmpleados.Contains(datos.CodigoEmpleado) select datos;
 
+            if (consulta.Count() == 0) {
+
+                return null;
+            }
             return consulta.ToList();
         }
     }

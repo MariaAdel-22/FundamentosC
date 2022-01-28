@@ -138,9 +138,12 @@ namespace MvcCoreEmpleadosSession.Controllers
             return View(this.repoEmpleado.GetEmpleado());
         }
 
-        public IActionResult EmpleadosAlmacenadosCorrecto() {
+        public IActionResult EmpleadosAlmacenadosCorrecto(int? eliminar) {
 
-            if (HttpContext.Session.GetString("IDEMPLEADOS") == null)
+            List<int> listIdEmpleados = HttpContext.Session.GetObject<List<int>>("IDEMPLEADOS");
+
+
+            if (listIdEmpleados == null)
             {
 
                 ViewData["MENSAJE"] = "No existen empleados almacenados";
@@ -150,7 +153,20 @@ namespace MvcCoreEmpleadosSession.Controllers
             }
             else {
 
-                List<int> listIdEmpleados = HttpContext.Session.GetObject<List<int>>("IDEMPLEADOS");
+                if (eliminar != null) {
+
+                    listIdEmpleados.Remove(eliminar.Value);
+
+                    if (listIdEmpleados.Count() != 0)
+                    {
+
+                        HttpContext.Session.SetObject("IDEMPLEADOS", listIdEmpleados);
+                    }
+                    else {
+                        HttpContext.Session.Remove("IDEMPLEADOS");
+                    }
+                   
+                }
 
                 //NECESITAMOS UN MÉTODO EN EL REPO QUE LE ENVIAREMOS UNA COLECCION DE ID Y NOS DEVOLVERÁ UNA COLECCIÓN DE EMPLEADOS
                 List<Empleado> empleados = this.repoEmpleado.EmpleadosPorColeccionId(listIdEmpleados);

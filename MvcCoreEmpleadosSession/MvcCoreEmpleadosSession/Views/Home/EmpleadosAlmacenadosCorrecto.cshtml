@@ -42,7 +42,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Salario)
                 </td>
-              
+                <td><a asp-controller="Home" asp-action="EmpleadosAlmacenadosCorrecto" class="btn btn-danger" asp-route-eliminar="@item.CodigoEmpleado">Eliminar</a></td>
             </tr>
         }
     </tbody>
