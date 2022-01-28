@@ -180,15 +180,19 @@ namespace MvcCoreEmpleadosSession.Controllers
         public IActionResult EmpleadosAlmacenadosCorrecto(List<string> cantidad) 
         {
             TempData["MENSAJE"] = "Hola";
-            TempData["CANTIDAD1"] = cantidad;
+            TempData.Add("CANTIDAD1", cantidad);
             return RedirectToAction("ResumenCompra");
         }
 
         public IActionResult ResumenCompra() {
 
             string saludo = TempData["MENSAJE"].ToString();
-             List<string> cantidad = TempData["CANTIDAD1"] as List<string>;
-            ViewBag.Cantidad = cantidad;
+
+             if (TempData.ContainsKey("CANTIDAD1")) {
+
+                List<string> can = TempData["CANTIDAD1"] as List<string>;
+                 ViewBag.Cantidad = can;
+             }
 
             List<int> listIdEmpleados = HttpContext.Session.GetObject<List<int>>("IDEMPLEADOS");
 
