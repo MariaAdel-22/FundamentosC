@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Privacy Policy";
+}
+
+<h1>Suma salarial Session</h1>
+
+@if (Context.Session.GetString("SUMASALARIAL") == null) { 
+
+    <h1 style="color:red">No hay datos en Session</h1>
+
+}else{
+
+    <h1 style="color:lightcoral">Suma Salarial: @Context.Session.GetString("SUMASALARIAL")</h1>
+}
+
+<a asp-controller="Home" asp-action="SessionSalarios">Volver al listado</a>

@@ -27,7 +27,7 @@ namespace MvcCoreEmpleadosSession.Extensions
             }
             else {
 
-                return T;
+                return JsonConvert.DeserializeObject<T>(data);
             }
         }
     }

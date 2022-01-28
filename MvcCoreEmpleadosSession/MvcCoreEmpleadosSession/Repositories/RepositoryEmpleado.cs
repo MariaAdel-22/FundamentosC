@@ -23,5 +23,12 @@ namespace MvcCoreEmpleadosSession.Repositories
 
             return consulta.ToList();
         }
+
+        public Empleado FindEmpleado(int codigoEmpleado) {
+
+            var consulta = from datos in this.context.Empleados.AsEnumerable() where datos.CodigoEmpleado == codigoEmpleado select datos;
+
+            return consulta.FirstOrDefault();
+        }
     }
 }

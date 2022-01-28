@@ -6,9 +6,13 @@
 
 <h1>Session Empleados Salario</h1>
 
+<a asp-controller="Home" asp-action="SumaSalarios">Mostrar Suma de salarios almacenados</a>
+
+<h4 style="color:red">@ViewData["MENSAJE"]</h4>
+
+
 @if (Model != null)
 {
-
 
 <table class="table table-active">
         <thead class="table bg-danger">
@@ -17,6 +21,7 @@
                 <th>Apellido</th>
                 <th>Oficio</th>
                 <th>Salario</th>
+                <th>Realizar Session</th>
             </tr>
         </thead>
         <tbody>
@@ -27,6 +32,7 @@
                     <td>@emp.Apellido</td>
                     <td>@emp.Oficio</td>
                     <td>@emp.Salario</td>
+                    <td><a asp-controller="Home" asp-action="SessionSalarios" asp-route-salario="@emp.Salario">Almacenar Salario</a></td>
                 </tr>
             }
         </tbody>
