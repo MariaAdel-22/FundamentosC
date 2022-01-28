@@ -12,41 +12,48 @@
 
 @if (Model != null) { 
 
-<table class="table table-info">
-    <thead>
-        <tr>
+<form method="post">
 
-            <th>
-               Apellido
-            </th>
-            <th>
-                Oficio
-            </th>
-            <th>
-                Salario
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+    <table class="table table-info">
+        <thead>
             <tr>
-  
-                <td>
-                    @Html.DisplayFor(modelItem => item.Apellido)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Oficio)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Salario)
-                </td>
-                <td><a asp-controller="Home" asp-action="EmpleadosAlmacenadosCorrecto" class="btn btn-danger" asp-route-eliminar="@item.CodigoEmpleado">Eliminar</a></td>
+
+                <th>
+                    Apellido
+                </th>
+                <th>
+                    Oficio
+                </th>
+                <th>
+                    Salario
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Apellido)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Oficio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Salario)
+                    </td>
+                    <td><input type="text" name="cantidad"/></td>
+                    <td><a asp-controller="Home" asp-action="EmpleadosAlmacenadosCorrecto" class="btn btn-danger" asp-route-eliminar="@item.CodigoEmpleado">Eliminar</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <button type="submit" class="btn btn-secondary">Comprar empleados</button>
+</form>
+
 
 }
 

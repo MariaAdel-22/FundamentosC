@@ -176,6 +176,28 @@ namespace MvcCoreEmpleadosSession.Controllers
 
         }
 
+        [HttpPost]
+        public IActionResult EmpleadosAlmacenadosCorrecto(List<string> cantidad) 
+        {
+            TempData["MENSAJE"] = "Hola";
+            TempData["CANTIDAD1"] = cantidad;
+            return RedirectToAction("ResumenCompra");
+        }
+
+        public IActionResult ResumenCompra() {
+
+            string saludo = TempData["MENSAJE"].ToString();
+             List<string> cantidad = TempData["CANTIDAD1"] as List<string>;
+            ViewBag.Cantidad = cantidad;
+
+            List<int> listIdEmpleados = HttpContext.Session.GetObject<List<int>>("IDEMPLEADOS");
+
+            List<Empleado> empleados = this.repoEmpleado.EmpleadosPorColeccionId(listIdEmpleados);
+
+            return View(empleados);
+        
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
