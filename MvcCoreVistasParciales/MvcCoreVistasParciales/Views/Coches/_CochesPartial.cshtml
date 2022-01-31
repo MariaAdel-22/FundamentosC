@@ -1,0 +1,26 @@
+﻿@model List<Coche>
+
+
+<table class="table table-active">
+    <thead class="table table-danger">
+        <tr>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Velocidad Maxima</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Coche co in Model)
+        {
+
+            <tr>
+                <td>@co.Marca</td>
+                <td>@co.Modelo</td>
+                <td>@co.VelocidadMaxima</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+

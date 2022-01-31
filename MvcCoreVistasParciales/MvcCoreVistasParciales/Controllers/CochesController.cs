@@ -28,5 +28,26 @@ namespace MvcCoreVistasParciales.Controllers
         {
             return View(this.Cars);
         }
+
+        //ESTA VISTA NO TENDRÁ NADA AL CARGAR, PERO EN SU INTERIOR CARGAREMOS VISTAS PARCIALES CON JQUERY
+        //TENDREMOS UNA VISTA PARCIAL CON TODOS LOS COCHES
+        public IActionResult PeticionAsincrona() {
+
+            return View();
+        }
+
+        //NECESITAMOS UN METODO QUE SERÁ LLAMADO MEDIANTE LOAD()  DE JQUERY, LOS MÉTODOS IACTIONRESULT SIEMPRE DEVUELVEN PARTIALVIEW()
+        public IActionResult _CochesPartial() {
+
+            return PartialView("_CochesPartial", this.Cars);
+
+        }
+
+        public IActionResult _CochesDetailsPartial(int idcoche) {
+
+            Coche car = this.Cars.SingleOrDefault(z => z.IdCoche == idcoche);
+
+            return PartialView("_CochesDetailsPartial",car);
+        }
     }
 }
