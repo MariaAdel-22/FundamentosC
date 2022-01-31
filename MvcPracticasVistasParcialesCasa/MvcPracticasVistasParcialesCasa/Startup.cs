@@ -4,14 +4,12 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using MvcCoreVistasParciales.Data;
-using MvcCoreVistasParciales.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MvcCoreVistasParciales
+namespace MvcPracticasVistasParcialesCasa
 {
     public class Startup
     {
@@ -25,10 +23,8 @@ namespace MvcCoreVistasParciales
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<RepositoryCoches>();
-            services.AddTransient<ContextCoches>();
             services.AddDistributedMemoryCache();
-            services.AddSession(options => options.IdleTimeout = TimeSpan.FromMinutes(30));
+            services.AddSession(option => option.IdleTimeout = TimeSpan.FromMinutes(40));
             services.AddControllersWithViews();
         }
 

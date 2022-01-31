@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MvcCoreVistasParciales.Models;
+using MvcCoreVistasParciales.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,10 +14,11 @@ namespace MvcCoreVistasParciales.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private RepositoryCoches repo;
+        public HomeController(ILogger<HomeController> logger, RepositoryCoches repo)
         {
             _logger = logger;
+            this.repo = repo;
         }
 
         public IActionResult Login() {

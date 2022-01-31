@@ -28,5 +28,11 @@ namespace MvcCoreVistasParciales.Repositories
             var consulta = from datos in this.context.Coches.AsEnumerable() select datos;
             return consulta.ToList();
         }
+
+        public Coche FindCoche(int idcoche) {
+
+            Coche car = this.Cars.SingleOrDefault(z => z.IdCoche == idcoche);
+            return car;
+        }
     }
 }
