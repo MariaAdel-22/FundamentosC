@@ -28,8 +28,22 @@ namespace MvcCoreEmpleadosSession.Repositories
 
             var consulta = from datos in this.context.Empleados.AsEnumerable() where datos.CodigoEmpleado == codigoEmpleado select datos;
 
+            if (consulta.Count() == 0) {
+
+                return null;
+            }
+
             return consulta.FirstOrDefault();
         }
+
+        public Empleado FindEmpleadoNombre(string nombreempleado)
+        {
+
+            var consulta = from datos in this.context.Empleados.AsEnumerable() where datos.Apellido == nombreempleado select datos;
+
+            return consulta.FirstOrDefault();
+        }
+
 
         public List<Empleado> EmpleadosPorColeccionId(List<int>idEmpleados) {
 

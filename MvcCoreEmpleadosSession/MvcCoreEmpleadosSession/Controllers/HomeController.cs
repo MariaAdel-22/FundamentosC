@@ -202,6 +202,46 @@ namespace MvcCoreEmpleadosSession.Controllers
         
         }
 
+        //VERSION EXTENDIDA
+
+        public IActionResult Login() {
+
+            return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult Login(string apellido,string oficio) {
+
+            Empleado emp;
+
+            emp = this.repoEmpleado.FindEmpleadoNombre(apellido);
+
+            if (emp != null)
+            {
+                HttpContext.Session.SetObject("EMPLEADO", emp);
+            }
+            else
+            {
+                HttpContext.Session.SetString("USUARIO", apellido);
+            }
+            
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Index() {
+
+
+            return View();
+        }
+
+        public IActionResult CerrarSesion() {
+
+            HttpContext.Session.Remove("USUARIO");
+            HttpContext.Session.Remove("EMPLEADO");
+            return RedirectToAction("Login");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

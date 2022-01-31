@@ -31,7 +31,7 @@ namespace MvcCoreEmpleadosSession
             services.AddDistributedMemoryCache();
             services.AddSession(option => option.IdleTimeout = TimeSpan.FromMinutes(45));
 
-            string cadena = this.Configuration.GetConnectionString("CadenaHospitalClase");
+            string cadena = this.Configuration.GetConnectionString("CadenaHospitalCasa");
 
             services.AddSingleton<HelperEmpleados>();
             services.AddTransient<RepositoryEmpleado>();
@@ -65,7 +65,7 @@ namespace MvcCoreEmpleadosSession
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=SessionSalarios}/{id?}");
+                    pattern: "{controller=Home}/{action=Login}/{id?}");
             });
         }
     }
