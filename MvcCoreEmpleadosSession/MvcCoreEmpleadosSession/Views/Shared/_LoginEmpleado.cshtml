@@ -1,34 +1,23 @@
 ﻿@{
 
     Empleado emp = Context.Session.GetObject<Empleado>("EMPLEADO");
-    string empleado = Context.Session.GetString("USUARIO");
-}
+}
 
 @if (emp == null)
 {
 
-    //SIGNIFICA QUE NO ESTÁ VALIDADO
+    //Si no existe el empleado muestra un menú por defecto
 
     <li class="nav-item">
-        <p class="nav-link text-black-50">Hola @empleado</p>
+        <a asp-controller="Home" asp-action="Login" class="nav-link">Iniciar Sesion</a>
     </li>
 
-    <li class="nav-item">
-        <a asp-controller="Home" asp-action="CerrarSesion" class="nav-link text-danger">Cerrar Sesion @empleado</a>
-    </li>
 }
-else
-{
+else { 
 
     <li class="nav-item">
-        <a asp-controller="Home" asp-action="SessionEmpleadoCorrecto" asp-route-idEmpleado="@emp.CodigoEmpleado" class="nav-link">Empleados para Comprar</a>
+        <a asp-controller="Home" asp-action="SessionEmpleadoCorrecto" class="nav-link">Comprar Empleados</a>
+        <a asp-controller="Home" asp-action="CerrarSesion" class="nav-link text-danger">Cerrar Sesión @emp.Apellido</a>
+        <a asp-controller="Home" asp-action="EmpleadosAlmacenadosCorrecto" class="nav-link">Eliminar Empleados del carrito</a>
     </li>
-    <li class="nav-item">
-        <a asp-controller="Home" asp-action="CerrarSesion" class="nav-link text-danger">Cerrar Sesion,@emp.Apellido</a>
-    </li>
-
-    <li class="nav-item">
-        <a asp-controller="Home" asp-action="EmpleadosAlmacenadosCorrecto" asp-route-eliminar="@emp.CodigoEmpleado" class="nav-link text-info">Eliminar Empleados para comprar</a>
-    </li>
-
 }

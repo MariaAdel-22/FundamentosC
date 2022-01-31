@@ -209,37 +209,14 @@ namespace MvcCoreEmpleadosSession.Controllers
             return View();
         }
 
-
         [HttpPost]
-        public IActionResult Login(string apellido,string oficio) {
+        public IActionResult Login(string apellido) {
 
-            Empleado emp;
+            Empleado emp = this.repoEmpleado.FindEmpleadoNombre(apellido);
 
-            emp = this.repoEmpleado.FindEmpleadoNombre(apellido);
+            HttpContext.Session.SetObject("EMPLEADO", emp);
 
-            if (emp != null)
-            {
-                HttpContext.Session.SetObject("EMPLEADO", emp);
-            }
-            else
-            {
-                HttpContext.Session.SetString("USUARIO", apellido);
-            }
-            
-            return RedirectToAction("Index");
-        }
-
-        public IActionResult Index() {
-
-
-            return View();
-        }
-
-        public IActionResult CerrarSesion() {
-
-            HttpContext.Session.Remove("USUARIO");
-            HttpContext.Session.Remove("EMPLEADO");
-            return RedirectToAction("Login");
+            return RedirectToAction("SessionEmpleadoCorrecto");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
