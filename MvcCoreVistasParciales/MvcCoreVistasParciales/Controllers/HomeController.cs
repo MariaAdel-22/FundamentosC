@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MvcCoreVistasParciales.Models;
 using System;
@@ -16,6 +17,24 @@ namespace MvcCoreVistasParciales.Controllers
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+        }
+
+        public IActionResult Login() {
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(string usuario) {
+
+            HttpContext.Session.SetString("USUARIO", usuario);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult CloseSession() {
+
+            HttpContext.Session.Remove("USUARIO");
+            return RedirectToAction("Index");
         }
 
         public IActionResult Index()
