@@ -28,6 +28,12 @@ namespace MvcPracticasVistasParcialesCasa.Controllers
             return View();
         }
 
+        public IActionResult _VistaModal()
+        {
+
+            return PartialView("_VistaModal");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

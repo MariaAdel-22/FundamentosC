@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MvcPracticasVistasParcialesCasa.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,6 @@ namespace MvcPracticasVistasParcialesCasa.Data
         public EmpleadosContext(DbContextOptions<EmpleadosContext> options) : base(options) { 
         
         }
+        public DbSet<Empleado> Empleados { get; set; }
     }
 }
