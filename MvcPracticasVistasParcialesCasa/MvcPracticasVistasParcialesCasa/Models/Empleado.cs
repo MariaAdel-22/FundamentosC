@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace MvcPracticasVistasParcialesCasa.Models
 {
+    [Serializable]
+
     [Table("EMP")]
     public class Empleado
     {

@@ -22,15 +22,17 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Empleado" asp-action="SessionEmpleadoCorrecto">Empleados</a>
                         </li>
                     </ul>
                 </div>
+                <partial name="_LoginEmpleado" />
             </div>
         </nav>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+            <partial name="_CantidadEmpleados" />
             @RenderBody()
         </main>
     </div>

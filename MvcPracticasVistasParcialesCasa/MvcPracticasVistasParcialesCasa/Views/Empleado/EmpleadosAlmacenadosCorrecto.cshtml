@@ -1,0 +1,59 @@
+﻿@model IEnumerable<MvcPracticasVistasParcialesCasa.Models.Empleado>
+
+@{
+    ViewData["Title"] = "EmpleadosAlmacenadosCorrecto";
+}
+
+<h1>Empleados Almacenados Session Correcto</h1>
+<a asp-controller="Empleado" asp-action="SessionEmpleadoCorrecto">Volver Almacenar Empleados</a>
+<hr />
+
+<h4 style="color:red">@ViewData["MENSAJE"]</h4>
+
+@if (Model != null)
+{
+
+    <form method="post">
+
+        <table class="table table-info">
+            <thead>
+                <tr>
+
+                    <th>
+                        Apellido
+                    </th>
+                    <th>
+                        Oficio
+                    </th>
+                    <th>
+                        Salario
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Apellido)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Oficio)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Salario)
+                        </td>
+                        <td><input type="text" name="cantidad" /></td>
+                        <td><a asp-controller="Empleado" asp-action="EmpleadosAlmacenadosCorrecto" class="btn btn-danger" asp-route-eliminar="@item.CodigoEmpleado">Eliminar</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <button type="submit" class="btn btn-secondary">Comprar empleados</button>
+    </form>
+
+
+}

@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewData["Title"] = "_LoginEmpleado";
+}
+
+@{
+
+    Empleado emp = Context.Session.GetObject<Empleado>("EMPLEADO");
+}
+
+@if (emp == null)
+{
+
+    //Si no existe el empleado muestra un menú por defecto
+
+    <li class="nav-item">
+        <a asp-controller="Home" asp-action="Login" class="nav-link">Iniciar Sesion</a>
+    </li>
+
+}
+else
+{
+
+    <li class="nav-item">
+        <a asp-controller="Home" asp-action="SessionEmpleadoCorrecto" class="nav-link">Comprar Empleados</a>
+        <a asp-controller="Home" asp-action="CerrarSesion" class="nav-link text-danger">Cerrar Sesión @emp.Apellido</a>
+        <a asp-controller="Home" asp-action="EmpleadosAlmacenadosCorrecto" class="nav-link">Eliminar Empleados del carrito</a>
+    </li>
+}

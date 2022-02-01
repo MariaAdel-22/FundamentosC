@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MvcPracticasVistasParcialesCasa.Data;
+using MvcPracticasVistasParcialesCasa.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +26,11 @@ namespace MvcPracticasVistasParcialesCasa
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            string cadenaH = this.Configuration.GetConnectionString("CadenaHospitalCasa");
+
+            services.AddTransient<RepositoryEmpleados>();
+            services.AddDbContext<EmpleadosContext>(option => option.UseSqlServer(cadenaH));
+
             services.AddDistributedMemoryCache();
             services.AddSession(option => option.IdleTimeout = TimeSpan.FromMinutes(40));
             services.AddControllersWithViews();
@@ -53,7 +61,7 @@ namespace MvcPracticasVistasParcialesCasa
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Empleado}/{action=Login}/{id?}");
             });
         }
     }

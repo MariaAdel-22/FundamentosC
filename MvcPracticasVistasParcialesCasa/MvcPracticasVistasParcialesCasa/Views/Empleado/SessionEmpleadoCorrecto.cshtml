@@ -1,0 +1,53 @@
+﻿@model List<Empleado>
+
+<h1>Listado CORRECTO de Empleados Session</h1>
+
+<a asp-controller="Empleado" asp-action="EmpleadosAlmacenadosCorrecto">Empleados Almacenados</a>
+
+@if (Model != null)
+{
+
+    <table class="table table-info">
+        <thead>
+            <tr>
+                <th>Apellido</th>
+                <th>Oficio</th>
+                <th>Salario</th>
+                <th>Session</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (Empleado emp in Model)
+            {
+
+                <tr>
+                    <td>@emp.Apellido</td>
+                    <td>@emp.Oficio</td>
+                    <td>@emp.Salario</td>
+
+                    @if (Context.Session.GetString("IDEMPLEADOS") != null)
+                    {
+
+                        @if (Context.Session.GetString("IDEMPLEADOS").Contains(emp.CodigoEmpleado.ToString()) == false)
+                        {
+
+                            <td><a asp-controller="Empleado" asp-action="SessionEmpleadoCorrecto" asp-route-idEmpleado="@emp.CodigoEmpleado">Almacenar Empleado</a></td>
+                        }
+                        else
+                        {
+
+                            <td><h4 style="color:darkcyan">YA HA SIDO SELECCIONADO</h4></td>
+                        }
+                    }
+                    else
+                    {
+
+                        <td><a asp-controller="Empleado" asp-action="SessionEmpleadoCorrecto" asp-route-idEmpleado="@emp.CodigoEmpleado">Almacenar Empleado</a></td>
+                    }
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
