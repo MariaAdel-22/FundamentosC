@@ -6,65 +6,31 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 
-    <a data-toggle="modal" data-target="#capacoches" class="btn btn-primary edit-radicado" id="editar">
-        <span class="glyphicon glyphicon-edit" aria-hidden="true">Abrir Modal</span>
-    </a>
+    <button id='open' data-toggle="modal" data-target="#showmodal">open modal</button>
 </div>
 
-@section Scripts{ 
+
+@section Scripts{
 
     <script>
 
-    $(document).ready(function(){
+        $(document).ready(function () {
 
-        /*$("#editar").click(function () {
+            $("#open").click(function () {
 
-            $("#capacoches").load("/Home/_VistaModal");
-
-             //$("#capacoches").modal('show');
-        
-            
-        });*/
-
-        $("#editar").click(function () {
-
-            
-            $('#capacoches').load("/Home/_VistaModal", function () {
-           
-
-                $('#MyModal').modal({
-                    /*backdrop: 'static',*/
-                    keyboard: true
-                }, 'show');
-
-          
+                $("#contenedorModal").load("/Home/_VistaModal");
             });
-
         });
-
-        /*$(document).on('click', '#cerrar', function () {
-
-            console.log("Paso por aqui");
-            //$('#capacoches').modal().hide();
-            //$('#capacoches').modal('hide');
-            //$('#capacoches').removeClass('show');
-            //$('#capacoches').attr('hidden', true);
-            //$('#capacoches').modal('toggle');
-        });*/
-
-        $('body').on('click', '#cerrar', function () {
-
-           console.log("Paso por aqui");
-
-            //$('#MyModal').modal('hide');
-            //$('#capacoches').hide();
-        });
-    });
 
     </script>
-    
+
 }
 
-<div id="capacoches" class="modal fade">
 
+<div id="showmodal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" id="contenedorModal">
+  
+        </div>
+    </div>
 </div>
