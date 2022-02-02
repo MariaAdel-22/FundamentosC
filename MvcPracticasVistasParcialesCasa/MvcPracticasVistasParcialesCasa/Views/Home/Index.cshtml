@@ -6,7 +6,7 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 
-    <a data-toggle="modal" data-target="#myModal" class="btn btn-primary edit-radicado" id="editar">
+    <a data-toggle="modal" data-target="#capacoches" class="btn btn-primary edit-radicado" id="editar">
         <span class="glyphicon glyphicon-edit" aria-hidden="true">Abrir Modal</span>
     </a>
 </div>
@@ -17,19 +17,47 @@
 
     $(document).ready(function(){
 
-        $("#editar").click(function () {
+        /*$("#editar").click(function () {
 
             $("#capacoches").load("/Home/_VistaModal");
-            $("#capacoches").modal('show');
+
+             //$("#capacoches").modal('show');
+        
+            
+        });*/
+
+        $("#editar").click(function () {
+
+            
+            $('#capacoches').load("/Home/_VistaModal", function () {
+           
+
+                $('#MyModal').modal({
+                    /*backdrop: 'static',*/
+                    keyboard: true
+                }, 'show');
+
+          
+            });
+
         });
 
-        $(document).on('click', '#cerrar', function () {
+        /*$(document).on('click', '#cerrar', function () {
 
             console.log("Paso por aqui");
             //$('#capacoches').modal().hide();
             //$('#capacoches').modal('hide');
-            $('#capacoches').removeClass('show');
-            $('#capacoches').attr('hidden', true);
+            //$('#capacoches').removeClass('show');
+            //$('#capacoches').attr('hidden', true);
+            //$('#capacoches').modal('toggle');
+        });*/
+
+        $('body').on('click', '#cerrar', function () {
+
+           console.log("Paso por aqui");
+
+            //$('#MyModal').modal('hide');
+            //$('#capacoches').hide();
         });
     });
 
