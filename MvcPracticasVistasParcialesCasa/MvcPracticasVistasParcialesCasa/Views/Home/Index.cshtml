@@ -23,6 +23,14 @@
             $("#capacoches").modal('show');
         });
 
+        $(document).on('click', '#cerrar', function () {
+
+            console.log("Paso por aqui");
+            //$('#capacoches').modal().hide();
+            //$('#capacoches').modal('hide');
+            $('#capacoches').removeClass('show');
+            $('#capacoches').attr('hidden', true);
+        });
     });
 
     </script>
