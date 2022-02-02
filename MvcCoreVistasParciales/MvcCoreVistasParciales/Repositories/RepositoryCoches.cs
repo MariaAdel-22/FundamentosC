@@ -10,7 +10,6 @@ namespace MvcCoreVistasParciales.Repositories
     public class RepositoryCoches
     {
         public List<Coche> Cars;
-        public ContextCoches context;
 
         public RepositoryCoches() {
 
@@ -25,8 +24,7 @@ namespace MvcCoreVistasParciales.Repositories
 
         public List<Coche> GetCoches() {
 
-            var consulta = from datos in this.context.Coches.AsEnumerable() select datos;
-            return consulta.ToList();
+            return this.Cars;
         }
 
         public Coche FindCoche(int idcoche) {
