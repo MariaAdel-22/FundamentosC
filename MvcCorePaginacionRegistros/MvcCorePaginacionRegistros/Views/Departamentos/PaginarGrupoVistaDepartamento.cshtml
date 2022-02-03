@@ -2,11 +2,22 @@
 
 @{
     ViewData["Title"] = "PaginarGrupoVistaDepartamento";
+    List<int> posiciones = ViewData["POSICIONES"] as List<int>;
+    int contador = 1;
 }
 
 <h1>PaginarGrupoVistaDepartamento</h1>
 
-@Html.Raw(ViewData["LINKS"])
+<div>
+
+    @foreach (int pos in posiciones) {
+
+        <a asp-controller="Departamentos" asp-action="PaginarGrupoVistaDepartamento" asp-route-posicion="@pos">Pagina @contador</a>
+
+        contador += 1;
+    }
+
+</div>
 <hr/>
 
 <table class="table table-info">

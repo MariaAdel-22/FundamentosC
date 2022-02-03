@@ -26,25 +26,15 @@ namespace MvcCorePaginacionRegistros.Controllers
 
             int numeroregistros = this.repo.GetNumeroRegistros();
 
-            //<a href="PaginarGrupo?posicion=1">Pagina 1</a>
-            //<a href="PaginarGrupo?posicion=3">Pagina 2</a>
-
-            //NECESITAMOS UN CONTADOR PARA DIBUJAR EL NUMERO DE PAGINA
-            int numeroPagina = 1;
-
             //También necesitamos un bucle para dibujar el <a> varias veces y comiente en 1, y vaya subiendo de 2 en 2
-            string html = "<div>";
+            List<int> Posiciones = new List<int>();
 
-            for (int i=1;i<=numeroregistros;i+=2) {
+            for (int i=1;i<=numeroregistros;i=i+2) {
 
-                html += "<a href='PaginarGrupoVistaDepartamento?posicion='"+i+">Pagina "+numeroPagina+"</a><br/>";
-
-                numeroPagina += 1;
+                Posiciones.Add(i);
             }
 
-            html += "</div>";
-
-            ViewData["LINKS"] = html;
+            ViewData["POSICIONES"] = Posiciones; 
 
             List<VistaDepartamentoRegistro> lista = this.repo.GetGrupoVistaDepartamento(posicion.Value);
 
