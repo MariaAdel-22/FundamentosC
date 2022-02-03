@@ -47,9 +47,10 @@ namespace MvcCorePaginacionRegistros.Repositories
             pamRegis.Direction = System.Data.ParameterDirection.Output;
 
             var consulta = this.context.Departamentos.FromSqlRaw(sql, pamPos,pamRegis);
-            numeroregistros = (int)pamRegis.Value;
+           numeroregistros = (int)pamRegis.Value;
 
-            return consulta.ToList();
+            List <Departamento> departamentos= consulta.ToList();
+            return departamentos;
         }
     
     }

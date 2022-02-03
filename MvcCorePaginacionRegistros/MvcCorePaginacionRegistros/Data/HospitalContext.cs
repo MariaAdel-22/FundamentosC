@@ -20,6 +20,14 @@ AS
 	SELECT CAST(ROW_NUMBER() OVER (ORDER BY DEPT_NO) AS INT) AS POSICION, ISNULL(DEPT_NO,0) AS DEPT_NO, DNOMBRE, LOC FROM DEPT
 GO
  */
+
+/*
+ 
+CREATE VIEW EMPLEADOS_PAGINACION
+AS
+	SELECT CAST(ROW_NUMBER() OVER (ORDER BY EMP_NO) AS INT) AS PAGINACION, EMP_NO,APELLIDO, OFICIO, SALARIO FROM EMP
+GO
+ */
 #endregion
 namespace MvcCorePaginacionRegistros.Data
 {
@@ -31,5 +39,6 @@ namespace MvcCorePaginacionRegistros.Data
         public DbSet<VistaDepartamentoRegistro> VistaDepartamentos { get; set; }
     
         public DbSet<Departamento> Departamentos { get; set; }
+        public DbSet<Empleado> Empleados { get; set; }
     }
 }
