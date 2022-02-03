@@ -37,13 +37,17 @@ namespace MvcCorePaginacionRegistros.Repositories
             return consulta.ToList();
         }
 
-        public List<Departamento> GetGrupoDepartamentos(int posicion) {
+        //Ref significa que así asignamos una variable de salida en el método
+        public List<Departamento> GetGrupoDepartamentos(int posicion, ref int numeroregistros) {
 
-            string sql = "SP_PAGINAR_GRUPO_DEPARTAMENTOS @POSICION";
+            string sql = "SP_PAGINAR_GRUPO_DEPARTAMENTOS @POSICION,@REGISTROS out";
 
             SqlParameter pamPos = new SqlParameter("POSICION",posicion);
+            SqlParameter pamRegis = new SqlParameter("@REGISTROS", -1);
+            pamRegis.Direction = System.Data.ParameterDirection.Output;
 
-            var consulta = this.context.Departamentos.FromSqlRaw(sql, pamPos);
+            var consulta = this.context.Departamentos.FromSqlRaw(sql, pamPos,pamRegis);
+            numeroregistros = (int)pamRegis.Value;
 
             return consulta.ToList();
         }
