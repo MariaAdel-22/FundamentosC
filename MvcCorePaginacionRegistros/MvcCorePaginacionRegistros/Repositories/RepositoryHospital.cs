@@ -15,6 +15,12 @@ namespace MvcCorePaginacionRegistros.Repositories
             this.context = context;
         }
 
+        //VAMOS A HACER UN MÉTODO QUE DEVUELVA EL NÚMERO DE REGISTROS
+        public int GetNumeroRegistros() {
+
+            return this.context.VistaDepartamentos.Count();
+        }
+
         public VistaDepartamentoRegistro GetVistaDepartamento(int posicion) {
 
             var consulta = from datos in this.context.VistaDepartamentos where datos.Posicion == posicion select datos;

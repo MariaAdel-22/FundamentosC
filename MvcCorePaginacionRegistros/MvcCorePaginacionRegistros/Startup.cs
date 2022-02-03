@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MvcCorePaginacionRegistros.Data;
+using MvcCorePaginacionRegistros.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +26,11 @@ namespace MvcCorePaginacionRegistros
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            string cadenaHospital = this.Configuration.GetConnectionString("CadenaHospital");
+            
+            services.AddTransient<RepositoryHospital>();
+            services.AddDbContext<HospitalContext>(options => options.UseSqlServer(cadenaHospital));
+
             services.AddControllersWithViews();
         }
 
