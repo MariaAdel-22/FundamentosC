@@ -17,6 +17,21 @@ namespace MvcCorePaginacionRegistros.Controllers
             this.repo = repo;
         }
 
+        public IActionResult PaginarGrupoDepartamentos(int? posicion) {
+
+            if (posicion == null) {
+
+                posicion = 1;
+            }
+            int numeroregistros = this.repo.GetNumeroRegistros();
+
+            ViewData["NUMEROREGISTROS"] = numeroregistros;
+
+            List<Departamento> departamentos = this.repo.GetGrupoDepartamentos(posicion.Value);
+
+            return View(departamentos);
+        }
+
         public IActionResult PaginarGrupoVistaDepartamento(int? posicion) {
 
             if (posicion == null) {

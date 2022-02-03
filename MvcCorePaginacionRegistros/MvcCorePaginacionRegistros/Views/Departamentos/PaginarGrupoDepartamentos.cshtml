@@ -1,0 +1,53 @@
+﻿@model IEnumerable<MvcCorePaginacionRegistros.Models.Departamento>
+
+@{
+    ViewData["Title"] = "PaginarGrupoDepartamentos";
+    int posic = int.Parse(ViewData["NUMEROREGISTROS"].ToString());
+
+    int cont = 1;
+}
+
+<h1 style="color:red">Paginar Grupo Departamentos</h1>
+
+@for (int i=1; i<= posic;i+=2) { 
+
+    <a asp-controller="Departamentos" asp-action="PaginarGrupoDepartamentos" asp-route-posicion="@i">Pagina @cont</a>
+    cont += 1;
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdDepartamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Localidad)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdDepartamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Localidad)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

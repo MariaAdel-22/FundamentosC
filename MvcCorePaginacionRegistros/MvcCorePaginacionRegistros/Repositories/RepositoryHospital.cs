@@ -1,4 +1,6 @@
-﻿using MvcCorePaginacionRegistros.Data;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using MvcCorePaginacionRegistros.Data;
 using MvcCorePaginacionRegistros.Models;
 using System;
 using System.Collections.Generic;
@@ -34,5 +36,17 @@ namespace MvcCorePaginacionRegistros.Repositories
 
             return consulta.ToList();
         }
+
+        public List<Departamento> GetGrupoDepartamentos(int posicion) {
+
+            string sql = "SP_PAGINAR_GRUPO_DEPARTAMENTOS @POSICION";
+
+            SqlParameter pamPos = new SqlParameter("POSICION",posicion);
+
+            var consulta = this.context.Departamentos.FromSqlRaw(sql, pamPos);
+
+            return consulta.ToList();
+        }
+    
     }
 }
