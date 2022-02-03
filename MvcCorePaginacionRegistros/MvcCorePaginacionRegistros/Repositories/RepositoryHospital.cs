@@ -27,5 +27,12 @@ namespace MvcCorePaginacionRegistros.Repositories
 
             return consulta.FirstOrDefault();
         }
+
+        public List<VistaDepartamentoRegistro> GetGrupoVistaDepartamento(int posicion) {
+
+            var consulta = from datos in this.context.VistaDepartamentos where datos.Posicion >= posicion && datos.Posicion < (posicion + 2) select datos;
+
+            return consulta.ToList();
+        }
     }
 }
