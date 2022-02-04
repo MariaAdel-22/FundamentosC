@@ -52,6 +52,22 @@ namespace MvcCorePaginacionRegistros.Repositories
             List <Departamento> departamentos= consulta.ToList();
             return departamentos;
         }
-    
+
+        public List<Empleado> GetGrupoEmpleados(int posicion,string oficio,ref int numeroRegistros) {
+
+            string sql = "PAGINACION_GRUPO_EMPLEADOS_OFICIO @POSICION,@OFICIO,@REGISTRO out";
+
+            SqlParameter paramPos = new SqlParameter("@POSICION", posicion);
+            SqlParameter paramOf = new SqlParameter("@OFICIO",oficio);
+            SqlParameter paramNumReg = new SqlParameter("@REGISTRO",-1);
+            paramNumReg.Direction = System.Data.ParameterDirection.Output;
+
+            var consulta = this.context.Empleados.FromSqlRaw(sql,paramPos,paramOf,paramNumReg);
+            
+            List<Empleado> Empleados = consulta.ToList();
+            numeroRegistros = (int)paramNumReg.Value;
+
+            return Empleados;
+        }
     }
 }

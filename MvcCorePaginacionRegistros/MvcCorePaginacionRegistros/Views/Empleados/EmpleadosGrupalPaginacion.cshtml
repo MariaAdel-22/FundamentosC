@@ -1,0 +1,62 @@
+﻿@model List<Empleado>
+
+@{    
+
+    int posic = 0;
+    int cont = 1;
+
+    if (Model != null)
+    {
+         posic = int.Parse(ViewData["REGISTRO"].ToString());
+
+         cont = 1;
+    }
+}
+
+<h1>Paginacion Grupal de Empleados</h1>
+
+<form method="post">
+
+    <label>Escriba un oficio:</label>
+    <input type="text" name="oficio" class="form-control" />
+    <br />
+
+    <button type="submit" class="btn btn-outline-info">Mostrar Empleados</button>
+</form>
+
+
+@if (Model != null)
+{
+    <ul class="list-group-item-info">
+        @for (int i = 1; i <= posic; i += 2)
+        {
+            <li class="nav-link"><a asp-controller="Empleados" asp-action="EmpleadosGrupalPaginacion" asp-route-posicion="@i" 
+            asp-route-oficio="@ViewData["OFICIO"]">Pagina @cont</a></li>
+
+            cont += 1;
+        }
+    </ul>
+
+    <table class="table table-info">
+        <thead>
+            <tr>
+                <th>Apellido</th>
+                <th>Oficio</th>
+                <th>Salario</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Empleado emp in Model)
+            {
+
+                <tr>
+                    <td>@emp.Apellido</td>
+                    <td>@emp.Oficio</td>
+                    <td>@emp.Salario</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+}

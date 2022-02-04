@@ -12,7 +12,7 @@ namespace MvcCorePaginacionRegistros.Models
     {
         [Key]
         [Column("EMP_NO")]
-        int CodigoEmpleado { get; set; }
+        public int CodigoEmpleado { get; set; }
 
         [Column("APELLIDO")]
         public string Apellido { get; set; }
