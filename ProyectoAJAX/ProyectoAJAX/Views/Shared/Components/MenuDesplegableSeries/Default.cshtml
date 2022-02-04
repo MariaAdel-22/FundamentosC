@@ -1,0 +1,44 @@
+﻿@model List<Serie>
+
+
+@if (Model != null) {
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Logo</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <ul class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Nuevo Personaje</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Modificar Personajes</a>
+                </li>
+               
+                <li class=" nav-item dropdown">
+                    <a class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Series
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        @foreach (Serie ser in Model)
+                        {
+                            <li><a class="dropdown-item" asp-controller="Series" asp-action="Details" asp-route-codigoSerie="@ser.CodigoSerie">@ser.NombreSerie</a></li>
+                        }
+
+                    </ul>
+                </li>
+            </ul>
+        </ul>
+    </div>
+</nav>
+}
+else { 
+
+    <h1>Es nulo</h1>
+}
