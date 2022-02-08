@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31321.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcSeguridadProveedores", "MvcSeguridadProveedores\MvcSeguridadProveedores.csproj", "{019F7AD6-3BE4-4CCE-BDBD-3BC3B65C5901}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{019F7AD6-3BE4-4CCE-BDBD-3BC3B65C5901}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{019F7AD6-3BE4-4CCE-BDBD-3BC3B65C5901}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{019F7AD6-3BE4-4CCE-BDBD-3BC3B65C5901}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{019F7AD6-3BE4-4CCE-BDBD-3BC3B65C5901}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F2E2C20B-1765-400A-BD1A-CAB3331FF415}
+	EndGlobalSection
+EndGlobal
