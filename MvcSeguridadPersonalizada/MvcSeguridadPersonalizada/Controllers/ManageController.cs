@@ -11,6 +11,14 @@ namespace MvcSeguridadPersonalizada.Controllers
 {
     public class ManageController : Controller
     {
+        public async Task<IActionResult> Logout() {
+
+            await HttpContext.SignOutAsync
+                (CookieAuthenticationDefaults.AuthenticationScheme);
+
+            return RedirectToAction("Index", "Home");
+        }
+
         public IActionResult Login()
         {
             return View();
