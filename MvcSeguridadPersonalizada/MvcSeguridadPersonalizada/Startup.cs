@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -23,7 +24,16 @@ namespace MvcSeguridadPersonalizada
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddAuthentication(options =>
+            {
+                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+
+            }).AddCookie(); 
+
+            services.AddControllersWithViews
+                (options => options.EnableEndpointRouting = false);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,15 +53,25 @@ namespace MvcSeguridadPersonalizada
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "Default",
+                    template: "{controller=Home}/{action=Index}/{id?}"
+                    );
+            });
+
+            /*app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-            });
+                endpoints.MapRazorPages();
+            });*/
+
         }
     }
 }

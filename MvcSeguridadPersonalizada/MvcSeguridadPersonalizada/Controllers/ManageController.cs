@@ -19,7 +19,8 @@ namespace MvcSeguridadPersonalizada.Controllers
         [HttpPost]
         public async Task<IActionResult> LoginAsync(string username,string password) {
 
-            if (username.ToLower() == "admin" && password.ToLower() == "admin") {
+            if (username.ToLower() == "admin" && password.ToLower() == "admin")
+            {
 
                 //Debemos crear una identidad (name y rol) y un principal. Dicha identidad debemos combinarla con la cookie de autentificacion
                 ClaimsIdentity identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);
@@ -38,6 +39,9 @@ namespace MvcSeguridadPersonalizada.Controllers
                 });
 
                 return RedirectToAction("Perfil", "Usuarios");
+            }
+            else {
+                ViewData["MENSAJE"] = "NO ENTRA";
             }
             return View();
         }
