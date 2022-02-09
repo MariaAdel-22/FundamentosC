@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MvcSeguridadEmpleados.Filters;
 using MvcSeguridadEmpleados.Models;
 using MvcSeguridadEmpleados.Repositories;
 using System;
@@ -24,6 +25,7 @@ namespace MvcSeguridadEmpleados.Controllers
 
         }
 
+        [AuthorizeEmpleado]
         public IActionResult PerfilEmpleado()
         {
             return View();

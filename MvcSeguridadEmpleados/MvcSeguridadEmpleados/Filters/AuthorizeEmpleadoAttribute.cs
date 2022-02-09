@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Routing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +13,26 @@ namespace MvcSeguridadEmpleados.Filters
     {
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-           
+            var user = context.HttpContext.User;
+
+            //Si el usuario NO está autentificado
+            if (user.Identity.IsAuthenticated == false) {
+
+                context.Result = this.GetRouteRedirect("Manage","Login");
+            }
+        }
+
+        //Es un método para crear las rutas (a la que deba redireccionar) de manera dinámica
+        private RedirectToRouteResult GetRouteRedirect(string controller, string action) {
+
+            RouteValueDictionary ruta = new RouteValueDictionary(new
+            {
+                controller = controller,
+                action = action
+            });
+
+            RedirectToRouteResult result = new RedirectToRouteResult(ruta);
+            return result;
         }
     }
 }

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,12 +27,22 @@ namespace MvcSeguridadEmpleados
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string cadena = this.Configuration.GetConnectionString("CadenaHospitalClase");
+            //Vamos a añadir la cookie con autentificacion
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            }).AddCookie();
+
+            string cadena = this.Configuration.GetConnectionString("CadenaHospitalCasa");
 
             services.AddTransient<RepositoryEmpleado>();
             services.AddDbContext<EmpleadosContext>(options => options.UseSqlServer(cadena));
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews
+                (options => options.EnableEndpointRouting = false);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,14 +63,18 @@ namespace MvcSeguridadEmpleados
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
+            //Recuerda que con los filtros tenemos que hacer manual el mapeo de rutas
+            app.UseMvc(routes =>
             {
-                endpoints.MapControllerRoute(
+                routes.MapRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}"
+                    );
             });
+
         }
     }
 }
