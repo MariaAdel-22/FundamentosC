@@ -41,6 +41,9 @@ namespace MvcSeguridadEmpleados
             services.AddTransient<RepositoryEmpleado>();
             services.AddDbContext<EmpleadosContext>(options => options.UseSqlServer(cadena));
 
+            services.AddDistributedMemoryCache();
+            services.AddSession(options => options.IdleTimeout = TimeSpan.FromMinutes(45));
+
             services.AddControllersWithViews
                 (options => options.EnableEndpointRouting = false);
         }
@@ -65,7 +68,7 @@ namespace MvcSeguridadEmpleados
 
             app.UseAuthentication();
             app.UseAuthorization();
-
+            app.UseSession();
             //Recuerda que con los filtros tenemos que hacer manual el mapeo de rutas
             app.UseMvc(routes =>
             {

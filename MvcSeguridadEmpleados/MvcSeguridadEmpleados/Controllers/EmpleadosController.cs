@@ -30,5 +30,15 @@ namespace MvcSeguridadEmpleados.Controllers
         {
             return View();
         }
+
+        [AuthorizeEmpleado]
+        public IActionResult Compis() {
+
+            string dato = HttpContext.User.FindFirst("Departamento").Value;
+
+            List<Empleado> empleados = this.repo.GetEmpleadosDepartamento(int.Parse(dato));
+
+            return View(empleados);
+        }
     }
 }

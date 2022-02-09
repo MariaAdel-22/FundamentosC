@@ -28,5 +28,12 @@ namespace MvcSeguridadEmpleados.Repositories
 
             return consulta.SingleOrDefault();
         }
+
+        public List<Empleado> GetEmpleadosDepartamento(int iddepartamento) {
+
+            var consulta = from datos in this.context.Empleados where datos.Departamento == iddepartamento select datos;
+
+            return consulta.ToList();
+        }
     }
 }

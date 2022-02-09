@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MvcSeguridadEmpleados.Models;
 using MvcSeguridadEmpleados.Repositories;
@@ -41,16 +42,21 @@ namespace MvcSeguridadEmpleados.Controllers
                 Claim claimRol = new Claim(ClaimTypes.Role, emp.Oficio);
                 //Para guardar un valor extra que no están en los predeterminados
                 Claim claimSalario = new Claim("Salario", emp.Salario.ToString());
+                Claim claimDepartamento = new Claim("Departamento", emp.Departamento.ToString());
 
                 identity.AddClaim(claimId);
                 identity.AddClaim(claimRol);
                 identity.AddClaim(claimSalario);
+                identity.AddClaim(claimDepartamento);
 
                 ClaimsPrincipal userPrincipal = new ClaimsPrincipal(identity);
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, userPrincipal);
 
-                return RedirectToAction("PerfilEmpleado", "Empleados");
+                string controller = HttpContext.Session.GetString("CONTROLLER");
+                string action = HttpContext.Session.GetString("ACTION");
+
+                return RedirectToAction(action,controller);
             }
             else {
 
