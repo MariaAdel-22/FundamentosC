@@ -16,9 +16,20 @@ namespace MvcSeguridadEmpleados.Filters
             var user = context.HttpContext.User;
 
             //Si el usuario NO está autentificado
-            if (user.Identity.IsAuthenticated == false) {
+            if (user.Identity.IsAuthenticated == false)
+            {
 
-                context.Result = this.GetRouteRedirect("Manage","Login");
+                context.Result = this.GetRouteRedirect("Manage", "Login");
+            }
+            else {
+                //En esta zona debemos validar si role por oficio
+
+                if (user.IsInRole("PRESIDENTE") == false &&
+                    (user.IsInRole("DIRECTOR") == false) &&
+                    (user.IsInRole("ANALISTA") == false)) {
+
+                    context.Result = this.GetRouteRedirect("Manage", "ErrorAcceso");
+                }
             }
         }
 

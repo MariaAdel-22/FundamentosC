@@ -37,6 +37,15 @@ namespace MvcSeguridadEmpleados.Controllers
                 Claim claimName = new Claim(ClaimTypes.Name,username);
                 identity.AddClaim(claimName);
 
+                Claim claimId = new Claim(ClaimTypes.NameIdentifier, emp.IdEmpleado.ToString());
+                Claim claimRol = new Claim(ClaimTypes.Role, emp.Oficio);
+                //Para guardar un valor extra que no están en los predeterminados
+                Claim claimSalario = new Claim("Salario", emp.Salario.ToString());
+
+                identity.AddClaim(claimId);
+                identity.AddClaim(claimRol);
+                identity.AddClaim(claimSalario);
+
                 ClaimsPrincipal userPrincipal = new ClaimsPrincipal(identity);
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, userPrincipal);
@@ -54,6 +63,13 @@ namespace MvcSeguridadEmpleados.Controllers
         public IActionResult ErrorAcceso() {
 
             return View();        
+        }
+
+        public async Task<IActionResult> Logout() {
+
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }

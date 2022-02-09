@@ -1,1 +1,8 @@
 ﻿<h1 style="color:red">Perfil del empleado</h1>
+
+
+<h2 style="color:red">@Context.User.Identity.Name</h2>
+
+<h2 style="color:blue">@Context.User.FindFirst(ClaimTypes.Role).Value</h2>
+
+<h2 style="color:green">@Context.User.FindFirst("Salario").Value</h2>
