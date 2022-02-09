@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MvcPracticasVistasParcialesCasa.Data;
+using MvcPracticasVistasParcialesCasa.Hubs;
 using MvcPracticasVistasParcialesCasa.Repositories;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ namespace MvcPracticasVistasParcialesCasa
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSignalR();
             string cadenaH = this.Configuration.GetConnectionString("CadenaHospitalCasa");
 
             services.AddTransient<RepositoryEmpleados>();
@@ -62,7 +64,10 @@ namespace MvcPracticasVistasParcialesCasa
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Empleado}/{action=Login}/{id?}");
+
+                endpoints.MapHub<ChatHub>("/chathub");
             });
+           
         }
     }
 }

@@ -2,23 +2,11 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+@*<div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 
     <button id='open' data-toggle="modal" data-target="#showmodal">open modal</button>
-</div>
-<div>
-
-        <label>Selecciona una opcion:</label>
-        <select name="opciones" id="seleccion">
-            <option value="NO">--SELECCIONA UNA OPCIÓN--</option>
-            <option value="op1">Opción1</option>
-            <option value="op2">Opción2</option>
-            <option value="op3">Opción3</option>
-        </select>
-        <br/>
-
 </div>
 
 
@@ -31,11 +19,6 @@
             $("#open").click(function () {
 
                 $("#contenedorModal").load("/Home/_VistaModal");
-            });
-
-            $('body').on('change', '#seleccion', function () {
-
-                console.log("Paso por aqui");
             });
         });
 
@@ -50,4 +33,28 @@
   
         </div>
     </div>
+</div>*@
+
+<div class="container">
+    <div class="row">
+        <div class="col-2">USER</div>
+        <div class="col-4"><input type="text" id="userInput" /></div>
+    </div>
+    <div class="row">
+        <div class="col-2">MESSAGE</div>
+        <div class="col-4"><input type="text" id="messageInput"/></div>
+    </div>
+    <div class="row">
+        <div class="col-6"><input type="button" id="sendButton" value="Send Message"/></div>
+    </div>
+    <div class="row">
+        <div class="col-12"><hr/></div>
+    </div>
+
+    <div class="row">
+        <div class="col-6"><ul id="messagesList"></ul></div>
+    </div>
 </div>
+
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>
