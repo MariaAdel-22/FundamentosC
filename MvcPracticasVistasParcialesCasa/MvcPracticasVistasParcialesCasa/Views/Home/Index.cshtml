@@ -8,6 +8,18 @@
 
     <button id='open' data-toggle="modal" data-target="#showmodal">open modal</button>
 </div>
+<div>
+
+        <label>Selecciona una opcion:</label>
+        <select name="opciones" id="seleccion">
+            <option value="NO">--SELECCIONA UNA OPCIÓN--</option>
+            <option value="op1">Opción1</option>
+            <option value="op2">Opción2</option>
+            <option value="op3">Opción3</option>
+        </select>
+        <br/>
+
+</div>
 
 
 @section Scripts{
@@ -19,6 +31,11 @@
             $("#open").click(function () {
 
                 $("#contenedorModal").load("/Home/_VistaModal");
+            });
+
+            $('body').on('change', '#seleccion', function () {
+
+                console.log("Paso por aqui");
             });
         });
 

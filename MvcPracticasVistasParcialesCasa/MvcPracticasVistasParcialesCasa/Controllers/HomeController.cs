@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace MvcPracticasVistasParcialesCasa.Controllers
 {
     public class HomeController : Controller
@@ -23,8 +24,13 @@ namespace MvcPracticasVistasParcialesCasa.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+          public IActionResult Privacy()
         {
+            return View();
+        }
+
+        public IActionResult PayPalBoton() {
+
             return View();
         }
 
