@@ -22,9 +22,9 @@ namespace MvcSeguridadEmpleados.Filters
             string controller = context.RouteData.Values["controller"].ToString();
             string action = context.RouteData.Values["action"].ToString();
 
-            //guardamos en session los datos del controller y del action
-            context.HttpContext.Session.SetString("CONTROLLER",controller);
-            context.HttpContext.Session.SetString("ACTION", action);
+            //guardamos en cookies los datos del controller y del action
+            context.HttpContext.Response.Cookies.Append("CONTROLLER",controller);
+            context.HttpContext.Response.Cookies.Append("ACTION", action);
 
             //Podemos recoger parámetros de la ruta también
             //string ID= context.RouteData.Values["id"].ToString();

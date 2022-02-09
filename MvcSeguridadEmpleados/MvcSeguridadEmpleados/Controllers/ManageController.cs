@@ -53,8 +53,8 @@ namespace MvcSeguridadEmpleados.Controllers
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, userPrincipal);
 
-                string controller = HttpContext.Session.GetString("CONTROLLER");
-                string action = HttpContext.Session.GetString("ACTION");
+                string controller = HttpContext.Request.Cookies["CONTROLLER"];
+                string action = HttpContext.Request.Cookies["ACTION"];
 
                 return RedirectToAction(action,controller);
             }
