@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,6 +28,7 @@ namespace MvcSeguridadEmpleados
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+     
             //Vamos a añadir la cookie con autentificacion
 
             services.AddAuthentication(options =>
@@ -44,8 +46,12 @@ namespace MvcSeguridadEmpleados
             services.AddDistributedMemoryCache();
             services.AddSession(options => options.IdleTimeout = TimeSpan.FromMinutes(45));
 
+
+            //Necesitamos indicar un proveedor de almacenamiento para TempData
+            services.AddSingleton<ITempDataProvider, CookieTempDataProvider>();
+
             services.AddControllersWithViews
-                (options => options.EnableEndpointRouting = false);
+                (options => options.EnableEndpointRouting = false).AddSessionStateTempDataProvider();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
