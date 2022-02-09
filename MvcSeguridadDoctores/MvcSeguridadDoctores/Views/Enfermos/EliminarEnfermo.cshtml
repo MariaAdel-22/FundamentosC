@@ -1,0 +1,9 @@
+﻿<h1>Eliminar Enfermo</h1>
+
+@if (Context.User.Identity.IsAuthenticated != false) { 
+
+    <ul class="list-group-item-info">
+        <li class="nav-item">Apellidos: @Context.User.FindFirst(ClaimTypes.Name)</li>
+        <li class="nav-item">Id Doctor: @Context.User.FindFirst(ClaimTypes.NameIdentifier)</li>
+    </ul>
+}
