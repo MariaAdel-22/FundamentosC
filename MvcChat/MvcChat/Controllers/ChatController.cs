@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MvcChat.Models;
 using MvcChat.Repositories;
 using System;
 using System.Collections.Generic;
@@ -39,14 +40,17 @@ namespace MvcChat.Controllers
         public IActionResult Index()
         {
             Dictionary<int, string> rooms = this.Rooms();
-
             return View(rooms);
         }
 
         public IActionResult Room(int room) {
 
+            string codigoUsuario = this.repo.GetChat(room);
 
-            return View("Room",room);
+            ViewBag.CodigoUsuario = codigoUsuario;
+            Protectora protectoraSala = this.repo.BuscarProtectora(room);
+
+            return View("Room",protectoraSala);
         }
 
 

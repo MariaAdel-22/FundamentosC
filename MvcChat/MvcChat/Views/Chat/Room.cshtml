@@ -1,11 +1,15 @@
-﻿@model int
+﻿@model Protectora
 
+@{ 
 
-<!--<h1>MvcChat.Controllers.ChatController.Rooms</h1>-->
+    string usuario = ViewData["CodigoUsuario"].ToString();
+}
+
+<h1>@Model.Nombre</h1>
 
 <div class="row">
     <div class="col-12">
-        <input type="text" placeholder="usuario" id="user" />
+        <input type="text" placeholder="usuario" id="user" value="@usuario" hidden/>
         <input type="text" placeholder="texto" id="message" />
         <button id="btnSend">Send</button>
     </div>
@@ -28,12 +32,12 @@
 
     connection.start().then(() => {
 
-        connection.invoke("AddToGroup", "@Model");
+        connection.invoke("AddToGroup", "@Model.IdProtectora");
     }).catch((e)=>console.error(e));
 
     document.getElementById("btnSend").addEventListener("click", (event) => {
 
-        let room = "@Model";
+        let room = "@Model.IdProtectora";
 
         let user = document.getElementById("user").value;
         let message = document.getElementById("message").value;
