@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MvcSeguridadDoctores.Data;
+using MvcSeguridadDoctores.Policies;
 using MvcSeguridadDoctores.Repositories;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,20 @@ namespace MvcSeguridadDoctores
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Creamos una politica de acceso por ROLES
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("PermisosElevados", policy => 
+                policy.RequireRole("Cardiología","Neurología"));
+
+                options.AddPolicy("AdminOnly",
+                    policy => policy.RequireClaim("Administrador"));
+
+                options.AddPolicy("SoloDoctoresRicos",
+                    policy => policy.Requirements.Add(new OverSalarioRequirement()));
+            });
+
+
             string cadena = this.Configuration.GetConnectionString("CadenaHospitalCasa");
             services.AddTransient<RepositoryEnfermos>();
             services.AddDbContext<EnfermosContext>(options => options.UseSqlServer(cadena));
@@ -37,7 +52,12 @@ namespace MvcSeguridadDoctores
                 options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            }).AddCookie();
+            }).AddCookie(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                config => {
+                    config.AccessDeniedPath = "/Manage/ErrorAcceso";
+                }
+                );
 
             services.AddDistributedMemoryCache();
             services.AddSession();

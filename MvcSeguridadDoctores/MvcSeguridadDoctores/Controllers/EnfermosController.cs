@@ -25,7 +25,7 @@ namespace MvcSeguridadDoctores.Controllers
             return View(enfermos);
         }
 
-        [AuthorizeEnfermos]
+        [AuthorizeEnfermos(Policy = "PermisosElevados")]
         public IActionResult EliminarEnfermo(int id) {
 
             TempData["Enfermo"] = id;
@@ -43,5 +43,10 @@ namespace MvcSeguridadDoctores.Controllers
             return View("Index");
         }
 
+        [AuthorizeEnfermos(Policy ="AdminOnly")]
+        public IActionResult AdminDoctor() {
+
+            return View();
+        }
     }
 }

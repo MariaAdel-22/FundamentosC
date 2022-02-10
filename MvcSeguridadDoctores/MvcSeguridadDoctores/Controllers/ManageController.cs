@@ -25,6 +25,11 @@ namespace MvcSeguridadDoctores.Controllers
             return View();
         }
 
+        public IActionResult ErrorAcceso() {
+
+            return View();
+        }
+
         [HttpPost]
         public async Task <IActionResult> Login(string nombre,string idDoctor) {
 
@@ -37,9 +42,20 @@ namespace MvcSeguridadDoctores.Controllers
 
                 Claim claimName = new Claim(ClaimTypes.Name, nombre);
                 Claim claimID = new Claim(ClaimTypes.NameIdentifier, idDoctor);
+                Claim claimRol = new Claim(ClaimTypes.Role, enf.Especialidad);
+                Claim claimSalario = new Claim("Salario", enf.Salario.ToString());
 
                 identity.AddClaim(claimName);
                 identity.AddClaim(claimID);
+                identity.AddClaim(claimRol);
+                identity.AddClaim(claimSalario);
+
+                //DOCTOR CABEZA D. TENDRÁ UN CLAIM DE ADMINISTRADOR
+
+                if (enf.CodigoDoctor == 386) {
+
+                    identity.AddClaim(new Claim("Administrador", "Todo me vale"));
+                }
 
                 ClaimsPrincipal principal = new ClaimsPrincipal(identity);
 
