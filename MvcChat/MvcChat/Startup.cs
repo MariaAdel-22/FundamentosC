@@ -8,6 +8,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
+using MvcChat.Repositories;
+using Microsoft.EntityFrameworkCore;
+using MvcChat.Data;
 
 namespace MvcChat
 {
@@ -23,6 +26,9 @@ namespace MvcChat
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            string cadena = this.Configuration.GetConnectionString("conexionBBDD");
+            services.AddTransient<RepositoryChat>();
+            services.AddDbContext<ChatContext>(options => options.UseSqlServer(cadena));
             services.AddControllersWithViews();
             services.AddSignalR();
         }
