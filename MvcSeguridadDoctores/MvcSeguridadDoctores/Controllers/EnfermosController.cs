@@ -26,10 +26,10 @@ namespace MvcSeguridadDoctores.Controllers
         }
 
         [AuthorizeEnfermos]
-        public IActionResult EliminarEnfermo(int idEnfermo) {
+        public IActionResult EliminarEnfermo(int id) {
 
-            TempData["Enfermo"] = idEnfermo;
-            Enfermo enf = this.repo.FindEnfermo(idEnfermo);
+            TempData["Enfermo"] = id;
+            Enfermo enf = this.repo.FindEnfermo(id);
 
             ViewBag.Enfermo = enf;
             return View();

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.Authorization;
+using System.Diagnostics;
 
 namespace MvcSeguridadDoctores.Filters
 {
@@ -21,21 +22,25 @@ namespace MvcSeguridadDoctores.Filters
             if (user.Identity.IsAuthenticated != false)
             {
 
-                //string controller = context.RouteData.Values["controller"].ToString();
-                //string action = context.RouteData.Values["action"].ToString();
-                string ID = context.RouteData.Values["idEnfermo"].ToString();
+                string controller = context.RouteData.Values["controller"].ToString();
+                string action = context.RouteData.Values["action"].ToString();
+
+                string ID = context.RouteData.Values["id"].ToString();
 
                 ITempDataProvider provider = context.HttpContext.RequestServices.GetService(typeof(ITempDataProvider)) as ITempDataProvider;
 
                 var TempData = provider.LoadTempData(context.HttpContext);
 
+                
+                TempData["controller"] = controller;
+                TempData["action"] = action;
                 TempData["id"] = ID;
-                //TempData["controller"] = controller;
-                //TempData["action"] = action;
 
                 provider.SaveTempData(context.HttpContext, TempData);
-                //context.Result = this.GetRutas(controller, action);*/
-                
+
+               
+                //context.Result = this.GetRutas(controller, action, new { id = TempData["id"].ToString() });
+
             }
             else {
 

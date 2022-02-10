@@ -45,14 +45,16 @@ namespace MvcSeguridadDoctores.Controllers
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
 
-                return RedirectToAction("EliminarEnfermo", "Enfermos",new { idEnfermo = int.Parse(TempData["id"].ToString())});
+                string controller = TempData["controller"].ToString();
+                string action = TempData["action"].ToString();
+
+                return RedirectToAction(action, controller);
 
             }
             else {
                 return RedirectToAction("Login", "Manage");
             }
 
-            return View();
         }
 
     }
