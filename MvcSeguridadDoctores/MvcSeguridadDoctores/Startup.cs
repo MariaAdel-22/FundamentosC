@@ -1,6 +1,8 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,7 +32,20 @@ namespace MvcSeguridadDoctores
             services.AddTransient<RepositoryEnfermos>();
             services.AddDbContext<EnfermosContext>(options => options.UseSqlServer(cadena));
 
-            services.AddControllersWithViews();
+            services.AddAuthentication(options =>
+            {
+                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            }).AddCookie();
+
+            services.AddDistributedMemoryCache();
+            services.AddSession();
+
+            services.AddSingleton<ITempDataProvider, CookieTempDataProvider>();
+
+            services.AddControllersWithViews
+                (options => options.EnableEndpointRouting = false).AddSessionStateTempDataProvider();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,14 +66,24 @@ namespace MvcSeguridadDoctores
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
+            app.UseSession();
 
-            app.UseEndpoints(endpoints =>
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+
+                    name: "Default",
+                    template: "{controller=Home}/{action=Index}/{id?}"
+                    );
+            });
+           /* app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-            });
+            });*/
         }
     }
 }

@@ -43,7 +43,7 @@
                 @Html.DisplayFor(modelItem => item.Fecha)
             </td>
             <td>
-                <a asp-controller="Enfermos" asp-action="EliminarEnfermo">Eliminar</a>
+                <a asp-controller="Enfermos" asp-action="EliminarEnfermo" asp-route-idEnfermo="@item.Inscripcion">Eliminar</a>
             </td>
         </tr>
 }

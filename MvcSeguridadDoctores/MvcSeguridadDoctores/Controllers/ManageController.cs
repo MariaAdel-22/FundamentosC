@@ -28,7 +28,7 @@ namespace MvcSeguridadDoctores.Controllers
         [HttpPost]
         public async Task <IActionResult> Login(string nombre,string idDoctor) {
 
-            Enfermo enf = this.repo.FindEnfermo(nombre,idDoctor);
+            Doctor enf = this.repo.FindDoctor(nombre,idDoctor);
 
             if (enf != null)
             {
@@ -45,10 +45,11 @@ namespace MvcSeguridadDoctores.Controllers
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
 
-                string controller = TempData["controller"].ToString();
-                string action = TempData["action"].ToString();
+                return RedirectToAction("EliminarEnfermo", "Enfermos",new { idEnfermo = int.Parse(TempData["id"].ToString())});
 
-                return RedirectToAction(controller, action);
+            }
+            else {
+                return RedirectToAction("Login", "Manage");
             }
 
             return View();

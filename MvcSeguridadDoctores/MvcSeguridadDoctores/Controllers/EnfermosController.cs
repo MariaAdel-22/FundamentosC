@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MvcSeguridadDoctores.Filters;
+using MvcSeguridadDoctores.Models;
 
 namespace MvcSeguridadDoctores.Controllers
 {
@@ -19,13 +20,28 @@ namespace MvcSeguridadDoctores.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            List<Enfermo> enfermos = this.repo.GetEnfermos();
+
+            return View(enfermos);
         }
 
         [AuthorizeEnfermos]
-        public IActionResult EliminarEnfermo() {
+        public IActionResult EliminarEnfermo(int idEnfermo) {
 
+            TempData["Enfermo"] = idEnfermo;
+            Enfermo enf = this.repo.FindEnfermo(idEnfermo);
+
+            ViewBag.Enfermo = enf;
             return View();
         }
+
+        [HttpPost]
+        public IActionResult EliminarEnfermo() {
+
+            this.repo.EliminarEnfermo(int.Parse(TempData["Enfermo"].ToString()));
+
+            return View("Index");
+        }
+
     }
 }

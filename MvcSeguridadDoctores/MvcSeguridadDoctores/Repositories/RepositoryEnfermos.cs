@@ -1,4 +1,6 @@
-﻿using MvcSeguridadDoctores.Data;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using MvcSeguridadDoctores.Data;
 using MvcSeguridadDoctores.Models;
 using System;
 using System.Collections.Generic;
@@ -28,6 +30,22 @@ namespace MvcSeguridadDoctores.Repositories
             var consulta = from datos in this.context.Doctores where datos.Apellido == nombre && datos.CodigoDoctor == int.Parse(codigo) select datos;
 
             return consulta.SingleOrDefault();
+        }
+
+        public Enfermo FindEnfermo(int codigoEnfermo) {
+
+            var consulta = from datos in this.context.Enfermos where datos.Inscripcion == codigoEnfermo select datos;
+
+            return consulta.SingleOrDefault();
+        }
+
+        public void EliminarEnfermo(int codigoEnfermo) {
+
+            string sql = "DELETE_ENFERMO @INSCRIPCION";
+
+            SqlParameter parmInsc = new SqlParameter("@INSCRIPCION",codigoEnfermo);
+
+            this.context.Database.ExecuteSqlRaw(sql,parmInsc);
         }
     }
 }

@@ -1,5 +1,12 @@
 ﻿<h1>Eliminar Enfermo</h1>
 
+@{ 
+    Enfermo enf = ViewBag.Enfermo as Enfermo;
+
+}
+
+<h1 style="color:darkcyan">Doctor</h1>
+
 @if (Context.User.Identity.IsAuthenticated != false) { 
 
     <ul class="list-group-item-info">
@@ -7,3 +14,11 @@
         <li class="nav-item">Id Doctor: @Context.User.FindFirst(ClaimTypes.NameIdentifier)</li>
     </ul>
 }
+
+<h1 style="color:darkred">Enfermo</h1>
+
+<h4>Nº de inscripcion: @enf.Inscripcion</h4>
+
+<form method="post">
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+</form>
