@@ -23,7 +23,7 @@
 
 <script>
 
-    var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:44359/Chat").build();
+    var connection = new signalR.HubConnectionBuilder().withUrl("/Chat/Index").build();
 
     connection.start().then(() => {
 
