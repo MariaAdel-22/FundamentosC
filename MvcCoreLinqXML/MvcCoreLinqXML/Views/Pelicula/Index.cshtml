@@ -46,6 +46,7 @@
                 @Html.DisplayFor(modelItem => item.Poster)
             </td>
             <td>
+                <a asp-controller="Pelicula" asp-action="Details" asp-route-id="@item.IdPelicula">Detalles</a>
                <a asp-controller="Pelicula" asp-action="EscenasPeliculas" asp-route-id="@item.IdPelicula">Ver Escenas</a> |
             </td>
         </tr>

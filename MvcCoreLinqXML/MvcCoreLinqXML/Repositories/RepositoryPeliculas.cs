@@ -29,7 +29,7 @@ namespace MvcCoreLinqXML.Repositories
 
         }
 
-        public List<Escena> GetEscenasPelicula(int id) {
+        public Escena GetEscenasPelicula(int id,int posicion,ref int numeroEscenas) {
 
             var consulta = from datos in this.documentEscenas.Descendants("escena") where datos.Attribute("idpelicula").Value == id.ToString() select datos;
             
@@ -47,7 +47,11 @@ namespace MvcCoreLinqXML.Repositories
                 escenas.Add(esc);
             }
 
-            return escenas;
+            numeroEscenas = escenas.Count;
+            //skip indica desde donde comienza, y take la cantidad que quiere que traiga (de 1 en 1, de 2 en 2...)
+            Escena escena1 = escenas.Skip(posicion).Take(1).FirstOrDefault();
+
+            return escena1;
         }
 
         public List<Pelicula> GetPeliculas() {
@@ -70,6 +74,25 @@ namespace MvcCoreLinqXML.Repositories
             }
 
             return peliculas;
+        }
+
+        public Pelicula GetPelicula(int id) {
+
+            var consulta = from datos in this.documentPeliculas.Descendants("pelicula") where datos.Attribute("idpelicula").Value == id.ToString() select datos;
+
+            Pelicula pel = new Pelicula();
+
+            foreach (XElement elem in consulta)
+            {
+
+                pel.IdPelicula = int.Parse(elem.Attribute("idpelicula").Value);
+                pel.Titulo = elem.Element("titulo").Value;
+                pel.TituloOriginal = elem.Element("titulooriginal").Value;
+                pel.Descripcion = elem.Element("descripcion").Value;
+                pel.Poster = elem.Element("poster").Value;
+            }
+
+            return pel;
         }
     }
 }

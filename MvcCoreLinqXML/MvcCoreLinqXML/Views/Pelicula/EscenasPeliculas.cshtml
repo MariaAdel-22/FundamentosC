@@ -1,14 +1,21 @@
-﻿@model IEnumerable<MvcCoreLinqXML.Models.Escena>
+﻿@model Escena
 
 @{
     ViewData["Title"] = "EscenasPeliculas";
+    int anterior = int.Parse(ViewData["anterior"].ToString());
+    int siguiente = int.Parse(ViewData["siguiente"].ToString());
 }
 
-<h1>EscenasPeliculas</h1>
+<h1>Escenas Peliculas</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<h4 style="color:blue">
+    @ViewData["registro"]
+</h4>
+@*<a asp-controller="Pelicula" asp-action="EscenasPeliculas" asp-route-id="@Model.IdPeliculaEscena" asp-route-posicion="@ViewData["anterior"]">Anterior</a>
+<a asp-controller="Pelicula" asp-action="EscenasPeliculas" asp-route-id="@Model.IdPeliculaEscena" asp-route-posicion="@ViewData["siguiente"]">Siguiente</a>*@
+<button type="button" class="btn btn-secondary" id="anterior">Anterior</button>
+<button type="button" class="btn btn-secondary" id="siguiente">Siguiente</button>
+
 <table class="table">
     <thead>
         <tr>
@@ -27,25 +34,49 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model) {
+    <tbody id="cuerpoTabla">
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.IdPeliculaEscena)
+                @Model.IdPeliculaEscena
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TituloEscena)
+                @Model.TituloEscena
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
+                @Model.Descripcion
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Imagen)
+                @Model.Imagen
             </td>
             <td>
                 <a asp-controller="Pelicula" asp-action="Index">Volver al listado</a>
             </td>
         </tr>
-}
     </tbody>
 </table>
+
+    <script>
+
+    $(document).ready(function () {
+
+        $("#siguiente").click(function () {
+            console.log("paso por aqui");
+
+            var url = "@Url.Action("Posicionamiento", "Pelicula")";
+            var posicion = "@siguiente"+1;
+            var id = "@Model.IdPeliculaEscena";
+
+            var data = { id: id, posicion: posicion };
+
+            $.post(url,data).done(function (data) {
+
+                console.log(data);
+               $("#cuerpoTabla").html("<td>"+data.idPeliculaEscena+"</td><td>"+data.tituloEscena+"</td><td>"+data.descripcion+"</td><td>"+data.imagen+"</td>");
+
+            });
+
+        });
+    });
+
+    </script>
+
