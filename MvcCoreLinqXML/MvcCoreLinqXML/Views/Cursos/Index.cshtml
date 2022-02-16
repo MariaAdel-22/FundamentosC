@@ -1,0 +1,78 @@
+﻿@model Curso
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Curso</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCurso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Edicion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Turno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contenidos)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Model.IdCurso
+            </td>
+            <td>
+                @Model.Titulo
+            </td>
+            <td>
+                @Model.Edicion
+            </td>
+            <td>
+                @Model.Edicion
+            </td>
+            <td>
+                @Model.Contenidos
+            </td>
+
+        </tr>
+    </tbody>
+</table>
+
+<h1>Usuarios</h1>
+
+<table class="table table-info">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <td>Nombre</td>
+            <td>Apellidos</td>
+            <td>Perfil</td>
+        </tr>
+    </thead>
+    <tbody>
+
+    @foreach (Usuario usu in Model.Usuarios) { 
+            
+        <tr>
+            <td>@usu.IdUsuario</td>
+            <td>@usu.Nombre</td>
+            <td>@usu.Apellidos</td>
+            <td>@usu.Perfil</td>
+        </tr>
+    }        
+    </tbody>
+</table>

@@ -1,18 +1,16 @@
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using MvcCoreLinqXML.Providers;
-using MvcCoreLinqXML.Repositories;
+using MvcNetCoreClienteWCF.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MvcCoreLinqXML
+namespace MvcNetCoreClienteWCF
 {
     public class Startup
     {
@@ -26,20 +24,8 @@ namespace MvcCoreLinqXML
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthentication(options =>
-            {
-                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            }).AddCookie();
-
-            services.AddSingleton<PathProvider>();
-            services.AddSingleton<RepositoryCursos>();
-            services.AddSingleton<RepositoryJoyeria>();
-            services.AddSingleton<RepositoryClientes>();
-            services.AddSingleton<RepositoryPeliculas>();
-
-            services.AddControllersWithViews(options => options.EnableEndpointRouting = false);
+            services.AddTransient<ServiceCountries>();
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,22 +45,15 @@ namespace MvcCoreLinqXML
             app.UseStaticFiles();
 
             app.UseRouting();
-            app.UseAuthentication();
+
             app.UseAuthorization();
 
-            app.UseMvc(options =>
-            {
-                options.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}"
-                    );
-            });
-            /*app.UseEndpoints(endpoints =>
+            app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-            });*/
+            });
         }
     }
 }
