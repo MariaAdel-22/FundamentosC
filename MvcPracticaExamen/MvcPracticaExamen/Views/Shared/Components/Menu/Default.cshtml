@@ -33,13 +33,18 @@
 
                         @foreach (Nacionalidad nac in Nacionalidades) { 
 
-                            <li><a class="dropdown-item" href="#">@nac.Nombre</a><img src="@nac.Bandera" width="50" height="50"/></li>
+                            <li><a class="dropdown-item"  asp-controller="Peliculas" asp-action="CargarPeliculasNac" asp-route-idNac="@nac.IdNacionalidad">@nac.Nombre</a><img src="@nac.Bandera" width="50" height="50"/></li>
                         }
                     </ul>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-shopping-cart"></i></a>
+                    <span id="group">
+                        <a href="#" class="nav-link">
+                            <i class="fa fa-shopping-cart"></i>
+                        </a>
+                        <span class="badge badge-light">5</span>
+                    </span>
                 </li>
             </ul>
         </div>

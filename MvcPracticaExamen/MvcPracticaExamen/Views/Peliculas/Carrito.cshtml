@@ -1,0 +1,30 @@
+﻿@{ 
+
+    List<string> Peliculas = ViewBag.Pelicula as List<string>;
+    List<string> Cantidad = ViewBag.Cantidad as List<string>;
+    List<string> Precio = ViewBag.Precio as List<string>;
+}
+
+<table class="table table-active">
+    <thead>
+
+        <tr>
+            <td>IdPelicula</td>
+            <td>Cantidad</td>
+            <td>Precio</td>
+        </tr>
+    </thead>
+    <tbody>
+
+        @for(int i=0;i < Peliculas.Count;i++) { 
+        
+            <tr>
+                <td>@Peliculas[i]</td>
+                <td>@Cantidad[i]</td>
+                <td>@Precio[i]</td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>

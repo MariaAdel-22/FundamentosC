@@ -1,0 +1,115 @@
+﻿@model IEnumerable<MvcPracticaExamen.Models.Pelicula>
+
+@{
+    ViewData["Title"] = "CargarPeliculasNac";
+}
+
+<h1>Peliculas Genero</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdPelicula)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DistribuidorId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdGenero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdNacionalidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Argumento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Foto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaEstreno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Actores)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Duracion)
+            </th>
+            <th>
+                Precio
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdPelicula)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DistribuidorId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdGenero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Titulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdNacionalidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Argumento)
+                </td>
+                <td>
+                    <img src="@item.Foto" width="200" height="200" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaEstreno)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Actores)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Duracion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Precio)
+                </td>
+                <td>
+                    <button type="button" class="btn btn-success" name="@item.IdPelicula">Detalles</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div id="detallesPeliculaNacionalidad">
+
+
+</div>
+
+
+@section Scripts{
+
+    <script>
+       $(document).ready(function () {
+
+           $("button").click(function () {
+
+               var id = $(this).attr("name");
+               var request = "/Peliculas/_DetallePeliculaN?id=" + id;
+
+               $("#detallesPeliculaNacionalidad").load(request);
+           });
+
+       });
+
+    </script>
+
+}

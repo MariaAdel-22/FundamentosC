@@ -23,9 +23,17 @@ namespace MvcPracticaExamen.Repositories
             return consulta.ToList();
         }
 
-        public List<Nacionalidad> GetNacionalidades() {
-
+        public List<Nacionalidad> GetNacionalidades()
+        {
             var consulta = from datos in this.context.Nacionalidades.AsEnumerable() select datos;
+
+            return consulta.ToList();
+        }
+
+
+        public List<Pelicula> GetNacionalidades(int idNac) {
+
+            var consulta = from datos in this.context.Peliculas.AsEnumerable() where datos.IdNacionalidad == idNac select datos;
             return consulta.ToList();
         }
 
@@ -39,6 +47,21 @@ namespace MvcPracticaExamen.Repositories
         public Pelicula GetPeliculaGenero(int id) {
 
             var consulta = from datos in this.context.Peliculas.AsEnumerable() where datos.IdPelicula == id select datos;
+
+            return consulta.FirstOrDefault();
+        }
+
+        public Pelicula GetPeliculaNacionalidad(int id)
+        {
+
+            var consulta = from datos in this.context.Peliculas.AsEnumerable() where datos.IdPelicula == id select datos;
+
+            return consulta.FirstOrDefault();
+        }
+
+        public string GetPreciosPelicula(string idP) {
+
+            var consulta = from datos in this.context.Peliculas.AsEnumerable() where datos.IdPelicula == int.Parse(idP) select datos.Precio.ToString();
 
             return consulta.FirstOrDefault();
         }

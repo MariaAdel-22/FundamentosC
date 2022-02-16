@@ -41,5 +41,7 @@ namespace MvcPracticaExamen.Models
         [Column("duracion")]
         public string Duracion { get; set; }
 
+        [Column("precio")]
+        public int Precio { get; set; }
     }
 }
