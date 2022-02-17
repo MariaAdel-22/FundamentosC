@@ -1,0 +1,15 @@
+﻿<h1>Number To Words</h1>
+
+<form method="post">
+    <label>Numero: </label>
+    <input type="text" name="numero" class="form-control"/>
+    <br/>
+
+    <button type="submit" class="btn btn-secondary">Mostrar</button>
+</form>
+
+@if(ViewData["RESPUESTA"] != null)
+{
+    <h4 style="color:darkcyan">@ViewData["RESPUESTA"].ToString()</h4>
+}
+

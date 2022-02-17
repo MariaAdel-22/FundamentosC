@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MvcNetCoreClienteWCF.Services;
+using ReferenceCatrasto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,13 @@ namespace MvcNetCoreClienteWCF
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            ReferenceNumberConversion.NumberConversionSoapTypeClient clientNumberConversion =
+            new ReferenceNumberConversion.NumberConversionSoapTypeClient(ReferenceNumberConversion.NumberConversionSoapTypeClient.
+            EndpointConfiguration.NumberConversionSoap);
+
+            services.AddSingleton<ServiceNumberConversion>();
+            services.AddSingleton<CallejerodelasedeelectrónicadelcatastroSoapClient>();
+            services.AddSingleton<ServiceCatastro>();
             services.AddTransient<ServiceCountries>();
             services.AddControllersWithViews();
         }
