@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using MvcPracticaExamen.Extensions;
 using MvcPracticaExamen.Models;
 using MvcPracticaExamen.Repositories;
 using System;
@@ -20,12 +22,14 @@ namespace MvcPracticaExamen.Controllers
         public IActionResult CargarPeliculasGenero(int idGenero)
         {
             List<Pelicula> Peliculas = this.repo.GetPeliculasGenero(idGenero);
+
             return View(Peliculas);
         }
 
         public IActionResult CargarPeliculasNac(int idNac) {
 
             List<Pelicula> Peliculas = this.repo.GetNacionalidades(idNac);
+
             return View(Peliculas);
         }
 
@@ -44,44 +48,58 @@ namespace MvcPracticaExamen.Controllers
         }
 
         [HttpPost]
-        public JsonResult InsertarCarrito(string idPelicula,string cantidad) {
+        public JsonResult InsertarCarrito(string idPelicula,string cantidad,int can) {
 
-            List<string> Peliculas = new List<string>();
-            Peliculas.Add(idPelicula);
+            Dictionary<string, string> PeliCantidad;
 
-            List<string> Cantidad = new List<string>();
-            Cantidad.Add(cantidad);
 
-            TempData["idPelicula"] = Peliculas;
-            TempData["cantidad"] = cantidad;
+            if (HttpContext.Session.GetString("PeliCantidad") == null)
+            {
 
-            idPelicula += idPelicula + ",";
-           
-            HttpContext.Response.Cookies.Append("IdPelicula",idPelicula);
+                PeliCantidad = new Dictionary<string, string>();
+            }
+            else
+            {
+                PeliCantidad = HttpContext.Session.DeserializeObject<Dictionary<string, string>>("PeliCantidad");
+            }
 
-            cantidad += cantidad + ",";
+            PeliCantidad.Add(idPelicula, cantidad);
 
-            HttpContext.Response.Cookies.Append("Cantidad",cantidad);
+            HttpContext.Session.SerializeObject("PeliCantidad",PeliCantidad);
 
-            //return Json(new { result = "Redirect", url = Url.Action("Carrito", "Peliculas", new { idPelicula = idPelicula, cantidad = cantidad }) }) ;
+            HttpContext.Session.SetString("notificacion",can.ToString());
+
+            if (HttpContext.Session.GetString("notificacion") != null)
+            {
+
+                string canti = HttpContext.Session.GetString("notificacion");
+
+                int not = int.Parse(canti) + 1;
+
+                HttpContext.Session.SetString("notificacion", not.ToString());
+            }
+            else {
+
+                HttpContext.Session.SetString("notificacion", "0");
+
+            }
+
             return Json("funciona");
         }
 
         public IActionResult Carrito() {
 
-            List<string>Peliculas= TempData["idPelicula"] as List<string>;
+            Dictionary<string, string> Pelis = HttpContext.Session.DeserializeObject<Dictionary<string, string>>("PeliCantidad");
+            Dictionary<string, int> Precio = new Dictionary<string, int>();
 
-            ViewBag.Pelicula = Peliculas;
+            foreach (var e in Pelis) {
 
-            ViewBag.Cantidad= TempData["cantidad"] as List<string>;
+                int precio=this.repo.GetPreciosPelicula(e.Key);
 
-            List<string> Precio = new List<string>();
-
-            foreach (string idP in Peliculas) {
-
-                string precio = this.repo.GetPreciosPelicula(idP);
-
-                Precio.Add(precio);
+                if (precio != 0)
+                {
+                    Precio.Add(e.Key,precio * int.Parse(e.Value));
+                }
             }
 
             ViewBag.Precio = Precio;

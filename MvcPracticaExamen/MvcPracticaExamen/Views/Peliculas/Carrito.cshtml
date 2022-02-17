@@ -1,9 +1,10 @@
 ﻿@{ 
-
-    List<string> Peliculas = ViewBag.Pelicula as List<string>;
-    List<string> Cantidad = ViewBag.Cantidad as List<string>;
-    List<string> Precio = ViewBag.Precio as List<string>;
+    Dictionary<string, string> PeliCant = Context.Session.DeserializeObject<Dictionary<string, string>>("PeliCantidad");
+    Dictionary<string, int> Precio = ViewBag.Precio as Dictionary<string, int>;
 }
+
+@if (Context.Session.DeserializeObject<Dictionary<string, string>>("PeliCantidad") != null)
+{
 
 <table class="table table-active">
     <thead>
@@ -16,15 +17,28 @@
     </thead>
     <tbody>
 
-        @for(int i=0;i < Peliculas.Count;i++) { 
-        
+        @foreach (var e in PeliCant)
+        {
+
             <tr>
-                <td>@Peliculas[i]</td>
-                <td>@Cantidad[i]</td>
-                <td>@Precio[i]</td>
+                <td>@e.Key</td>
+                <td>@e.Value</td>
+
+                @if (Precio.ContainsKey(e.Key))
+                {
+
+                    @Precio.TryGetValue(e.Key, out int value);
+
+                    <td>@value€</td>
+                }
             </tr>
         }
 
     </tbody>
 
 </table>
+}
+else { 
+
+    <h1 style="color:red;">Aún no hay valores en el carrito...</h1>
+}

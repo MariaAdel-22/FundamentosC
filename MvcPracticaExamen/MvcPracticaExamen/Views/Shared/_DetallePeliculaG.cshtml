@@ -10,64 +10,64 @@
     <h4>Pelicula</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.IdPelicula)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.IdPelicula)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.DistribuidorId)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.DistribuidorId)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.IdGenero)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.IdGenero)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Titulo)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Titulo)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.IdNacionalidad)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.IdNacionalidad)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Argumento)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Argumento)
         </dd>
-        <dt class = "col-sm-2">
-            <img src="@Model.Foto" width="150" height="150"/>
+        <dt class="col-sm-2">
+            <img src="@Model.Foto" width="150" height="150" />
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Foto)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.FechaEstreno)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.FechaEstreno)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Actores)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Actores)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Duracion)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Duracion)
         </dd>
         <dd class="col-sm-10">
@@ -76,5 +76,29 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Index">Back to List</a>
+    <!--<a asp-action="Index">Back to List</a>-->
+    <button type="button" class="btn btn-danger" id="comprar">Comprar</button>
+    <label>Cantidad:</label>
+    <input type="text" class="form-control" id="cantidad" />
+
 </div>
+
+<script>
+
+    $(document).ready(function () {
+
+        $("#comprar").click(function () {
+
+            var cantidad = $("#cantidad").val();
+
+            var url = "@Url.Action("InsertarCarrito","Peliculas")";
+            var data = { idPelicula: "@Model.IdPelicula.ToString()", cantidad: cantidad };
+
+            $.post(url, data).then(function (data) {
+
+                console.log("funciona");
+            });
+
+        });
+    });
+</script>

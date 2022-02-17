@@ -1,6 +1,8 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +21,7 @@ namespace MvcPracticaExamen
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            
         }
 
         public IConfiguration Configuration { get; }
@@ -26,11 +29,24 @@ namespace MvcPracticaExamen
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(options =>
+            {
+                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            }).AddCookie();
+
+
             string cadena = this.Configuration.GetConnectionString("CadenaConexion");
             services.AddTransient<PeliculasRepository>();
 
+            services.AddDistributedMemoryCache();
+            services.AddSession(option => option.IdleTimeout = TimeSpan.FromMinutes(45));
+
             services.AddDbContext<PeliculasContext>(options => options.UseSqlServer(cadena));
-            services.AddControllersWithViews();
+
+            services.AddSingleton<CookieTempDataProvider>();
+            services.AddControllersWithViews(options => options.EnableEndpointRouting = false).AddCookieTempDataProvider();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,14 +67,24 @@ namespace MvcPracticaExamen
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
+            app.UseSession();
 
-           app.UseEndpoints(endpoints =>
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                name:"default",
+                template: "{controller=Home}/{action=Index}/{id?}"
+                );
+
+            });
+           /*app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-            });
+            });*/
         }
     }
 }
