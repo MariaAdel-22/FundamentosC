@@ -30,6 +30,7 @@ namespace MvcNetCoreClienteWCF
 
             services.AddSingleton<ServiceNumberConversion>();
 
+            services.AddSingleton<ServiceCatastro>();
             services.AddTransient<ServiceCountries>();
             services.AddControllersWithViews();
         }
