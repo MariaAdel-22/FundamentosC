@@ -1,4 +1,5 @@
-﻿using ReferenceCatrasto;
+﻿using MvcNetCoreClienteWCF.Models;
+using ReferenceCatrasto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +13,9 @@ namespace MvcNetCoreClienteWCF.Services
     {
         private ReferenceCatrasto.CallejerodelasedeelectrónicadelcatastroSoapClient client;
 
-        public ServiceCatastro() {
+        public ServiceCatastro(CallejerodelasedeelectrónicadelcatastroSoapClient client) {
 
-            this.client = new ReferenceCatrasto.CallejerodelasedeelectrónicadelcatastroSoapClient
-            (ReferenceCatrasto.CallejerodelasedeelectrónicadelcatastroSoapClient.EndpointConfiguration
-            .Callejero_x0020_de_x0020_la_x0020_sede_x0020_electrónica_x0020_del_x0020_catastro_Soap);
+            this.client = client;
         }
 
         public async Task<List<string>> GetProvincias() {
@@ -35,6 +34,52 @@ namespace MvcNetCoreClienteWCF.Services
             }
            
             return ProvinciaNames;
+        }
+
+        public async Task<List<Provincia>> ProvinciasListado() {
+
+            ConsultaProvincia1 response = await this.client.ObtenerProvinciasAsync();
+
+            XmlNode nodo = response.Provincias;
+
+            string xmlData = nodo.OuterXml;
+            XDocument document = XDocument.Parse(xmlData);
+
+            //ES IMPORTANTE TENER EL NAMESPACE PARA USAR LINQ PORQUE SINO NO CARGA LOS DATOS
+            XNamespace ns = "http://www.catastro.meh.es/";
+
+            List<Provincia> Provincias = new List<Provincia>();
+
+            var consulta = from datos in document.Descendants(ns+"prov") select datos;
+
+            foreach (XElement elem in consulta) {
+
+                string cp = elem.Element(ns + "cpine").Value;
+                string nombre = elem.Element(ns + "np").Value;
+                Provincia prov = new Provincia { IdProvincia = cp, NombreProvincia = nombre };
+
+                Provincias.Add(prov);
+            }
+
+            return Provincias;
+        }
+
+        public async void Municipios(string provincia,string municipio) {
+
+            ConsultaMunicipio1 response = await this.client.ObtenerMunicipiosAsync(provincia,municipio);
+
+            XmlNode nodo = response.Municipios;
+
+            string dataXML = nodo.OuterXml;
+
+            XDocument document = XDocument.Parse(dataXML);
+            XNamespace ns = document.Root.Attribute("xmlns").Value;
+
+            var consulta = from datos in document.Descendants("err") select datos;
+
+            foreach (XElement elem in consulta) { 
+            
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MvcNetCoreClienteWCF.Models;
 using MvcNetCoreClienteWCF.Services;
 using ReferenceCatrasto;
 using System;
@@ -22,6 +23,13 @@ namespace MvcNetCoreClienteWCF.Controllers
             List<string> names = await this.service.GetProvincias();
 
             return View(names);
+        }
+
+        public async Task<IActionResult> Provincias() {
+
+            List<Provincia> Provincias = await this.service.ProvinciasListado();
+
+            return View(Provincias);
         }
     }
 }
