@@ -1,0 +1,14 @@
+﻿@model List<string>
+
+<h1 style="color:darkcyan">Municipios</h1>
+
+<a asp-controller="Provincia" asp-action="Provincias">Back to list</a>
+
+<ul class="list-group">
+
+    @foreach (string munic in Model)
+    {
+
+        <li class="list-group-item">@munic</li>
+     }
+</ul>

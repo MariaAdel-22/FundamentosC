@@ -64,7 +64,7 @@ namespace MvcNetCoreClienteWCF.Services
             return Provincias;
         }
 
-        public async void Municipios(string provincia,string municipio) {
+        public async Task<List<string>> Municipios(string provincia,string? municipio) {
 
             ConsultaMunicipio1 response = await this.client.ObtenerMunicipiosAsync(provincia,municipio);
 
@@ -75,11 +75,18 @@ namespace MvcNetCoreClienteWCF.Services
             XDocument document = XDocument.Parse(dataXML);
             XNamespace ns = document.Root.Attribute("xmlns").Value;
 
-            var consulta = from datos in document.Descendants("err") select datos;
+            var consulta = from datos in document.Descendants(ns+"muni") select datos;
 
-            foreach (XElement elem in consulta) { 
-            
+            List<string> Municipios = new List<string>();
+
+            foreach (XElement elem in consulta) {
+
+                string Nombre = elem.Element(ns+"nm").Value;
+
+                Municipios.Add(Nombre);
             }
+
+            return Municipios;
         }
     }
 }

@@ -7,6 +7,6 @@
     @foreach (Provincia prov in Model) { 
 
         <li class="list-group-item">@prov.NombreProvincia</li>
-        <li><a asp-controller="Provincia" asp-action="Municipios" asp-route-idprovincia="@prov.IdProvincia" class="btn btn-info">Municipios</a></li>
+        <li><a asp-controller="Provincia" asp-action="Municipios" asp-route-idprovincia="@prov.NombreProvincia" class="btn btn-info">Municipios</a></li>
     }
 </ul>

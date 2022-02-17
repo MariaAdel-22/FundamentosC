@@ -31,5 +31,12 @@ namespace MvcNetCoreClienteWCF.Controllers
 
             return View(Provincias);
         }
+
+        public async Task<IActionResult> Municipios(string idprovincia,string? municipio) {
+
+            List<string> Municipios = await this.service.Municipios(idprovincia,municipio);
+
+            return View(Municipios);
+        }
     }
 }
