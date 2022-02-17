@@ -24,6 +24,12 @@ namespace MvcNetCoreClienteWCF
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            ReferenceNumberConversion.NumberConversionSoapTypeClient clientNumberConversion =
+            new ReferenceNumberConversion.NumberConversionSoapTypeClient(ReferenceNumberConversion.NumberConversionSoapTypeClient.
+            EndpointConfiguration.NumberConversionSoap);
+
+            services.AddSingleton<ServiceNumberConversion>();
+
             services.AddTransient<ServiceCountries>();
             services.AddControllersWithViews();
         }
