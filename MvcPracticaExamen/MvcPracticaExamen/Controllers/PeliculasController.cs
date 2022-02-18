@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MvcPracticaExamen.Extensions;
+using MvcPracticaExamen.Filters;
 using MvcPracticaExamen.Models;
 using MvcPracticaExamen.Repositories;
 using System;
@@ -105,6 +106,12 @@ namespace MvcPracticaExamen.Controllers
             ViewBag.Precio = Precio;
 
             return View();
+        }
+
+        [AuthorizeAdmin]
+        public IActionResult RealizarCompra(int id) {
+
+            return View(id);
         }
     }
 }

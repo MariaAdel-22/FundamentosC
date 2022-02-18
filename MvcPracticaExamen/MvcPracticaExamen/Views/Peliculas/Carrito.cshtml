@@ -1,6 +1,8 @@
 ﻿@{ 
     Dictionary<string, string> PeliCant = Context.Session.DeserializeObject<Dictionary<string, string>>("PeliCantidad");
     Dictionary<string, int> Precio = ViewBag.Precio as Dictionary<string, int>;
+
+    int precioTotal = 0;
 }
 
 @if (Context.Session.DeserializeObject<Dictionary<string, string>>("PeliCantidad") != null)
@@ -28,6 +30,7 @@
                 {
 
                     @Precio.TryGetValue(e.Key, out int value);
+                    precioTotal += value;
 
                     <td>@value€</td>
                 }
@@ -37,6 +40,8 @@
     </tbody>
 
 </table>
+
+<a asp-controller="Peliculas" asp-action="RealizarCompra" asp-route-id="@precioTotal" class="btn btn-danger">Realizar Compra</a>
 }
 else { 
 

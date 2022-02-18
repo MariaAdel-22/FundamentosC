@@ -45,6 +45,7 @@ namespace MvcPracticaExamen
 
             services.AddDbContext<PeliculasContext>(options => options.UseSqlServer(cadena));
 
+            services.AddSingleton<ITempDataProvider>();
             services.AddSingleton<CookieTempDataProvider>();
             services.AddControllersWithViews(options => options.EnableEndpointRouting = false).AddCookieTempDataProvider();
         }

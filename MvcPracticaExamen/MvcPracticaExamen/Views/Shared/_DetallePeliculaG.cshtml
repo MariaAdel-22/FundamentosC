@@ -92,7 +92,9 @@
             var cantidad = $("#cantidad").val();
 
             var url = "@Url.Action("InsertarCarrito","Peliculas")";
-            var data = { idPelicula: "@Model.IdPelicula.ToString()", cantidad: cantidad };
+            var can = parseInt($("#canProd").text());
+
+            var data = { idPelicula: "@Model.IdPelicula.ToString()", cantidad: cantidad, can: can };
 
             $.post(url, data).then(function (data) {
 
