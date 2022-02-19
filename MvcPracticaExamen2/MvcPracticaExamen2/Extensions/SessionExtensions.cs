@@ -9,13 +9,13 @@ namespace MvcPracticaExamen2.Extensions
 {
     public static class SessionExtensions
     {
-        public static void GetObject(this ISession sesion,string key, object value) {
+        public static void SetObject(this ISession sesion,string key, object value) {
 
             string data = JsonConvert.SerializeObject(value);
             sesion.SetString(key, data);
         }
 
-        public static T SetObject<T>(this ISession sesion, string key) {
+        public static T GetObject<T>(this ISession sesion, string key) {
 
             string data = sesion.GetString(key);
 

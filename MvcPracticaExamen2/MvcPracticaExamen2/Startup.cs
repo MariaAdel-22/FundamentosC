@@ -1,9 +1,14 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MvcPracticaExamen2.Data;
+using MvcPracticaExamen2.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +28,37 @@ namespace MvcPracticaExamen2
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            //Conexion BBDD
+            string cadena = this.Configuration.GetConnectionString("Cadena");
+            services.AddTransient<RepositoryDoctor>();
+            services.AddDbContext<DoctorContext>(options => options.UseSqlServer(cadena));
+
+
+            //Configurar Session
+            services.AddDistributedMemoryCache();
+            services.AddSession(option => option.IdleTimeout = TimeSpan.FromMinutes(45));
+
+            //Configurar Authentication (cookies)
+
+            services.AddAuthentication(option =>
+            {
+
+                option.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                option.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                option.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            }).AddCookie();
+
+
+            //Configurar TempDataProvider (Filters)
+
+            services.AddSingleton<ITempDataProvider>();
+
+            //Por si usamos cookies en el filter
+            services.AddSingleton<CookieTempDataProvider>();
+
+
+
+            services.AddControllersWithViews(option => option.EnableEndpointRouting = false).AddCookieTempDataProvider();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,14 +79,20 @@ namespace MvcPracticaExamen2
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
+            app.UseSession();
 
-            app.UseEndpoints(endpoints =>
+            app.UseMvc(route =>
             {
-                endpoints.MapControllerRoute(
+
+                route.MapRoute(
+
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}"
+                );
             });
+           
         }
     }
 }

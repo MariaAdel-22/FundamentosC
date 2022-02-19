@@ -21,5 +21,13 @@ namespace MvcPracticaExamen2.Repositories
             var consulta = from datos in this.context.Doctores select datos;
             return consulta.ToList();
         }
+
+        public Doctor FindDoctor(int IdDoctor) {
+
+            var consulta = from datos in this.context.Doctores where datos.IdDoctor == IdDoctor select datos;
+
+            return consulta.FirstOrDefault();
+        }
+
     }
 }

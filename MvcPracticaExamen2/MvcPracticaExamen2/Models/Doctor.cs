@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace MvcPracticaExamen2.Models
         [Column("HOSPITAL_COD")]
         public int IdHospital { get; set; }
 
+        [Key]
         [Column("DOCTOR_NO")]
         public int IdDoctor { get; set; }
 

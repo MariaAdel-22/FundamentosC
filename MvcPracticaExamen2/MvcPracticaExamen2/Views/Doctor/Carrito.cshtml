@@ -1,0 +1,36 @@
+﻿<h1>Carrito de la compra</h1>
+
+@if (Context.Session.GetObject<List<Doctor>>("Productos") != null)
+{
+
+    List<Doctor> Productos = Context.Session.GetObject<List<Doctor>>("Productos");
+
+<form method="post">
+
+    <ul class="list-group-item">
+
+        @foreach (Doctor doc in Productos)
+        {
+
+            <li>Nombre: @doc.Apellido</li>
+            <li>
+                <label>Cantidad:</label>
+                <input type="text" name="cantidad" id="cantidad" class="form-control" />
+            </li>
+            <li>
+                <label>Precio</label>
+                <input type="text" name="precio" id="precio" value="@doc.Salario" class="form-control" readonly/>
+            </li>
+        }
+    </ul>
+
+    <button type="submit" class="btn btn-danger" id="comprar">Realizar Compra</button>
+</form>
+}
+else { 
+
+    <h1 style="color:red">Aún no ha comprado nada...</h1>
+
+}
+
+<!--QUIERO QUE APAREZCA EL PRECIO TOTAL AL IR AÑADIENDO UNA CANTIDAD-->
