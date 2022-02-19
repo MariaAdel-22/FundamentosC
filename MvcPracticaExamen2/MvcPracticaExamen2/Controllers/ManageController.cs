@@ -38,6 +38,13 @@ namespace MvcPracticaExamen2.Controllers
                 Claim ClName = new Claim(ClaimTypes.Name, username);
                 Claim ClPss = new Claim(ClaimTypes.NameIdentifier, psswd);
 
+                //El permiso de doctor con acceso especial
+
+                if (doc.Salario >= 321000) {
+
+                    identity.AddClaim(new Claim("Especial", doc.Salario.ToString()));
+                }
+
                 identity.AddClaim(ClName);
                 identity.AddClaim(ClPss);
 

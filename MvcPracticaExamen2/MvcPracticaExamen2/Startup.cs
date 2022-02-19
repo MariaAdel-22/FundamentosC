@@ -56,7 +56,12 @@ namespace MvcPracticaExamen2
             //Por si usamos cookies en el filter
             services.AddSingleton<CookieTempDataProvider>();
 
+            //Añadir las Policies
 
+            services.AddAuthorization(option =>
+            {
+                option.AddPolicy("AccesoEspecial", policy => policy.RequireClaim("Especial"));
+            });
 
             services.AddControllersWithViews(option => option.EnableEndpointRouting = false).AddCookieTempDataProvider();
         }

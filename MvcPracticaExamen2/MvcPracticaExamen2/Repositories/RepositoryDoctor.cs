@@ -29,5 +29,19 @@ namespace MvcPracticaExamen2.Repositories
             return consulta.FirstOrDefault();
         }
 
+        public void ModificarDoctor(Doctor doc) {
+
+            this.context.Doctores.Add(doc);
+            this.context.SaveChanges();
+        }
+
+        public void EliminarDoctor(int id) {
+
+            var consulta = from datos in this.context.Doctores where datos.IdDoctor == id select datos;
+
+            this.context.Doctores.Remove(consulta.FirstOrDefault());
+            this.context.SaveChanges();
+
+        }
     }
 }

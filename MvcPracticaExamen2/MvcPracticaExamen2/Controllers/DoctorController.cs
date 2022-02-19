@@ -28,6 +28,13 @@ namespace MvcPracticaExamen2.Controllers
             return View(Doctores);
         }
 
+        [AuthorizeDoctores(Policy = "AccesoEspecial")]
+        public IActionResult AdministracionDoctores() {
+
+            List<Doctor> Doctores = this.repo.GetDoctores();
+            return View(Doctores);
+        }
+
         [HttpPost]
         public JsonResult InsertarCarrito(int id) {
         
@@ -120,6 +127,53 @@ namespace MvcPracticaExamen2.Controllers
             Doctor doc = this.repo.FindDoctor(IdDoctor);
 
             return View(doc);
+        }
+
+        public IActionResult InsertarDoctor() {
+
+            return RedirectToAction("Administracion", "Doctores");
+        }
+
+        public IActionResult Modificar(int id) {
+
+            Doctor doc = this.repo.FindDoctor(id);
+
+            return View(doc);
+        }
+
+        [HttpPost]
+        public IActionResult Modificar(string IdHospital,string IdDoctor,string Apellido,string Especialidad,string Salario) {
+
+            Doctor doc = this.repo.FindDoctor(int.Parse(IdHospital));
+
+            if (doc != null) {
+
+                doc.IdHospital = int.Parse(IdHospital);
+                doc.Apellido = Apellido;
+                doc.Especialidad = Especialidad;
+                doc.Salario = int.Parse(Salario);
+            }
+
+            return View();
+        }
+
+        public IActionResult Eliminar(int id) {
+
+            Doctor doc = this.repo.FindDoctor(id);
+
+
+            List<Doctor> doctores = HttpContext.Session.GetObject<List<Doctor>>("Productos");
+
+            if (doctores.Contains(doc)) {
+
+                doctores.Remove(doc);
+
+                HttpContext.Session.SetObject("Productos", doctores);
+            }
+
+           this.repo.EliminarDoctor(id);
+
+            return View("AdministracionDoctores");
         }
     }
 }
