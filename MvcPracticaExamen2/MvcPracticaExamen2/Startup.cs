@@ -61,6 +61,12 @@ namespace MvcPracticaExamen2
             services.AddAuthorization(option =>
             {
                 option.AddPolicy("AccesoEspecial", policy => policy.RequireClaim("Especial"));
+                option.AddPolicy("AdminDefinitivo", policy => policy.RequireClaim("Administrador"));
+                option.AddPolicy("PermisosEspDef",policy =>
+                {
+                    //Debe cumplirse los dos claim
+                    policy.RequireClaim("Especial").RequireClaim("Administrador");
+                 });
             });
 
             services.AddControllersWithViews(option => option.EnableEndpointRouting = false).AddCookieTempDataProvider();

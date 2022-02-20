@@ -22,6 +22,21 @@ namespace MvcPracticaExamen2.Repositories
             return consulta.ToList();
         }
 
+        public List<Doctor> GetDoctoresEspeciales(int salario) {
+
+            var consulta = from datos in this.context.Doctores where datos.Salario >= salario select datos;
+
+            return consulta.ToList();
+        }
+
+        public List<Doctor> GetDoctoresNOEspeciales(int salario)
+        {
+
+            var consulta = from datos in this.context.Doctores where datos.Salario < salario select datos;
+            return consulta.ToList();
+        }
+
+
         public Doctor FindDoctor(int IdDoctor) {
 
             var consulta = from datos in this.context.Doctores where datos.IdDoctor == IdDoctor select datos;
@@ -42,6 +57,13 @@ namespace MvcPracticaExamen2.Repositories
             this.context.Doctores.Remove(consulta.FirstOrDefault());
             this.context.SaveChanges();
 
+        }
+
+        public int MaximoSalario() {
+
+            var consulta = (from datos in this.context.Doctores select datos.Salario).Max();
+
+            return consulta;
         }
     }
 }

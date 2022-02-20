@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MvcPracticaExamen2.Extensions;
 using MvcPracticaExamen2.Models;
 using MvcPracticaExamen2.Repositories;
 using System;
@@ -42,7 +44,18 @@ namespace MvcPracticaExamen2.Controllers
 
                 if (doc.Salario >= 321000) {
 
-                    identity.AddClaim(new Claim("Especial", doc.Salario.ToString()));
+                    identity.AddClaim(new Claim("Especial",doc.IdDoctor.ToString()));
+                    identity.AddClaim(new Claim(ClaimTypes.Role, "especial"));
+                }
+
+                //El permiso de doctor ADMIN definitivo
+
+                int SalarioMaximo=this.repo.MaximoSalario();
+
+                if (doc.Salario == SalarioMaximo && doc.Especialidad == "Psiquiatría") {
+
+                    identity.AddClaim(new Claim("Administrador", doc.IdDoctor.ToString()));
+                    identity.AddClaim(new Claim(ClaimTypes.Role, "administrador"));
                 }
 
                 identity.AddClaim(ClName);

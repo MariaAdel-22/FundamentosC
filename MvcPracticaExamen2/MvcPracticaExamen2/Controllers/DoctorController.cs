@@ -28,7 +28,7 @@ namespace MvcPracticaExamen2.Controllers
             return View(Doctores);
         }
 
-        [AuthorizeDoctores(Policy = "AccesoEspecial")]
+        [AuthorizeDoctores(Policy = "AccesoEspecial",Roles ="especial")]
         public IActionResult AdministracionDoctores() {
 
             List<Doctor> Doctores = this.repo.GetDoctores();
@@ -144,7 +144,7 @@ namespace MvcPracticaExamen2.Controllers
         [HttpPost]
         public IActionResult Modificar(string IdHospital,string IdDoctor,string Apellido,string Especialidad,string Salario) {
 
-            Doctor doc = this.repo.FindDoctor(int.Parse(IdHospital));
+            Doctor doc = this.repo.FindDoctor(int.Parse(IdDoctor));
 
             if (doc != null) {
 
@@ -174,6 +174,62 @@ namespace MvcPracticaExamen2.Controllers
            this.repo.EliminarDoctor(id);
 
             return View("AdministracionDoctores");
+        }
+
+        [AuthorizeDoctores(Policy = "PermisosEspDef")]
+        public IActionResult AdministracionDoctoresEspeciales() {
+
+            List<Doctor> doctoresEsp = new List<Doctor>();
+
+            if (TempData["doctores"] != null)
+            {
+
+                doctoresEsp = TempData["doc"] as List<Doctor>;
+            }
+            else
+            {
+
+                doctoresEsp = this.repo.GetDoctoresNOEspeciales(321000);
+            }
+
+            return View(doctoresEsp);
+        }
+
+        [AuthorizeDoctores(Policy = "PermisosEspDef")]
+        public IActionResult InsertarEspecial() {
+
+            List<Doctor> DoctoresEspeciales = new List<Doctor>();
+
+            if (TempData["doctores"] != null) {
+
+                DoctoresEspeciales = TempData["doc"] as List<Doctor>;
+            }
+            else {
+
+                DoctoresEspeciales = this.repo.GetDoctoresNOEspeciales(321000);
+            }
+
+            return View(DoctoresEspeciales);
+        }
+
+        [HttpPost]
+        public IActionResult InsertarEspecial(string doctor) {
+
+            Doctor doc = this.repo.FindDoctor(int.Parse(doctor));
+
+            if (doc != null) {
+
+                //HttpContext.User.Identities.First().AddClaim(new Claim("Especial", doc.IdDoctor.ToString()));
+
+                //HttpContext.Response.Cookies.Append("EspecialInsertado", doc.IdDoctor.ToString());
+
+                List<Doctor> DoctoresEspeciales = this.repo.GetDoctoresNOEspeciales(321000);
+                DoctoresEspeciales.Add(doc);
+
+                TempData["doctores"] = DoctoresEspeciales;
+            }
+
+            return View("AdministracionDoctoresEspeciales");
         }
     }
 }
