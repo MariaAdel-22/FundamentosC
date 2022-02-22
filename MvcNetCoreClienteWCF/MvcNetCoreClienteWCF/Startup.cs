@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MvcNetCoreClienteWCF.Services;
 using ReferenceCatrasto;
+using ServiceCochesClass;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,15 @@ namespace MvcNetCoreClienteWCF
             ReferenceNumberConversion.NumberConversionSoapTypeClient clientNumberConversion =
             new ReferenceNumberConversion.NumberConversionSoapTypeClient(ReferenceNumberConversion.NumberConversionSoapTypeClient.
             EndpointConfiguration.NumberConversionSoap);
+
+
+           CochesContractClient cochesClient = new CochesContractClient
+             (CochesContractClient.EndpointConfiguration.BasicHttpBinding_ICochesContract);
+
+            services.AddSingleton<CochesContractClient>(x =>cochesClient);
+
+            services.AddSingleton<ServiceCoches>();
+
 
             services.AddSingleton<ServiceNumberConversion>();
             services.AddSingleton<CallejerodelasedeelectrónicadelcatastroSoapClient>();

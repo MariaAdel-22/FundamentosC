@@ -1,0 +1,25 @@
+﻿@model Coche[]
+
+<table class="table table-info">
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>Modelo</td>
+            <td>Marca</td>
+            <td>Imagen</td>
+            <td>Accion</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Coche coch in Model) { 
+        
+            <tr>
+                <td>@coch.IdCoche</td>
+                <td>@coch.Modelo</td>
+                <td>@coch.Marca</td>
+                <td><img src="@coch.Imagen" width="120" height="120"/></td>
+                <td><a asp-controller="Coches" asp-action="Details" asp-route-id="@coch.IdCoche" class="btn btn-secondary">Detalles</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

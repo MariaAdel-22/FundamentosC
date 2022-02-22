@@ -1,0 +1,10 @@
+﻿@model Coche
+
+<ul class="list-group">
+    <li class="list-group-item-info">@Model.IdCoche</li>
+    <li class="list-group-item-info">@Model.Marca</li>
+    <li class="list-group-item-info">@Model.Modelo</li>
+    <li class="list-group-item-info"><img src="@Model.Imagen" width="120" height="120"/></li>
+</ul>
+
+<a asp-controller="Coches" asp-action="Index" class="btn btn-secondary">Volver al listado</a>
