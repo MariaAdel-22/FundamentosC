@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31321.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcClientesIDWCF", "MvcClientesIDWCF\MvcClientesIDWCF.csproj", "{D2DB93FE-D15A-47F2-9E5C-90DB49ABF06C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcClientesIDHostWCF", "MvcClientesIDHostWCF\MvcClientesIDHostWCF.csproj", "{AD89F964-9130-4EEB-AB72-CDD9BC3E1F78}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D2DB93FE-D15A-47F2-9E5C-90DB49ABF06C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2DB93FE-D15A-47F2-9E5C-90DB49ABF06C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2DB93FE-D15A-47F2-9E5C-90DB49ABF06C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2DB93FE-D15A-47F2-9E5C-90DB49ABF06C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD89F964-9130-4EEB-AB72-CDD9BC3E1F78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD89F964-9130-4EEB-AB72-CDD9BC3E1F78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD89F964-9130-4EEB-AB72-CDD9BC3E1F78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD89F964-9130-4EEB-AB72-CDD9BC3E1F78}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F1B760DD-D08F-4639-A95E-BA60ED344BBB}
+	EndGlobalSection
+EndGlobal

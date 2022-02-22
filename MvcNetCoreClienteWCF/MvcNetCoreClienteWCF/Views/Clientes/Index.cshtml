@@ -1,0 +1,26 @@
+﻿@model Cliente[]
+
+<table class="table table-info">
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>Nombre</td>
+            <td>Direccion</td>
+            <td>Email</td>
+            <td>Imagen</td>
+            <td>Accion</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Cliente cli in Model) {
+        
+            <tr>
+                <td>@cli.IdCliente</td>
+                <td>@cli.Nombre</td>
+                <td>@cli.Direccion</td>
+                <td>@cli.Imagen</td>
+                <td><a asp-controller="Clientes" asp-action="Details" asp-route-id="@cli.IdCliente" class="btn btn-secondary">Detalles</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

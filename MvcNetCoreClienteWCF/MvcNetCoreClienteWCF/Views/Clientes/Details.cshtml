@@ -1,0 +1,25 @@
+﻿@model Cliente
+
+<table class="table table-info">
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>Nombre</td>
+            <td>Direccion</td>
+            <td>Email</td>
+            <td>Imagen</td>
+            <td>Accion</td>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td>@Model.IdCliente</td>
+            <td>@Model.Nombre</td>
+            <td>@Model.Direccion</td>
+            <td>@Model.Imagen</td>
+            <td><a asp-controller="Clientes" asp-action="Index" class="btn btn-secondary">Volver al listado</a></td>
+        </tr>
+        
+    </tbody>
+</table>

@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using MvcNetCoreClienteWCF.Services;
 using ReferenceCatrasto;
 using ServiceCochesClass;
+using ServicioClientesClass;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,11 @@ namespace MvcNetCoreClienteWCF
 
             services.AddSingleton<ServiceCoches>();
 
+            ClientesContractClient clientesClient = 
+                new ClientesContractClient(ClientesContractClient.EndpointConfiguration.BasicHttpBinding_IClientesContract);
+
+            services.AddSingleton<ClientesContractClient>(x => clientesClient);
+            services.AddSingleton<ServiceClientesID>();
 
             services.AddSingleton<ServiceNumberConversion>();
             services.AddSingleton<CallejerodelasedeelectrónicadelcatastroSoapClient>();
