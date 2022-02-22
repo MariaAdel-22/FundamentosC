@@ -1,0 +1,37 @@
+﻿<h1>Index</h1>
+
+@{  
+    int[] numeros = new int[0];
+
+    if (ViewBag.numeros != null) {
+
+        numeros = ViewBag.numeros as int[];
+    }
+
+}
+
+<form method="post">
+    <label>Introduzca un numero:</label>
+    <input type="text" name="numero" class="form-control"/>
+    <br/>
+    <button type="submit" class="btn btn-secondary">Mostrar Tabla</button>
+</form>
+
+@if(numeros.Length > 0){
+
+<table class="table table-active">
+        <thead>
+            <tr>
+                <th>Numeros</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (int val in numeros) { 
+            
+                <tr>
+                    <td>@val</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

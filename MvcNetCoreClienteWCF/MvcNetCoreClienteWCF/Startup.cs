@@ -33,6 +33,7 @@ namespace MvcNetCoreClienteWCF
             services.AddSingleton<CallejerodelasedeelectrónicadelcatastroSoapClient>();
             services.AddSingleton<ServiceCatastro>();
             services.AddTransient<ServiceCountries>();
+            services.AddTransient<ServiceMetodosVarios>();
             services.AddControllersWithViews();
         }
 
