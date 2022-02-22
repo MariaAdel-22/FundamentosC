@@ -1,0 +1,50 @@
+﻿@model Doctor
+
+@{
+    ViewData["Title"] = "Modificar";
+}
+
+<h1>Modificar</h1>
+
+<h4>Doctor</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="IdHospital" class="control-label"></label>
+                <input type="text" name="IdHospital" value="@Model.IdHospital" class="form-control" />
+                <span asp-validation-for="IdHospital" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdDoctor" class="control-label"></label>
+                <input type="text" name="IdDoctor" value="@Model.IdDoctor" class="form-control" />
+                <span asp-validation-for="IdDoctor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Apellido" class="control-label"></label>
+                <input type="text" name="Apellido" value="@Model.Apellido" class="form-control" />
+                <span asp-validation-for="Apellido" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Especialidad" class="control-label"></label>
+                <input type="text" name="Especialidad" value="@Model.Especialidad" class="form-control" />
+                <span asp-validation-for="Especialidad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Salario" class="control-label"></label>
+                <input type="text" name="Salario" value="@Model.Salario" class="form-control" />
+                <span asp-validation-for="Salario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="AdministracionDoctores">Back to List</a>
+</div>
+

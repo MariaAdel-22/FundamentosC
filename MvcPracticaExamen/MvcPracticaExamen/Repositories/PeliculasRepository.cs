@@ -59,9 +59,9 @@ namespace MvcPracticaExamen.Repositories
             return consulta.FirstOrDefault();
         }
 
-        public string GetPreciosPelicula(string idP) {
+        public int GetPreciosPelicula(string idP) {
 
-            var consulta = from datos in this.context.Peliculas.AsEnumerable() where datos.IdPelicula == int.Parse(idP) select datos.Precio.ToString();
+            var consulta = from datos in this.context.Peliculas.AsEnumerable() where datos.IdPelicula == int.Parse(idP) select datos.Precio;
 
             return consulta.FirstOrDefault();
         }

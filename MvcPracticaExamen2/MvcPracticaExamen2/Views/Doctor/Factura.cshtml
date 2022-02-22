@@ -1,0 +1,55 @@
+﻿@model ResumenProducto
+
+@{
+    ViewData["Title"] = "Factura";
+}
+
+<h1>Factura</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecioTotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CantidadTotal)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Model.PrecioTotal
+            </td>
+            <td>
+                @Model.CantidadTotal
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+
+<!--<h1>Nombre de Médicos comprados</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Apellido</th>
+            <th>Especialidad</th>
+            <th>Salario</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (Doctor doc in Model.DoctoresComprados) { 
+        
+            <tr>
+                <td>@doc.Apellido</td>
+                <td>@doc.Especialidad</td>
+                <td>@doc.Salario</td>
+            </tr>
+        }
+    </tbody>
+</table>-->

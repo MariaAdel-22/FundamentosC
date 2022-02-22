@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MvcPracticaExamen.Models
 {
-    [Table("PELICULAS")]
+    [Table("PELICULA")]
     public class Pelicula
     {
         [Key]
@@ -33,7 +33,7 @@ namespace MvcPracticaExamen.Models
         public string Foto { get; set; }
 
         [Column("fechaEstreno")]
-        public DateTime FechaEstreno { get; set; }
+        public string FechaEstreno { get; set; }
 
         [Column("actores")]
         public string Actores { get; set; }

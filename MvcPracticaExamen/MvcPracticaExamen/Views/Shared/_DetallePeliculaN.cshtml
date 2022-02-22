@@ -94,10 +94,14 @@
 
             var cantidad = $("#cantidad").val();
 
-            var url = "@Url.Action("Peliculas","InsertarCarrito")";
-            var data = { idPelicula: "@Model.IdPelicula.ToString()", cantidad: cantidad };
+            var url = "@Url.Action("InsertarCarrito","Peliculas")";
+            var can = parseInt($("#canProd").text());
+
+            var data = { idPelicula: "@Model.IdPelicula.ToString()", cantidad: cantidad,can:can };
 
             $.post(url, data).then(function (data) {
+
+                $("#canProd").text(can + 1);
 
                 console.log("funciona");
             });

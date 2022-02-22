@@ -1,0 +1,59 @@
+﻿@model List<Doctor>
+
+@{
+    ViewData["Title"] = "AdministracionDoctoresEspeciales";
+}
+
+<h1>Doctores Especiales</h1>
+
+<p>
+    <a asp-controller="Doctor" asp-action="InsertarEspecial" class="btn btn-success">Insertar</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                IdHospital
+            </th>
+            <th>
+                IdDoctor
+            </th>
+            <th>
+              Apellido
+            </th>
+            <th>
+                Especialidad
+            </th>
+            <th>
+                Salario
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdHospital)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdDoctor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Especialidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salario)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

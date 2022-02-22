@@ -1,0 +1,90 @@
+﻿@model IEnumerable<MvcPracticaExamen2.Models.Doctor>
+
+@{
+    ViewData["Title"] = "AdministracionDoctores";
+}
+
+<h1>Administracion Doctores</h1>
+
+<a asp-controller="Doctor" asp-action="InsertarDoctor" class="btn btn-success">Insertar</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdHospital)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdDoctor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apellido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Especialidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salario)
+            </th>
+            <th>
+                Acciones
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdHospital)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdDoctor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Apellido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Especialidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Salario)
+                </td>
+                <td>
+                    <a asp-controller="Doctor" asp-action="Detalles" class="btn btn-warning">Detalles</a>
+                    <!--<a asp-controller="Doctor" asp-action="Carrito" asp-route-id="@item.IdDoctor" class="btn btn-danger">Añadir al carrito</a>-->
+                    <button class="btn btn-danger" type="button" id="@item.IdDoctor">Añadir al carrito</button>
+
+                     <a asp-controller="Doctor" asp-action="Modificar" class="btn btn-warning" asp-route-id="@item.IdDoctor">Modificar</a>
+                      <a asp-controller="Doctor" asp-action="Eliminar" class="btn btn-danger" asp-route-id="@item.IdDoctor">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section Scripts{
+
+    <script>
+    $(document).ready(function () {
+
+        console.log("hola");
+
+        $("button").click(function () {
+
+            var id = $(this).attr("id");
+
+            var url = "@Url.Action("InsertarCarrito","Doctor")";
+
+            var data = { id: id};
+
+            $.post(url, data).then(function (data) {
+
+                console.log(data);
+            });
+        });
+    });
+    </script>
+
+}
